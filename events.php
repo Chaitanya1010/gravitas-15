@@ -11,7 +11,7 @@ function search_events(val)
 	}
 	if(type=="5")//combos
 	{
-		return;
+
 	}
 	if(val=="body")
 		document.getElementById("search").value="";
@@ -29,10 +29,13 @@ function search_events(val)
 }
 function add_to_cart(id)
 {
-	if(cart[0]=='undefined')
-		cart[0]=id;
-	else
-		cart[cart.length]=id;
+	if(id!="refresh")
+	{
+		if(cart[0]=='undefined')
+			cart[0]=id;
+		else
+			cart[cart.length]=id;	
+	}
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
@@ -51,6 +54,7 @@ function del_cart(id)
 {
 	cart.splice(id,1);
 	search_events("body");
+	add_to_cart("refresh");
 }
 </SCRIPT>
 <BODY onload='search_events("body")'>
