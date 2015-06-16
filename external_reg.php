@@ -79,7 +79,10 @@ function next()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("form").innerHTML=xmlhttp.responseText;
+				if(xmlhttp.responseText=="1")
+					window.location = 'events.php';
+				else
+					window.location='external_reg.php';
 			}
 		}
 		xmlhttp.open("POST","sub_reg.php",true);

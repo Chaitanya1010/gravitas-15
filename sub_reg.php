@@ -1,4 +1,5 @@
 <?php
+require("sql_con.php");
 $name=$_POST["name"];
 $regno = $_POST["regno"];
 $gen= $_POST["gen"];
@@ -7,6 +8,10 @@ $ph=$_POST["ph"];
 $email=$_POST["email"];
 $clgref=$_POST["clgref"];
 $vitref=$_POST["vitref"];
-echo"$name<br>$regno<br>$gen<br>$college<br>$ph<br>$email<br>$clgref<br>$vitref";
-
+$q ="INSERT INTO `external_participants` (`name`, `regno`, `gender`, `college`, `phno`, `email`, `vitref`, `clgref`,`acc_details`) VALUES ('$name', '$regno', '$gen', '$college', '$ph', '$email', '$vitref', '$clgref','1');";
+$res = mysqli_query($mysqli,$q);
+if($res==true)
+	echo 1;
+else
+	echo 0;
 ?>

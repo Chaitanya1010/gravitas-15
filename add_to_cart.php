@@ -3,7 +3,7 @@ require("sql_con.php");
 $cart=$_POST["cart"];
 $team=$_POST["team"];
 $sum=0;
-echo"<TABLE BORDER=1>";
+echo"<TABLE BORDER=1><TR><TH>Name</TH><TH>Price</TH><TH>Team</TH><TH>Remove</TH></TR>";
 if($cart!="")	
 {
 	$cart_array = explode(",",$cart);

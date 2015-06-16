@@ -31,7 +31,7 @@ if($cart!="")
 				$q2 = "UPDATE `events` SET `filled_seats`= `filled_seats`+$team_array[$i] WHERE `id`= '$t[0]'";
 				$res2 = mysqli_query($mysqli,$q2);
 				$sum+=$t[2];
-			}
+			} 
 		}
 		$q5 = "UPDATE `online_payment` SET `sum`='$sum' WHERE `trans_id`='$trans_id' AND `regno`='$regno'";
 		mysqli_query($mysqli,$q5);

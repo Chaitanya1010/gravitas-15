@@ -5,13 +5,36 @@ $ids="";
 $key = $_POST["key"];
 $type =  $_POST["type"];
 $cart = $_POST["cart"];
+$regno="12nmh";//take from sessions
 $q="";
 
-if($key=="body")
-	$q = "SELECT * FROM `events` WHERE `type`= $type";
-else
-	$q = "SELECT * FROM `events` WHERE `name` LIKE '$key%' AND `type` = $type";
 
+if($key=="body")
+	$q = "SELECT * FROM `events` WHERE `type`= $type ";
+else
+	$q = "SELECT * FROM `events` WHERE `name` LIKE '$key%' AND `type` = $type ";
+
+//Event for which the student has already registered
+$event_id = array();
+$i=0;
+$eve_id="";
+$q1 = "SELECT * FROM `registration` WHERE `regno` = '$regno'  AND `paid_status`=1";
+$r1 = mysqli_query($mysqli,$q1);
+while($t1=mysqli_fetch_array($r1))
+{
+	$event_id[$i++] = $t1[2];
+}
+if($i!=0)
+{
+	for($j=0;$j<count($event_id);$j++)
+		$event_id[$j] = "'".$event_id[$j]."'";
+	$eve_id= implode(",",$event_id);
+}
+
+if($eve_id!="")
+	$q.="AND `id` NOT IN ($eve_id)";
+
+//Events in cart
 if($cart!="")	
 {
 	$cart_array = explode(",",$cart);

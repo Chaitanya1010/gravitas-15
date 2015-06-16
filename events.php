@@ -2,7 +2,6 @@
 <SCRIPT type="text/javascript">
 var cart = new Array();
 var team = new Array();
-
 //To display the events in each type
 //val - value typed in search box or "body" while refreshing the events list
 function search_events(val)
@@ -140,7 +139,7 @@ function checkout()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				document.getElementById("pay").innerHTML=xmlhttp.responseText;
 			}
 		}
 		xmlhttp.open("POST","online_pay.php",true);
@@ -151,6 +150,11 @@ function checkout()
 </SCRIPT>
 
 <BODY onload='search_events("body")'>
+<div id='pay'>
 <?php require("event_body.php");?>
+<br><br>
+Registered Events:<br><br>
+<?php require("registered_events.php");?>
+</div>
 </BODY>
 </HTML>
