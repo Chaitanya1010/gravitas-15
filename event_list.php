@@ -156,8 +156,9 @@ function checkout()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("pay").innerHTML=xmlhttp.responseText;
-				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				//document.getElementById("pay").innerHTML=xmlhttp.responseText;
+				document.getElementById("all").innerHTML=xmlhttp.responseText;//except registered events
+				document.getElementById("form").submit();
 			}
 		}
 		xmlhttp.open("POST","online_pay.php",true);
@@ -183,7 +184,7 @@ function checkout()
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="1" onclick="search_events('body',this)">Workshops</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="2" onclick="search_events('body',this)">Technical</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="3" onclick="search_events('body',this)">Management</a></li>
-        <li class="tab col s2" id="type" name="type" value="0" onclick="search_events('body',this)"><a href="#" class="white-text" id="type" name="type" value="4" onclick="search_events('body',this)">Informal</a></li>
+        <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="4" onclick="search_events('body',this)">Informal</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="5" onclick="search_events('body',this)">Combos</a></li>
       </ul>
     </div>
