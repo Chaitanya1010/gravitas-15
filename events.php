@@ -137,8 +137,9 @@ function checkout()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("pay").innerHTML=xmlhttp.responseText;
-				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				//document.getElementById("pay").innerHTML=xmlhttp.responseText;
+				document.getElementById("all").innerHTML=xmlhttp.responseText;//except registered events
+				document.getElementById("form").submit();
 			}
 		}
 		xmlhttp.open("POST","online_pay.php",true);
@@ -147,7 +148,6 @@ function checkout()
 	}
 }
 </SCRIPT>
-
 <BODY onload='search_events("body")'>
 <div id='pay'>
 <?php require("event_body.php");?>
