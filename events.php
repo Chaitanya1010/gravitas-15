@@ -7,9 +7,9 @@ var team = new Array();
 function search_events(val)
 {
 	var type = document.getElementsByName("type");
-	for (var i = 0; i < type.length; i++) 
+	for (var i = 0; i < type.length; i++)
 	{
-		if (type[i].checked) 
+		if (type[i].checked)
 			type = type[i].value;
 	}
 	if(val=="body")
@@ -31,7 +31,7 @@ function add_to_cart(id)
 {
 	if(id!="refresh")//refresh is used when an element is deleted from cart
 	{
-			cart[cart.length]=id;	
+			cart[cart.length]=id;
 			if(document.getElementById(id.concat("select")).tagName=='LABEL') //Fixed team size
 				team[team.length]=document.getElementById(id.concat("select")).innerHTML;
 			else
@@ -49,13 +49,13 @@ function add_to_cart(id)
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("cart="+cart+"&team="+team);
-	
+
 }
 //Delete an element from the cart
 function del_cart(id)
 {
 	//This deletes the element w.r.t its index
-	cart.splice(id,1); 
+	cart.splice(id,1);
 	team.splice(id,1);
 	//Refresh the list of events in that category
 	search_events("body");
@@ -87,7 +87,7 @@ function back()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("all").innerHTML=xmlhttp.responseText;	
+			document.getElementById("all").innerHTML=xmlhttp.responseText;
 			search_events("body");
 			add_to_cart("refresh");
 		}
@@ -105,9 +105,9 @@ function checkout()
 {
 	var pay;
 	var p = document.getElementsByName("pay");
-	for (var i = 0; i < p.length; i++) 
+	for (var i = 0; i < p.length; i++)
 	{
-			if (p[i].checked) 
+			if (p[i].checked)
 				pay = p[i].value;
 	}
 	if(pay=="0") // For DD

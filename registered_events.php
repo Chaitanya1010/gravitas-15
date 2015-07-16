@@ -3,7 +3,7 @@ require("sql_con.php");
 $regno="12nmh"; // Take from sessions
 $q = "SELECT * FROM `registration` WHERE `regno` = '$regno'  AND `paid_status`=1";
 $r = mysqli_query($mysqli,$q);
-echo "<TABLE BORDER=1><TR><TH>Event ID</TH><TH>Event Name</TH></TR>";
+echo "<TABLE><TR><TH class='light'>Event ID</TH><TH class='light'>Event Name</TH></TR>";
 while($t=mysqli_fetch_array($r))
 {
 	$event_id = $t[2];
