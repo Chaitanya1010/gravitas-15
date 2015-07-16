@@ -7,7 +7,7 @@ $sum=0;
 $date = date("Y-m-d");
 $regno ="12nmh";//Must be taken from cookies
 echo"<TABLE BORDER=1>";
-if($cart!="")	
+if($cart!="")
 {
 	$cart_array = explode(",",$cart);
 	$team_array = explode(",",$team);
@@ -26,6 +26,6 @@ if($cart!="")
 			echo "<TR><TD>$t[1]</TD><TD>$t[2]</TD><TD>$team_array[$i]</TD>";
 		}
 	}
-	echo"</TABLE><B>TOTAL = $sum<br>Demand Draft No: $dd</B><br>Pls Send the Demand Draft within 7 working days with your details to<br>VIT University,<br> Vellore- 632014, <br>Tamil Nadu.";
+	echo"</TABLE><B>TOTAL = $sum<br>Demand Draft No: $dd</B><br>Pls Send the Demand Draft within 7 working days with your details to<br>VIT University,<br> Vellore- 632014, <br>Tamil Nadu.<a class='btn waves-effect waves-light blue-grey darken-4' href='event_list.php'>Home</a>";
 }
 ?>

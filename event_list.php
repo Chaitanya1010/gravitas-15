@@ -82,6 +82,7 @@ function del_cart(id)
 //To proceed to intermediate page
 function proceed_1()
 {
+  $('#cart').closeModal();
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
@@ -93,6 +94,7 @@ function proceed_1()
 	xmlhttp.open("POST","proceed_1.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("cart="+cart+"&team="+team);
+
 }
 
 //Back to cart to edit
@@ -188,7 +190,10 @@ function checkout()
   </div>
   <div class="container row">
     <div class="col s12">
-  <INPUT class="col s5" TYPE='text' id ='search' autocomplete ='off' onkeyup='search_events(this.value,"search")' class='evesearch' placeholder='Search For Events...'>&nbsp;
+      <div class="input-field col s5">
+
+  <INPUT TYPE='text' id ='search' autocomplete ='off' onkeyup='search_events(this.value,"search")' class='evesearch' placeholder='Search For Events...'>
+  </div>&nbsp;
     <ul class="collapsible popout col s6" style="float:right" data-collapsible="accordion">
       <li>
       <div class="collapsible-header"><i class="material-icons">library_books</i>Registeder Events</div>
@@ -204,10 +209,9 @@ function checkout()
 <div id="cart" class="modal">
 
 </div>
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-	<a class="blue-grey darken-4 btn-large modal-trigger" href="#cart">
-    Cart
-		<i class="large material-icons">shopping_cart</i>
+<div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">
+	<a class="blue-grey darken-4 btn-floating btn-large modal-trigger" title="Event Cart" href="#cart">
+		<i class=" material-icons">shopping_cart</i>
 	</a>
 </div>
 <script>

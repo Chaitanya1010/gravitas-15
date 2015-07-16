@@ -1,13 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <title>Events</title>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 <style type="text/css">
 .error {
-  border:2px solid red;
+  border-bottom:2px solid red;
 }
 </style>
 <script type="text/javascript">
 // Regular expressions
-function isNumber(evt)  
+function isNumber(evt)
 {
 		var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
@@ -38,11 +46,11 @@ function next()
 	{
 		flag=1;
 		document.getElementById("name").className = document.getElementById("name").className.replace("error", "");
-		document.getElementById("name").className = document.getElementById("name").className + "error";  
+		document.getElementById("name").className = document.getElementById("name").className + "error";
 	}
 	else
 		document.getElementById("name").className = document.getElementById("name").className.replace("error", ""); // this removes the error class
-	
+
 	if(regno=="")
 	{
 		flag=1;
@@ -67,9 +75,9 @@ function next()
 	}
 	else
 		document.getElementById("email").className = document.getElementById("email").className.replace("error", ""); // this removes the error class
-	for (var i = 0; i < gender.length; i++) 
+	for (var i = 0; i < gender.length; i++)
 	{
-			if (gender[i].checked) 
+			if (gender[i].checked)
 				gen = gender[i].value;
 	}
 	if(flag==0)
@@ -80,7 +88,7 @@ function next()
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				if(xmlhttp.responseText=="1")
-					window.location = 'events.php';
+					window.location = 'event_list.php';
 				else
 					window.location='external_reg.php';
 			}
@@ -95,12 +103,28 @@ function next()
 </script>
 </head>
 <body>
-<div id="form">
-<input type="text" id="name" name="name" placeholder="Name"  onkeypress="return isAlpha(event)"><br>
-<input type="text" id="regno" name="regno" placeholder="College Reg no" ><br>
-<input type="radio" id="gender" name="gender" value="male" checked>Male
-<input type="radio" id="gender" name="gender" value="female" >Female<br>
-College:
+  <header class="header blue-grey darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+    <img src="gravitaslogo.png" alt class="responsive-img" width="350px">
+    <h4 class="header light white-text">External Registration</h4>
+  </header>
+<div id="form" class="container" style="margin-top:2em">
+  <div class="card">
+    <div class="card-content">
+      <div class="row">
+        <div class="input-field col s6">
+      <input type="text" id="name" name="name" placeholder="Name"  onkeypress="return isAlpha(event)">
+    </div>
+    <div class="input-field col s6">
+<input type="text" id="regno" name="regno" placeholder="College Reg no" >
+</div>
+</div>
+<div class="row">
+  <div class="input-field col s3">
+<input type="radio" id="gender1" name="gender" value="male" checked><label for="gender1">Male</label>
+<input type="radio" id="gender2" name="gender" value="female" ><label for="gender2">Female</label>
+</div>
+<div class="input-field col s4">
+
 <select id="college" name="college">
 <?php
 $flag =0;
@@ -116,14 +140,21 @@ while($row = mysqli_fetch_array($arr))
 	}
 	else
 		echo "<option value = ".$row[1].">$row[1]</option>";
-	
+
 }
 mysqli_close();
 ?>
-</select><br>
-<input type="email" id="email" name="email" placeholder="Email"><br>
-<input type="text" id="phno" name="phno" maxlength="10" placeholder="Phone number" onkeyPress="return isNumber(event)"><br>
-College Ambassador Ref no:
+</select>
+<label>College</label>
+</div>
+<div class="input-field col s5">
+<input type="email" id="email" name="email" placeholder="Email"></div>
+</div>
+<div class="row">
+<div class="input-field col s6">
+<input type="text" id="phno" name="phno" maxlength="10" placeholder="Phone number" onkeyPress="return isNumber(event)">
+</div>
+<div class="input-field col s6">
 <select  id="clgref" name="clgref" >
 <?php
 $flag =0;
@@ -142,8 +173,12 @@ while($row = mysqli_fetch_array($arr))
 }
 mysqli_close();
 ?>
-</select><br>
-VIT Referral no:
+</select>
+<label>College Ambassador Ref no:</label>
+</div>
+</div>
+<div class="row">
+  <div class="input-field col s8">
 <select  id="vitref" name="vitref"  >
 <?php
 $flag =0;
@@ -162,8 +197,28 @@ while($row = mysqli_fetch_array($arr))
 }
 mysqli_close();
 ?>
-</select><br>
-<input type="button" id="proceed" name="proceed" value="Proceed" onClick="next()">
-</form></div>
+</select>
+<label>VIT Referral Number</label>
+</div>
+<div class="col s4">
+<button id="proceed" name="proceed" class="btn waves-effect waves-light blue-grey darken-4" style="float:right;margin-top:1em;margin-right:1em" onClick="next()">
+  Proceed
+    <i class="material-icons">send</i>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+   $('select').material_select();
+
+
+
+ });
+
+</script>
 </body>
 </html>
