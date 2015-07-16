@@ -196,7 +196,7 @@ function checkout()
   </div>&nbsp;
     <ul class="collapsible popout col s6" style="float:right" data-collapsible="accordion">
       <li>
-      <div class="collapsible-header"><i class="material-icons">library_books</i>Registeder Events</div>
+      <div class="collapsible-header"><i class="material-icons">library_books</i>Registered Events</div>
       <div class="collapsible-body"><?php require("registered_events.php"); ?></div>
     </li>
     </ul>

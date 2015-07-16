@@ -7,7 +7,7 @@ $sum=0;
 
 <div class="modal-content">
 <?php
-echo"<TABLE class='centered'><TR><TH class='light'>Name</TH><TH class='light'>Price</TH><TH class='light'>Team</TH><TH class='light'>Remove</TH></TR>";
+echo"<TABLE class='centered'><TR><TH class='light'>Name</TH><TH class='light'>Price(&#8377;)</TH><TH class='light'>Team</TH><TH class='light'>Remove</TH></TR>";
 if($cart!="")
 {
 	$cart_array = explode(",",$cart);
