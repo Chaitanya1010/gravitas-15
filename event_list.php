@@ -141,7 +141,7 @@ function back()
 function demand_draft(val)
 {
 	if(val==0)
-		document.getElementById("dd").innerHTML="<input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label>";
+		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label></div>";
 	else
 		document.getElementById("dd").innerHTML="";
 }
