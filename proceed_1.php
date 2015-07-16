@@ -21,7 +21,7 @@ if($cart!="")
 	}
 	echo"</TABLE><br /><B>TOTAL = $sum</B><br>";
 	echo"Payment Mode:<br><input type='radio' name='pay' id='pay1' value='0' onclick='demand_draft()'><label for='pay1'>Demand Draft</label><input type='radio' name='pay' id='pay2' value='1' checked><label for='pay2'>Online Payment</label><br>";
-	echo"<div id='dd'></div><br><div style='float:right'><button class='btn waves-effect waves-light blue-grey darken-4' onclick='back()' id='back' name='back'>Edit <i class='material-icons'>loop</i></button>";
+	echo"<div id='dd'></div><br><div style='float:right'><button class='btn waves-effect waves-light blue-grey darken-4' onclick='back()' id='back' name='back'>Edit <i class='material-icons'>loop</i></button>&nbsp;&nbsp;";
 	echo"<button class='btn waves-effect waves-light blue-grey darken-4' onclick='checkout()' id='proceed_2' name='proceed_2'>Checkout <i class='material-icons'>verified_user</i></button></div>";
 }
 ?>
