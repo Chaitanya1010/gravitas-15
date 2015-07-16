@@ -23,7 +23,7 @@ if($cart!="")
 	}
 	echo"</TABLE></div>
 	<div class='modal-footer'>
-	<B>TOTAL = $sum</B>";
+	<B>TOTAL = &#8377; $sum</B>";
 	echo"<button id='proceed' name='proceed' class='btn waves-effect waves-light blue-grey darken-4' style='float:right;margin-right:1em' onclick='proceed_1()' id='proceed_1' name='proceed_1'  >Proceed</button>";
 }
 ?>
