@@ -6,7 +6,7 @@ $dd = $_POST["dd"];
 $sum=0;
 $date = date("Y-m-d");
 $regno ="12nmh";//Must be taken from cookies
-echo"<TABLE BORDER=1>";
+echo"<TABLE  class='striped'><TR><TH>Name</TH><TH>Price</TH><TH>Team Size</TH></TR>";
 if($cart!="")
 {
 	$cart_array = explode(",",$cart);

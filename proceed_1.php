@@ -21,8 +21,8 @@ if($cart!="")
 	}
 	echo"</TABLE><br /><B>TOTAL = &#8377; $sum<br>";
 	echo"Payment Mode:</B><br><input type='radio' name='pay' id='pay1' value='0' onclick='demand_draft(this.value)'><label for='pay1'>Demand Draft</label><input type='radio' name='pay' id='pay2' value='1' checked onclick='demand_draft(this.value)'><label for='pay2'>Online Payment</label><br>";
-	echo"<div id='dd'></div><br><div style='float:right'><button class='btn waves-effect waves-light indigo darken-4' onclick='back()' id='back' name='back'>Edit <i class='material-icons'>loop</i></button>&nbsp;&nbsp;";
-	echo"<button class='btn waves-effect waves-light indigo darken-4' onclick='checkout()' id='proceed_2' name='proceed_2'>Checkout <i class='material-icons'>verified_user</i></button></div>";
+	echo"<div id='dd'></div><br><div style='float:right'><button class='btn waves-effect waves-light indigo darken-4' onclick='back()' id='back' name='back'>Back<i class='material-icons'>clear_all</i></button>&nbsp;&nbsp;";
+	echo"<button class='btn waves-effect waves-light indigo darken-4' onclick='checkout()' id='proceed_2' name='proceed_2'>Checkout <i class='material-icons'>done_all</i></button></div>";
 }
 ?>
 </div>
