@@ -26,7 +26,10 @@ function search_events(val,stype)
     type = stype.getAttribute('value');
   }
 	if(val=="body")
+	{
 		document.getElementById("search").value="";
+		cart_initialize();
+	}
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
@@ -39,6 +42,21 @@ function search_events(val,stype)
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("key="+val+"&type="+type+"&cart="+cart);
   lastType = type;
+}
+function cart_initialize()
+{
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("cart").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("POST","add_to_cart.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("cart="+cart+"&team="+team);
+	
 }
 //	To add an element to the cart and to refresh the cart after removing
 function add_to_cart(id)
@@ -115,9 +133,12 @@ function back()
 	xmlhttp.send();
   $('#cart').openModal();
 }
-function demand_draft()
+function demand_draft(val)
 {
-	document.getElementById("dd").innerHTML="<input type='text' id='ddno' name='ddno' placeholder='DD number'>";
+	if(val==0)
+		document.getElementById("dd").innerHTML="<input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label>";
+	else
+		document.getElementById("dd").innerHTML="";
 }
 //checkout to payment gateway
 function checkout()
@@ -171,16 +192,15 @@ function checkout()
 <body onload="search_events('body',0)">
   <div id="pay">
   <div id="register_events">
-  <header class="header blue-grey darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
     <img src="gravitaslogo.png" alt class="responsive-img" width="350px">
-    <h4 class="header light white-text">Events</h4>
+    <h4 class="header light white-text">External Registration</h4>
   </header>
-
   <div id="all">
-    <div class="row blue-grey darken-4" style="width:100%;padding-bottom:0.2em">
+    <div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
     <div class="col s12">
-      <ul class="tabs blue-grey darken-4">
-        <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="0" onclick="search_events('body',this)">Premium</a></li>
+      <ul class="tabs indigo darken-2">
+        <li class="tab col s2"><a href="#" class="white-text " id="type" name="type" value="0" onclick="search_events('body',this)">Premium</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="1" onclick="search_events('body',this)">Workshops</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="2" onclick="search_events('body',this)">Technical</a></li>
         <li class="tab col s2"><a href="#" class="white-text" id="type" name="type" value="3" onclick="search_events('body',this)">Management</a></li>
@@ -192,12 +212,11 @@ function checkout()
   <div class="container row">
     <div class="col s12">
       <div class="input-field col s5">
-
-  <INPUT TYPE='text' id ='search' autocomplete ='off' onkeyup='search_events(this.value,"search")' class='evesearch' placeholder='Search For Events...'>
+  <INPUT TYPE='text' id ='search' autocomplete ='off' onkeyup='search_events(this.value,"search")' class='evesearch'><label for="search">Search For Events..</label>
   </div>&nbsp;
     <ul class="collapsible popout col s6" style="float:right" data-collapsible="accordion">
       <li>
-      <div class="collapsible-header"><i class="material-icons">library_books</i>Registered Events</div>
+      <div class="collapsible-header indigo lighten-5 black-text"><i class="material-icons ">library_books</i>Registered Events</div>
       <div class="collapsible-body"><?php require("registered_events.php"); ?></div>
     </li>
     </ul>
@@ -208,10 +227,9 @@ function checkout()
 </div>
 </div>
 <div id="cart" class="modal">
-
 </div>
 <div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">
-	<a class="blue-grey darken-4 btn-floating btn-large modal-trigger" title="Event Cart" href="#cart">
+	<a class="indigo darken-4 btn-floating btn-large modal-trigger z-depth-3" title="Event Cart" href="#cart">
 		<i class=" material-icons">shopping_cart</i>
 	</a>
 </div>

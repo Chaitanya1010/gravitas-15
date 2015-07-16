@@ -43,7 +43,7 @@ if($cart!="")
 	$cart = implode(",",$cart_array);
 	$q.= " AND `id` NOT IN ($cart)";
 }
-echo "<TABLE class='hoverable'><thead><TR><TH>NAME</TH><TH>PRICE(&#8377;)</TH><TH>TEAM SIZE</TH><TH>CART</TH></tr></thead>";
+echo "<TABLE class='hoverable bordered'><thead><TR><TH>NAME</TH><TH>PRICE (&#8377;) </TH><TH>TEAM SIZE</TH><TH>CART</TH></tr></thead>";
 $r = mysqli_query($mysqli,$q);
 while($t=mysqli_fetch_array($r))
 {
@@ -52,7 +52,7 @@ while($t=mysqli_fetch_array($r))
 		if($t[5]!=0) // Not 0 means, whatever is the team strength given that has to be added
 		{
 			$select_id = $t[0]."select";
-			echo "<TR><TD>$t[1]</TD><TD> $t[2]</TD><TD><LABEL ID= '$select_id'>$t[5]</LABEL></TD><TD><button class='blue-grey darken-4 btn-floating' id='$t[0]' onclick='add_to_cart(this.id)'><i class='material-icons'>add</i></button></TD></TR>";
+			echo "<TR><TD>$t[1]</TD><TD> $t[2]</TD><TD><LABEL ID= '$select_id'>$t[5]</LABEL></TD><TD><button class='indigo darken-4 btn-floating z-depth-3' id='$t[0]' onclick='add_to_cart(this.id)'><i class='material-icons'>add</i></button></TD></TR>";
 		}
 		else //variable team size
 		{
@@ -61,7 +61,7 @@ while($t=mysqli_fetch_array($r))
 			for($i = $t[6]+1; $i<=$t[7];$i++)
 				$select .="<OPTION VALUE ='$i'>$i</OPTION>";
 			$select.="</SELECT>";
-			echo "<TR><TD>$t[1]</TD><TD>$t[2]</TD><TD>$select</TD><TD><button class='blue-grey darken-4 btn-floating' id='$t[0]' onclick='add_to_cart(this.id)'><i class='material-icons'>add</i></button></TD></TR>";
+			echo "<TR><TD>$t[1]</TD><TD>$t[2]</TD><TD>$select</TD><TD><button class='indigo darken-4 btn-floating z-depth-3' id='$t[0]' onclick='add_to_cart(this.id)'><i class='material-icons'>add</i></button></TD></TR>";
 		}
 	}
 }
