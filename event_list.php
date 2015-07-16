@@ -194,7 +194,7 @@ function checkout()
 }
 </script>
 
-<body onload="search_events('body',0)">
+<body onload="search_events('body',0)" >
 	  <div id="register_events">
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="gravitaslogo.png" alt class="responsive-img" width="350px">
@@ -220,7 +220,7 @@ function checkout()
 				</div>&nbsp;
 				<ul class="collapsible popout col s6" style="float:right" data-collapsible="accordion">
 				<li>
-					<div class="collapsible-header indigo lighten-5 black-text"><i class="material-icons ">library_books</i>Registered Events</div>
+					<div class="collapsible-header indigo lighten-5 black-text"><i class="material-icons ">library_books</i><i class="material-icons right ">more_vert</i>Registered Events</div>
 					<div class="collapsible-body"><?php require("registered_events.php"); ?></div>
 				</li>
 				</ul>
@@ -229,7 +229,7 @@ function checkout()
 		<div id="events" class="container">
 		</div>
 		
-		<div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">
+		<div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">My Cart<br>
 			<a class="indigo darken-4 btn-floating btn-large modal-trigger z-depth-3" title="Event Cart" href="#cart">
 				<i class=" material-icons">shopping_cart</i>
 			</a>

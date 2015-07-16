@@ -12,7 +12,8 @@ while($t=mysqli_fetch_array($r))
 	$r1 = mysqli_query($mysqli,$q1);
 	$t1=mysqli_fetch_array($r1);
 	$event_name = $t1[1];
-	echo "<TR><TD>$event_name</TD><TD>$event_name</TD></TR>";
+	echo "<TR><TD>$event_name</TD><TD>$team</TD></TR>";
+
 }
 echo"</TABLE>";
 
