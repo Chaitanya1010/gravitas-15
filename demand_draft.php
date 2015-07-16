@@ -4,6 +4,7 @@ $cart=$_POST["cart"];
 $team=$_POST["team"];
 $dd = $_POST["dd"];
 $sum=0;
+$date = date("Y-m-d");
 $regno ="12nmh";//Must be taken from cookies
 echo"<TABLE BORDER=1>";
 if($cart!="")	
@@ -15,7 +16,7 @@ if($cart!="")
 		$q = "SELECT * FROM `events` WHERE `id`=$cart_array[$i]";
 		$r = mysqli_query($mysqli,$q);
 		$t=mysqli_fetch_array($r);
-		$q1= "INSERT INTO `registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd`, `trans_id` , `paid_status`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]', '$dd', '0','0')";
+		$q1= "INSERT INTO `registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd`, `trans_id` , `paid_status`,`date`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]', '$dd', '0','0','$date')";
 		$res = mysqli_query($mysqli,$q1);
 		if($res==true)
 		{
