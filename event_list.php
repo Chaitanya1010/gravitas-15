@@ -220,8 +220,6 @@ $(document).ready(function(){
     $('.modal-trigger').leanModal();
   });
   </script>
-
-
  <script>
  $(document).ready(function() {
     $('select').material_select();
