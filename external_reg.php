@@ -12,6 +12,15 @@
 .error {
   border-bottom:2px solid red;
 }
+body {
+ display: flex;
+ min-height: 100vh;
+ flex-direction: column;
+}
+
+main {
+ flex: 1 0 auto;
+}
 </style>
 <script type="text/javascript">
 // Regular expressions
@@ -103,6 +112,7 @@ function next()
 </script>
 </head>
 <body>
+  <main>
   <header class="header blue darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
     <img src="gravitaslogo.png" alt class="responsive-img" width="350px">
     <h4 class="header light white-text">External Registration</h4>
@@ -219,5 +229,13 @@ $(document).ready(function() {
  });
 
 </script>
+</main>
+<footer class="page-footer indigo darken-2">
+          <div class="footer-copyright">
+            <div class="container">
+            © COPYRIGHT GRAVITAS 2015
+            </div>
+          </div>
+        </footer>
 </body>
 </html>

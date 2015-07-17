@@ -27,7 +27,17 @@
      border-bottom: 1px solid #303f9f;
      box-shadow: 0 1px 0 0 #303f9f;
    }
+   body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
   </style>
+
 </head>
 <script>
 var cart = new Array();
@@ -78,7 +88,7 @@ function cart_initialize()
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("cart="+cart+"&team="+team);
-	
+
 }
 //	To add an element to the cart and to refresh the cart after removing
 function add_to_cart(id)
@@ -195,6 +205,7 @@ function checkout()
 </script>
 
 <body onload="search_events('body',0)" >
+  <main>
 	  <div id="register_events">
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="gravitaslogo.png" alt class="responsive-img" width="350px">
@@ -228,9 +239,9 @@ function checkout()
 		</div>
 		<div id="events" class="container">
 		</div>
-		
+
 		<div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">My Cart<br>
-			<a class="indigo darken-4 btn-floating btn-large modal-trigger z-depth-3" title="Event Cart" href="#cart">
+			<a class="red btn-floating btn-large modal-trigger z-depth-3" title="Event Cart" href="#cart">
 				<i class=" material-icons">shopping_cart</i>
 			</a>
 		</div>
@@ -255,6 +266,13 @@ $('.modal-trigger').leanModal();
   });
 
  </script>
- </div>
+</main>
+<footer class="page-footer indigo darken-2">
+          <div class="footer-copyright">
+            <div class="container">
+            © COPYRIGHT GRAVITAS 2015
+            </div>
+          </div>
+        </footer>
 </body>
 </html>
