@@ -12,6 +12,23 @@
 .error {
   border-bottom:2px solid red;
 }
+.input-field label {
+  color: #1a237e;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label, input[type=text]:focus + label {
+  color: #303f9f;
+}
+ /* label underline focus color */
+.input-field input[type=text], input[type=email] {
+  border-bottom: 1px solid #1a237e;
+  box-shadow: 0 1px 0 0 #1a237e;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #303f9f;
+  box-shadow: 0 1px 0 0 #303f9f;
+}
 body {
  display: flex;
  min-height: 100vh;
@@ -121,19 +138,21 @@ function next()
   <div class="card">
     <div class="card-content">
       <div class="row">
-        <div class="input-field col s6">
-      <input type="text" id="name" name="name" placeholder="Name"  onkeypress="return isAlpha(event)">
+        <div class="input-field col s12 m6">
+          <label for="name">Name</label>
+      <input type="text" id="name" name="name" onkeypress="return isAlpha(event)">
     </div>
-    <div class="input-field col s6">
-<input type="text" id="regno" name="regno" placeholder="College Reg no" >
+    <div class="input-field col s12 m6">
+      <label for="regno">Registration Number</label>
+<input type="text" id="regno" name="regno" >
 </div>
 </div>
 <div class="row">
-  <div class="input-field col s3">
-<input type="radio" id="gender1" name="gender" value="male" checked><label for="gender1">Male</label>
-<input type="radio" id="gender2" name="gender" value="female" ><label for="gender2">Female</label>
+  <div class="input-field col s6 m3">
+<input type="radio" id="gender1" name="gender" class="with-gap" value="male" checked><label for="gender1">Male</label>
+<input type="radio" id="gender2" name="gender" value="female" class="with-gap"><label for="gender2">Female</label>
 </div>
-<div class="input-field col s4">
+<div class="input-field col s6 m4">
 
 <select id="college" name="college">
 <?php
@@ -157,14 +176,16 @@ mysqli_close();
 </select>
 <label>College</label>
 </div>
-<div class="input-field col s5">
-<input type="email" id="email" name="email" placeholder="Email"></div>
+<div class="input-field col s12 m5">
+  <label for="email">Email</label>
+<input type="email" id="email" name="email"></div>
 </div>
 <div class="row">
-<div class="input-field col s6">
-<input type="text" id="phno" name="phno" maxlength="10" placeholder="Phone number" onkeyPress="return isNumber(event)">
+<div class="input-field col s12 m6">
+  <label for="phno">Phone Number</label>
+<input type="text" id="phno" name="phno" maxlength="10" onkeyPress="return isNumber(event)">
 </div>
-<div class="input-field col s6">
+<div class="input-field col s12 m6">
 <select  id="clgref" name="clgref" >
 <?php
 $flag =0;
@@ -188,7 +209,7 @@ mysqli_close();
 </div>
 </div>
 <div class="row">
-  <div class="input-field col s8">
+  <div class="input-field col s12 m8">
 <select  id="vitref" name="vitref"  >
 <?php
 $flag =0;
@@ -210,9 +231,9 @@ mysqli_close();
 </select>
 <label>VIT Referral Number</label>
 </div>
-<div class="col s4">
+<div class="col s12 m4">
 <button id="proceed" name="proceed" class="btn waves-effect waves-light blue darken-4" style="float:right;margin-top:1em;margin-right:1em" onClick="next()">
-  Proceed<i class="material-icons">send</i>
+  <i class="material-icons right">send</i>  Proceed
 </button>
 </div>
 </div>
