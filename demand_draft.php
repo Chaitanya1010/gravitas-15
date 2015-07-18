@@ -3,6 +3,8 @@ require("sql_con.php");
 $cart=$_POST["cart"];
 $team=$_POST["team"];
 $dd = $_POST["dd"];
+$dd_date=$_POST['dd_date'];
+$bname=$_POST['bname'];
 $sum=0;
 $date = date("Y-m-d");
 $regno ="12nmh";//Must be taken from cookies
@@ -26,6 +28,15 @@ if($cart!="")
 			echo "<TR><TD>$t[1]</TD><TD>$t[2]</TD><TD>$team_array[$i]</TD>";
 		}
 	}
-	echo"</TABLE><B>TOTAL = $sum<br>Demand Draft No: $dd</B><br>Pls Send the Demand Draft within 7 working days with your details to<br>VIT University,<br> Vellore- 632014, <br>Tamil Nadu.<br><a class='btn waves-effect waves-light indigo darken-4' href='event_list.php'><i class='material-icons left'>home</i>Home</a>";
+	$q3 = "INSERT INTO `dd_payment` (`ddno`, `regno`, `sum`,`bank_name`,`dd_date`) VALUES ('$dd', '$regno', '$sum','$bname','$dd_date')";
+	$res3 = mysqli_query($mysqli,$q3);
+	if($res3==true)
+		echo"</TABLE><B>TOTAL = $sum<br>Demand Draft No: $dd</B><br>Pls Send the Demand Draft within 7 working days with your details to<br>VIT University,<br> Vellore- 632014, <br>Tamil Nadu.<br><div class=' fixed-action-btn' style='bottom: 30px; right: 24px;'>Home<br>
+			<a class='red btn-floating btn-large waves-effect modal-trigger z-depth-3' title='Home' href='event_list.php'>
+				<i class='large material-icons'>home</i>
+			</a>
+		</div>";
+	else
+		echo "error";
 }
 ?>

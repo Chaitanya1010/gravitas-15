@@ -152,7 +152,7 @@ function back()
 function demand_draft(val)
 {
 	if(val==0)
-		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno' placeholder='DD Number'><br><input type='text' id='ddbank' name='ddbank' placeholder='Bank Name'><input type='date' id='dddate' name='dddate' class='datepicker'></div>";
+		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno' placeholder='DD Number'><br><input type='text' id='ddbank' name='ddbank' placeholder='Bank Name'><input type='date' class='datepicker' id='dddate' name='dddate'></div>";
 	else
 		document.getElementById("dd").innerHTML="";
 }
@@ -169,9 +169,11 @@ function checkout()
 	if(pay=="0") // For DD
 	{
 		var ddno = document.getElementById("ddno").value;
-		if(ddno=="")
+		var bname = document.getElementById("ddbank").value;
+		var dd_date = document.getElementById("dddate").value;
+		if(ddno==""||bname==""||dd_date=="")
 		{
-			alert("Enter DD no");
+			alert("Enter all Details");
 			return;
 		}
 		var xmlhttp=new XMLHttpRequest();
@@ -184,7 +186,7 @@ function checkout()
 		}
 		xmlhttp.open("POST","demand_draft.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&dd="+ddno);
+		xmlhttp.send("cart="+cart+"&team="+team+"&dd="+ddno+"&bname="+bname+"&dd_date="+dd_date);
 	}
 	else if(pay=="1") // For Online Payment
 	{
@@ -207,11 +209,14 @@ function checkout()
 <body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">
+	    <div class="fixed-action-btn" style="bottom:30px; left:24px">Logout<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="">
+			<i class="material-icons">power_settings_new</i>
+		</a>
+		</div>
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
-        <div class="right white-text" style="margin-right:4em;margin-top:2em"><button class="btn-floating btn-large waves-effect waves-light indigo darken-4"><i class="small material-icons">power_settings_new</i></button></div>
 				<h4 class="header light white-text">External Registration</h4>
-
 		  </header>
 		  <div id="all">
 			<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
@@ -225,7 +230,9 @@ function checkout()
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="5" onclick="search_events('body',this)">Combos</a></li>
 			  </ul>
 			</div>
+			
 		  </div>
+
 		 <div class="container row">
 			<div class="col s12">
 				<div class="input-field col s5">
@@ -241,10 +248,9 @@ function checkout()
 		</div>
 		<div id="events" class="container">
 		</div>
-
-		<div class=" fixed-action-btn" style="bottom: 45px; right: 24px;">My Cart<br>
+		<div class=" fixed-action-btn" style="bottom: 30px; right: 24px;">My Cart<br>
 			<a class="red btn-floating btn-large waves-effect modal-trigger z-depth-3" title="Event Cart" href="#cart">
-				<i class=" material-icons">shopping_cart</i>
+				<i class="large material-icons">shopping_cart</i>
 			</a>
 		</div>
 		<div id="cart" class="modal">
@@ -274,11 +280,13 @@ $('.modal-trigger').leanModal();
  </script>
 </main>
 <footer class="page-footer indigo darken-2">
+
           <div class="footer-copyright">
+		
             <div class="container">
             © COPYRIGHT GRAVITAS 2015
             </div>
           </div>
-        </footer>
+</footer>
 </body>
 </html>

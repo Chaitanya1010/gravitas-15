@@ -130,7 +130,7 @@ function next()
 </head>
 <body>
   <main>
-  <header class="header blue darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
     <img src="gravitaslogo.png" alt class="responsive-img" width="350px">
     <h4 class="header light white-text">External Registration</h4>
   </header>
@@ -232,7 +232,7 @@ mysqli_close();
 <label>VIT Referral Number</label>
 </div>
 <div class="col s12 m4">
-<button id="proceed" name="proceed" class="btn waves-effect waves-light blue darken-4" style="float:right;margin-top:1em;margin-right:1em" onClick="next()">
+<button id="proceed" name="proceed" class="btn waves-effect waves-light indigo darken-4" style="float:right;margin-top:1em;margin-right:1em" onClick="next()">
   <i class="material-icons right">send</i>  Proceed
 </button>
 </div>
