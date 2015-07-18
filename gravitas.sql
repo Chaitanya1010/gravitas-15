@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2015 at 10:17 AM
+-- Generation Time: Jul 18, 2015 at 02:25 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -85,10 +85,12 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `price`, `total_seats`, `filled_seats`, `team`, `min`, `max`, `type`) VALUES
-(0, 'combo1', 1000, 100, 0, 1, 0, 0, 5),
-(1, 'caption me', 100, 50, 11, 1, 0, 0, 1),
-(3, 'ahhfd', 123, 123, 43, 0, 4, 6, 0),
-(4, 'combo2', 500, 100, 4, 1, 0, 0, 5);
+(0, 'combo1', 1000, 100, 3, 1, 0, 0, 5),
+(1, 'caption me', 100, 50, 43, 1, 0, 0, 1),
+(3, 'Online Photography', 1, 123, 112, 0, 4, 6, 0),
+(4, 'combo2', 500, 100, 5, 1, 0, 0, 5),
+(5, 'Combo 3 ', 79, 78, 0, 1, 0, 0, 5),
+(6, 'Robotics', 66, 66, 10, 2, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -135,34 +137,42 @@ CREATE TABLE IF NOT EXISTS `online_payment` (
   `trans_id` int(11) NOT NULL AUTO_INCREMENT,
   `regno` text NOT NULL,
   `sum` text NOT NULL,
+  `date` date NOT NULL,
+  `paid_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`trans_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `online_payment`
 --
 
-INSERT INTO `online_payment` (`trans_id`, `regno`, `sum`) VALUES
-(1, '$regno', ''),
-(2, '12nmh', '1123'),
-(3, '12nmh', '223'),
-(4, '12nmh', '100'),
-(5, '12nmh', '123'),
-(6, '12nmh', '123'),
-(7, '12nmh', '123'),
-(8, '12nmh', '123'),
-(9, '12nmh', '123'),
-(10, '12nmh', '123'),
-(11, '12nmh', '123'),
-(12, '12nmh', '100'),
-(13, '12nmh', '100'),
-(14, '12nmh', '100'),
-(15, '12nmh', '123'),
-(16, '12nmh', '600'),
-(17, '12nmh', '100'),
-(18, '12nmh', '500'),
-(19, '12nmh', '500'),
-(20, '12nmh', '500');
+INSERT INTO `online_payment` (`trans_id`, `regno`, `sum`, `date`, `paid_status`) VALUES
+(29, '12nmh', '123', '2015-07-16', 0),
+(30, '12nmh', '100', '2015-07-16', 0),
+(31, '12nmh', '100', '2015-07-16', 0),
+(32, '12nmh', '100', '2015-07-16', 0),
+(33, '12nmh', '100', '2015-07-16', 0),
+(34, '12nmh', '100', '2015-07-16', 0),
+(35, '12nmh', '100', '2015-07-16', 0),
+(36, '12nmh', '100', '2015-07-16', 0),
+(37, '12nmh', '100', '2015-07-16', 0),
+(38, '12nmh', '100', '2015-07-16', 0),
+(39, '12nmh', '100', '2015-07-16', 0),
+(40, '12nmh', '100', '2015-07-16', 0),
+(41, '12nmh', '100', '2015-07-16', 0),
+(42, '12nmh', '100', '2015-07-16', 0),
+(43, '12nmh', '100', '2015-07-16', 0),
+(44, '12nmh', '1000', '2015-07-16', 0),
+(45, '12nmh', '123', '2015-07-16', 0),
+(46, '12nmh', '500', '2015-07-16', 0),
+(47, '12nmh', '123', '2015-07-16', 0),
+(48, '12nmh', '123', '2015-07-16', 0),
+(49, '12nmh', '1', '2015-07-16', 0),
+(50, '12nmh', '100', '2015-07-16', 0),
+(51, '12nmh', '1', '2015-07-16', 0),
+(52, '12nmh', '66', '2015-07-17', 0),
+(53, '12nmh', '1', '2015-07-17', 0),
+(54, '12nmh', '1', '2015-07-17', 0);
 
 -- --------------------------------------------------------
 
@@ -179,20 +189,16 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `dd` int(11) NOT NULL,
   `trans_id` int(11) NOT NULL,
   `paid_status` int(11) NOT NULL DEFAULT '0',
+  `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Dumping data for table `registration`
 --
 
-INSERT INTO `registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd`, `trans_id`, `paid_status`) VALUES
-(1, '12nmh', 1, 1, 100, 0, 16, 0),
-(2, '12nmh', 4, 1, 500, 0, 16, 0),
-(3, '12nmh', 1, 1, 100, 0, 17, 0),
-(4, '12nmh', 4, 1, 500, 0, 18, 0),
-(5, '12nmh', 4, 1, 500, 0, 19, 0),
-(6, '12nmh', 4, 1, 500, 0, 20, 0);
+INSERT INTO `registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd`, `trans_id`, `paid_status`, `date`) VALUES
+(62, '12nmh', 3, 4, 1, 453, 0, 0, '2015-07-18');
 
 -- --------------------------------------------------------
 

@@ -44,9 +44,6 @@ if($cart!="")
 		}
 		else
 			echo "error";
-		
-		
-
 	}
 	else
 		echo "Error in generating transaction ID";

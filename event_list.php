@@ -151,7 +151,7 @@ function back()
 function demand_draft(val)
 {
 	if(val==0)
-		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label></div>";
+		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label><br><input type='text' id='ddbank' name='ddbank'><label  for='ddbank'>Bank Name</label><input type='date' id='dddate' name='dddate'></div>";
 	else
 		document.getElementById("dd").innerHTML="";
 }
@@ -203,7 +203,6 @@ function checkout()
 	}
 }
 </script>
-
 <body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">

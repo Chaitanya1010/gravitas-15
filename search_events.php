@@ -18,7 +18,7 @@ else
 $event_id = array();
 $i=0;
 $eve_id="";
-$q1 = "SELECT * FROM `registration` WHERE `regno` = '$regno'  AND `paid_status`=1";
+$q1 = "SELECT * FROM `registration` WHERE `regno` = '$regno' ";
 $r1 = mysqli_query($mysqli,$q1);
 while($t1=mysqli_fetch_array($r1))
 {
