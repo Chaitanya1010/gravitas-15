@@ -40,6 +40,7 @@
 
 </head>
 <script>
+
 var cart = new Array();
 var team = new Array();
 var lastType = 0;
@@ -151,7 +152,7 @@ function back()
 function demand_draft(val)
 {
 	if(val==0)
-		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno'><label  for='ddno'>DD number</label><br><input type='text' id='ddbank' name='ddbank'><label  for='ddbank'>Bank Name</label><input type='date' id='dddate' name='dddate'></div>";
+		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='ddno' name='ddno' placeholder='DD Number'><br><input type='text' id='ddbank' name='ddbank' placeholder='Bank Name'><input type='date' id='dddate' name='dddate' class='datepicker'></div>";
 	else
 		document.getElementById("dd").innerHTML="";
 }
@@ -207,8 +208,10 @@ function checkout()
   <main>
 	  <div id="register_events">
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
-				<img src="gravitaslogo.png" alt class="responsive-img" width="350px">
+				<img src="gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
+        <div class="right white-text" style="margin-right:4em;margin-top:2em"><button class="btn-floating btn-large waves-effect waves-light indigo darken-4"><i class="small material-icons">power_settings_new</i></button></div>
 				<h4 class="header light white-text">External Registration</h4>
+
 		  </header>
 		  <div id="all">
 			<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
@@ -261,6 +264,10 @@ $(document).ready(function(){
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 $('.modal-trigger').leanModal();
     });
+    $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
 
   });
 
