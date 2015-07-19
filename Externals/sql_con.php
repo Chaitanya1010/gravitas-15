@@ -1,5 +1,5 @@
 <?php
-$mysqli=new mysqli("localhost","root","","gravitas");
+$mysqli=new mysqli("localhost","root","","gravitas15");
 date_default_timezone_set('Asia/kolkata');
 if(mysqli_connect_errno())
 {
