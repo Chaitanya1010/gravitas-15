@@ -14,4 +14,5 @@ if($res==true)
 	echo 1;
 else
 	echo 0;
+
 ?>
