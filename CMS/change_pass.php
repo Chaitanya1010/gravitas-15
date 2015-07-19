@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION["regno"]))
 {
 	$regno = $_SESSION["regno"];
-	require '../sql_con.php';
+	require 'sql_con.php';
 	$p = $_POST["p"];
 	$q ="UPDATE `login_cms` SET `password`='$p' WHERE `regno`= '$regno'";
 	if(mysqli_query($mysqli,$q))

@@ -30,20 +30,7 @@ function externals()
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 }
-function internals()
-{
-  		var xmlhttp=new XMLHttpRequest();
-		xmlhttp.onreadystatechange=function()
-		{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				document.getElementById("body").innerHTML=xmlhttp.responseText;
-			}
-		}
-		xmlhttp.open("POST","internals.php",true);
-		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
-}
+
 function add_events()
 {
   		var xmlhttp=new XMLHttpRequest();
@@ -62,17 +49,18 @@ function team_change(val)
 {
 	if(val=="fixed")
 	{
-		document.getElementById("team").innerHTML="Team Size: <input type='text' name='fixed' id='fixed' autocomplete='off' onkeypress='return isAlpha(event)'>";
+		document.getElementById("team").innerHTML="Team Size: <input type='text' name='fixed' id='fixed' autocomplete='off' onkeypress='return isNumber(event)'>";
 	}
 	else if(val=="var")
 	{
-		document.getElementById("team").innerHTML="Min: <input type='text' name='var_min' id='var_min' autocomplete='off' onkeypress='return isAlpha(event)'><br>Max:<input type='text' name='var_max' id='var_max' autocomplete='off' onkeypress='return isAlpha(event)'>";
+		document.getElementById("team").innerHTML="Min: <input type='text' name='var_min' id='var_min' autocomplete='off' onkeypress='return isNumber(event)'><br>Max:<input type='text' name='var_max' id='var_max' autocomplete='off' onkeypress='return isNumber(event)'>";
 	}
 }
 function sub_event()
 {
 	var name = document.getElementById("ename").value;
 	var tseats = document.getElementById("tseats").value;
+	var tseats_ext = document.getElementById("tseats_ext").value;
 	var price = document.getElementById("eprice").value;
 	var cat =  document.getElementsByName("category");
 	var category="";
@@ -113,7 +101,7 @@ function sub_event()
 			document.getElementById("var_max").value="";
 		}
 	}
-	if(name==""||tseats==""||price==""||flag==1||category=="")
+	if(name==""||tseats==""||price==""||flag==1||category==""||tseats_ext=="")
 	{
 		alert("Enter all details");
 		return false;
@@ -127,11 +115,12 @@ function sub_event()
 			document.getElementById("ename").value="";
 			document.getElementById("eprice").value="";
 			document.getElementById("tseats").value="";
+			document.getElementById("tseats_ext").value="";
 		}
 	}
 	xmlhttp.open("POST","sub_events.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("name="+name+"&tseats="+tseats+"&price="+price+"&size="+size+"&min="+min+"&max="+max+"&cat="+category);
+	xmlhttp.send("name="+name+"&tseats="+tseats+"&tseats_ext="+tseats_ext+"&price="+price+"&size="+size+"&min="+min+"&max="+max+"&cat="+category);
 }
 function view_events()
 {
@@ -277,7 +266,6 @@ function excel_appdd()
 </head>
 <body>
 <button id='externals' name='externals' onclick='externals()'>Externals</button>
-<button id='internals' name='internals' onclick='internals()'>Internals</button>
 <button id='add_events' name='add_events' onclick='add_events()'>Add Events</button>
 <button id='view_events' name='view_events' onclick='view_events()'>View Events</button>
 <button id='change_pass' name='change_pass' onclick='change_pass()'>Change Password</button>
@@ -285,7 +273,6 @@ function excel_appdd()
 <div id="body">
 </div>
 <?php
-	require '../sql_con.php';
 }
 else
 {

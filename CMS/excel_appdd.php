@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION["regno"]))
 {
-	require '../sql_con.php';
+	require 'sql_con.php';
 	
 	$d=date('d/m/Y');
 	$file_name = "DD_Unapproved_$d.xls";

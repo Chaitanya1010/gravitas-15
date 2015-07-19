@@ -3,11 +3,11 @@ session_start();
 if(isset($_SESSION["regno"]))
 {
 	$val = $_POST["val"];
-	require '../sql_con.php';
+	require 'sql_con.php';
 	$sql ="UPDATE `dd_payment` SET `paid_status`= '1' WHERE `ddno`='$val' ";
 	if(mysqli_query($mysqli,$sql))
 	{
-		$sql1 ="UPDATE `registration` SET `paid_status`= '1' WHERE `dd`='$val' ";
+		$sql1 ="UPDATE `external_registration` SET `paid_status`= '1' WHERE `dd`='$val' ";
 		if(!mysqli_query($mysqli,$sql1))
 		{
 			$sql ="UPDATE `dd_payment` SET `paid_status`= '0' WHERE `ddno`='$val' ";

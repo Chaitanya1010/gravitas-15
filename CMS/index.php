@@ -1,7 +1,7 @@
  <?php
 if(isset($_POST["login"]))
 {
-	require("../sql_con.php");
+	require("sql_con.php");
 	$uname=$_POST["regno"];
 	$pword=$_POST["pword"];
 	$stmt = $mysqli->prepare("SELECT * FROM `login_cms` WHERE `regno`=?  AND `password`=?");

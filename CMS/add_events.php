@@ -4,12 +4,13 @@ if(isset($_SESSION["regno"]))
 {
 	echo"
 	Name:<input type='text' name='ename' id='ename' autocomplete='off'><br>
-	Total Seats:<input type='text' name='tseats' id='tseats' autocomplete='off' onkeypress='return isAlpha(event)'><br>
-	Price: <input type='text' name='eprice' id='eprice' autocomplete='off' onkeypress='return isAlpha(event)'><br>
+	Total Seats(Internals):<input type='text' name='tseats' id='tseats' autocomplete='off' onkeypress='return isNumber(event)'><br>
+	Total Seats(Externals):<input type='text' name='tseats_ext' id='tseats_ext' autocomplete='off' onkeypress='return isNumber(event)'><br>
+	Price: <input type='text' name='eprice' id='eprice' autocomplete='off' onkeypress='return isNumber(event)'><br>
 	Team:<input type='radio' name='tradio' id='tradio' value='fixed' checked onclick='team_change(this.value)'> Fixed
 				<input type='radio' name='tradio' id='tradio' value='var' onclick='team_change(this.value)'> Variable<br>
 				
-	<div id='team'>Team Size: <input type='text' name='fixed' id='fixed' autocomplete='off' onkeypress='return isAlpha(event)'></div>
+	<div id='team'>Team Size: <input type='text' name='fixed' id='fixed' autocomplete='off' onkeypress='return isNumber(event)'></div>
 	
 	Category:
 			<input type='radio' name='category' id='category' value='0' checked> Premium

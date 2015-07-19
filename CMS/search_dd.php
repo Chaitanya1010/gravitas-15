@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION["regno"]))
 {
 	$val = $_POST["val"];
-	require '../sql_con.php';
+	require 'sql_con.php';
 	$sql = "SELECT * FROM `dd_payment` WHERE `ddno` LIKE '$val%'  AND `paid_status` = '0'";
 	echo "<TABLE><TR><TH>DD Number</TH><TH>Register Number</TH><TH>Sum</TH><TH>Bank Name</TH><TH>DD Date</TH><TH>Approve</TH></TR>";
 	$res = mysqli_query($mysqli,$sql);

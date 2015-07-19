@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION["id"] ="12nmh";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -210,12 +214,12 @@ function checkout()
   <main>
 	  <div id="register_events">
 	    <div class="fixed-action-btn" style="bottom:30px; left:24px">Logout<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="">
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="logout.php">
 			<i class="material-icons">power_settings_new</i>
 		</a>
 		</div>
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
-				<img src="gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
+				<img src="../gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
 				<h4 class="header light white-text">External Registration</h4>
 		  </header>
 		  <div id="all">

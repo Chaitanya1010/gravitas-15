@@ -2,14 +2,14 @@
 session_start();
 if(isset($_SESSION["regno"]))
 {
-	require '../sql_con.php';
+	require 'sql_con.php';
 	
 	$d=date('d/m/Y');
 	$file_name = "Externals_Registered_$d.xls";
 	header( "Content-Type: application/vnd.ms-excel" );
 	header( "Content-disposition: attachment; filename=$file_name" );
 	
-	$q = "SELECT * FROM `registration` WHERE `paid_status` = '1' ";
+	$q = "SELECT * FROM `external_registration` WHERE `paid_status` = '1' ";
 	$r = mysqli_query($mysqli,$q);
 	echo "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	while($t=mysqli_fetch_array($r))
@@ -25,7 +25,7 @@ if(isset($_SESSION["regno"]))
 		$q2 = "SELECT * FROM `external_participants` WHERE `regno` ='$regno'";
 		$r2 = mysqli_query($mysqli,$q2);
 		$t2 = mysqli_fetch_array($r2);
-		$name = $t2[1];
+		$name = $t2[2];
 		echo "$name\t$regno\t$event_name\t$team\r\n";
 	}
 }

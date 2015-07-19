@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION["regno"]))
 {
-	require '../sql_con.php';
+	require 'sql_con.php';
 	echo "<Input type='text' id='search_dd' name='search_dd' autocomple='off' onkeyup='search_dd(this.value)' placeholder='Search DD number..'><br>";
 	echo "<div id='table'>";
 	$sql = "SELECT * FROM `dd_payment` where `paid_status` = '0'";

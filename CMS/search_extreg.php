@@ -2,9 +2,9 @@
 session_start();
 if(isset($_SESSION["regno"]))
 {
-	require '../sql_con.php';
+	require 'sql_con.php';
 	$val = $_POST["val"];
-	$q = "SELECT * FROM `registration` WHERE `paid_status` = '1'  AND `regno` LIKE '$val%'";
+	$q = "SELECT * FROM `external_registration` WHERE `paid_status` = '1'  AND `regno` LIKE '$val%'";
 	$r = mysqli_query($mysqli,$q);
 	
 	echo "<TABLE class='striped'><TR><TH>Name</TH><TH>Regno</TH><TH>Event Name</TH><TH>Team Size</TH></TR>";
@@ -21,7 +21,7 @@ if(isset($_SESSION["regno"]))
 	$q2 = "SELECT * FROM `external_participants` WHERE `regno` ='$regno'";
 	$r2 = mysqli_query($mysqli,$q2);
 	$t2 = mysqli_fetch_array($r2);
-	$name = $t2[1];
+	$name = $t2[2];
 	echo "<TR><TD>$name</TD><TD>$regno</TD><TD>$event_name</TD><TD>$team</TD>";
 }
 echo"</TABLE>";

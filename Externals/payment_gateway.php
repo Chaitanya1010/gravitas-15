@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION["id"]))
+{
 	$trans_id = $_POST["t"];
 	$sum = $_POST["s"];
 	//Payment Gateway
@@ -12,4 +15,7 @@
 		$post_response = curl_exec($request); // execute curl post and store results in $post_response
 		echo $post_response;
 		curl_close ($request);
+}
+else
+	require("logout.php");
 ?>
