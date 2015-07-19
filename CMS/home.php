@@ -8,6 +8,13 @@ if(isset($_SESSION["regno"]))
 <head>
   <title>GraVITas'15</title>
 <script>
+function isNumber(evt)
+{
+		var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+             return false;
+        return true;
+}
 //MAIN PAGE
 function externals()
 {
@@ -37,7 +44,7 @@ function internals()
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 }
-function events()
+function add_events()
 {
   		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
@@ -47,9 +54,116 @@ function events()
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
 			}
 		}
-		xmlhttp.open("POST","events.php",true);
+		xmlhttp.open("POST","add_events.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
+}
+function team_change(val)
+{
+	if(val=="fixed")
+	{
+		document.getElementById("team").innerHTML="Team Size: <input type='text' name='fixed' id='fixed' autocomplete='off' onkeypress='return isAlpha(event)'>";
+	}
+	else if(val=="var")
+	{
+		document.getElementById("team").innerHTML="Min: <input type='text' name='var_min' id='var_min' autocomplete='off' onkeypress='return isAlpha(event)'><br>Max:<input type='text' name='var_max' id='var_max' autocomplete='off' onkeypress='return isAlpha(event)'>";
+	}
+}
+function sub_event()
+{
+	var name = document.getElementById("ename").value;
+	var tseats = document.getElementById("tseats").value;
+	var price = document.getElementById("eprice").value;
+	var cat =  document.getElementsByName("category");
+	var category="";
+	for (var i = 0; i < cat.length; i++)
+	{
+			if (cat[i].checked)
+				category = cat[i].value;
+	}
+	var team = document.getElementsByName("tradio");
+	var size=0;
+	var min=0;
+	var max=0;
+	var flag =0;
+	for (var i = 0; i < team.length; i++)
+	{
+		if (team[i].checked)
+			team = team[i].value;
+	}
+	if(team=="fixed")
+	{
+		size = document.getElementById("fixed").value; 
+		if(size==0)
+			flag=1;
+		else
+		{
+			document.getElementById("fixed").value="";		
+		}
+	}
+	else if(team=="var")
+	{
+		min = document.getElementById("var_min").value; 
+		max = document.getElementById("var_max").value; 
+		if(min==""||max=="")
+			flag=1;
+		else
+		{
+			document.getElementById("var_min").value="";
+			document.getElementById("var_max").value="";
+		}
+	}
+	if(name==""||tseats==""||price==""||flag==1||category=="")
+	{
+		alert("Enter all details");
+		return false;
+	}
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("msg").innerHTML=xmlhttp.responseText;
+			document.getElementById("ename").value="";
+			document.getElementById("eprice").value="";
+			document.getElementById("tseats").value="";
+		}
+	}
+	xmlhttp.open("POST","sub_events.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("name="+name+"&tseats="+tseats+"&price="+price+"&size="+size+"&min="+min+"&max="+max+"&cat="+category);
+}
+function view_events()
+{
+  		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("body").innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST","view_events.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send();
+}
+function search_events(val)
+{
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("event_table").innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST","search_events.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("val="+val);
+}
+function excel_eventlist(val)
+{
+	window.location='excel_eventlist.php?val='+val;
 }
 function change_pass()
 {
@@ -164,7 +278,8 @@ function excel_appdd()
 <body>
 <button id='externals' name='externals' onclick='externals()'>Externals</button>
 <button id='internals' name='internals' onclick='internals()'>Internals</button>
-<button id='events' name='events' onclick='events()'>Events</button>
+<button id='add_events' name='add_events' onclick='add_events()'>Add Events</button>
+<button id='view_events' name='view_events' onclick='view_events()'>View Events</button>
 <button id='change_pass' name='change_pass' onclick='change_pass()'>Change Password</button>
 <a href='logout.php' >Logout</a>
 <div id="body">
