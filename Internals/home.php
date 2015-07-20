@@ -96,13 +96,13 @@ function reg_go()
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
 			}
 		}
-		xmlhttp.open("POST","int_reg.php",true);
+		xmlhttp.open("POST","reg_int.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("regno="+regno);
 	}
 	else
 	{
-		
+		//reg no error
 	}
 		
 }
