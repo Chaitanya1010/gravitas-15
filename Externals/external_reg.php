@@ -131,7 +131,7 @@ function next()
 <body>
   <main>
   <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
-    <img src="gravitaslogo.png" alt class="responsive-img" width="350px">
+    <img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
     <h4 class="header light white-text">External Registration</h4>
   </header>
 <div id="form" class="container" style="margin-top:2em">

@@ -6,7 +6,7 @@ if(isset($_SESSION["id"]))
 	$sum = $_POST["s"];
 	//Payment Gateway
 		$post_url = "https://academics.vit.ac.in/online_application2/onlinepayment/Online_pay_request1.asp";		  
-		$post_string = "id_trans=".$trans_id."&id_event=07&amt_event=".$sum."&id_merchant=1006&id_password=g6v!ta$1516_V&id_name=GRAVITAS-2015&rturl=https://localhost/gravitas-15/test";
+		$post_string = "id_trans=".$trans_id."&id_event=07&amt_event=".$sum."&id_merchant=1006&id_password=g6v!ta$1516_V&id_name=GRAVITAS-2015&rturl=https://www.vitgravitas.com/externals/payment_return.php";
 		$request = curl_init($post_url); // initiate curl object
 		curl_setopt($request, CURLOPT_HEADER, 0); // set to 0 to eliminate header info from response
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, 1); // Returns response data instead of TRUE(1)
