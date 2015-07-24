@@ -1,6 +1,134 @@
 <?php
 session_start();
-//Login automatically if a session already exists
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>GraVITas'15</title>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+ 	<style type="text/css">
+		 body
+		 {
+    		display: flex;
+    		min-height: 100vh;
+    		flex-direction: column;
+  		}
+  		main 
+  		{
+    		flex: 1 0 auto;
+ 		}
+		/* label color */
+   		.input-field label 
+   		{
+     		color: #7986cb;
+   		}
+	   /* label focus color */
+	   .input-field input[type=text]:focus + label 
+	   {
+	   		color: #1a237e;
+	   }
+	   /* label underline focus color */
+	   .input-field input[type=text]:focus 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label underline color */
+	   .input-field input[type=text] 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label focus color */
+	   .input-field input[type=password]:focus + label 
+	   {
+	   		color: #1a237e;
+	   }
+	   /* label underline focus color */
+	   .input-field input[type=password]:focus 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label underline color */
+	   .input-field input[type=password] 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	</style>
+</head>
+<body>
+	<header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+		<img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
+		<h4 class="header light white-text">External Registration</h4>
+	</header>
+	<main>
+		<br/>
+		<div class='container'>
+			<div class='col s6'>
+				<ul class='tabs indigo darken-1 z-depth-1'>
+					<li class='tab col s3  white-text'><a href='#log' class="white-text waves-effect waves-light" >Login</a></li>
+					<li class='tab col s3  white-text'><a href='#fgpwd'  class="white-text waves-effect waves-light">Forgot Password?</a></li>
+				</ul>
+			</div>
+			<!--Login Div-->
+			<div id='log' class='card  hoverable'>
+				<FORM action='<?php echo $_SERVER["PHP_SELF"];?>' class='card-content' method="POST">
+					<div class='input-field'>
+						<label for="uname_id">Email</label>
+						<input name="uname_id" id="uname_id" type="text" autocomplete="off">
+		 			</div>
+		 			<div class='input-field'>
+			   			<label for="pword_id">Password</label>
+		 				<input id="pword_id" name="pword_id" type="password" autocomplete="off">
+		 			</div>
+		 			<button id="login" name="login" type='submit' class="btn waves-effect waves-light indigo darken-2 right">
+		   				<i class="material-icons right">send</i>Login
+		 			</button>
+		 			<br/><br/>
+				</FORM>
+			</div>
+			<!--Forget Password-->
+			<div id='fgpwd' class='card hoverable'>
+	 			<FORM action='<?php echo $_SERVER["PHP_SELF"];?>' class='card-content' method="POST">
+					<div class='input-field'>
+						<label for="email_forgot">Email</label>
+				 		<input name="email_forgot" id="email_forgot" type="text" autocomplete="off">
+				 	</div>
+				 	<div class='input-field'>
+					   	<label for="regno_forgot">Registration Number</label>
+				 		<input id="regno_forgot" name="regno_forgot" type="text" autocomplete="off">
+				 	</div>
+					<button type="submit" name="forget_password" id="forget_password" class="btn waves-effect waves-light indigo darken-2 right">
+						<i class="material-icons right">send</i>Reset
+					</button>
+				 	<br/><br/>
+				</FORM>
+	 		</div>
+			<div class='input-field'>
+				<a href="external_reg.php" class="waves-effect waves-light indigo darken-2 btn z-depth-1">
+				<i class="material-icons left">person_add</i>New User?
+				</a>
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer indigo darken-4">
+		<div class="footer-copyright">
+			<div class="container">
+				© COPYRIGHT GRAVITAS 2015
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+<?php
 if(isset($_SESSION["id"]))
 {
 	require("sql_con.php");
@@ -26,7 +154,7 @@ if(isset($_SESSION["id"]))
 			}
 			else
 			{
-				echo "OH! Snap!! Login Again! Session Expired!";
+				echo "Materialize.toast('OH! Snap!! Login Again! Session Expired!', 3000, 'rounded')";
 			}
 		}
 		else
@@ -65,7 +193,7 @@ if(isset($_POST["login"]))
 			}
 			else
 			{
-				echo "Incorrect User Name/Password";
+				echo '<script> Materialize.toast("Incorrect User Name/Password", 3000, "#e53935 red darken-1");</script>';
 			}
 		}
 		else
@@ -173,101 +301,3 @@ else if(isset($_POST["forget_password"]))
 	mysqli_close($mysqli);
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <title>GraVITas'15</title>
- <meta http-equiv="content-type" content="text/html;charset=UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <style>
-	/* label color */
-	.input-field label {
-		color: #1a237e;
-	}
-	/* label focus color */
-	.input-field input[type=text]:focus + label {
-		color: #303f9f;
-	}
-	 /* label underline focus color */
-	.input-field input[type=text] {
-		border-bottom: 1px solid #1a237e;
-		box-shadow: 0 1px 0 0 #1a237e;
-	}
-	/* label underline focus color */
-	.input-field input[type=password]:focus {
-		border-bottom: 1px solid #303f9f;
-		box-shadow: 0 1px 0 0 #303f9f;
-	}
-	.input-field input[type=password]:focus + label {
-		color: #303f9f;
-	}
-	 /* label underline focus color */
-	.input-field input[type=password] {
-		border-bottom: 1px solid #1a237e;
-		box-shadow: 0 1px 0 0 #1a237e;
-	}
-	/* label underline focus color */
-	.input-field input[type=password]:focus {
-		border-bottom: 1px solid #303f9f;
-		box-shadow: 0 1px 0 0 #303f9f;
-	}
-	body {
-	 display: flex;
-	 min-height: 100vh;
-	 flex-direction: column;
- }
-
- main {
-	 flex: 1 0 auto;
- }
- </style>
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-
- </head>
-<body>
- <main>
- <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
-	 <img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
-	 <h4 class="header light white-text">External Registration</h4>
- </header><br />
- <div class='container'>
-	 <div class='col s12'>
-		 <ul class='tabs indigo darken-3 z-depth-1'>
-			 <li class='tab col s6  white-text'><a href='#log' class="white-text waves-effect waves-light" >Login</a></li>
-			 <li class='tab col s6  white-text'><a href='#fgpwd'  class="white-text waves-effect waves-light">Forgot Password</a></li>
-		 </ul>
-	 </div>
-<div id='log' class='card'>
- <FORM action='<?php echo $_SERVER["PHP_SELF"];?>' class='card-content' method="POST">
-	 <div class='input-field'><label for="uname_id">Username</label>
- <input name="uname_id" id="uname_id" type="text" autocomplete="off">
- </div>
- <div class='input-field'>
-       <label for="pword_id">Password</label>
- <input id="pword_id" name="pword_id" type="password" autocomplete="off">
- </div>
- <button id="login" name="login" type='submit' class="btn waves-effect waves-light indigo darken-4 right">
-   <i class="material-icons right">send</i>  Login
- </button><br /><br />
-</FORM>
-</div>
-<div id='fgpwd' class='card'>
- <FORM action='<?php echo $_SERVER["PHP_SELF"];?>' class='card-content' method="POST">
-	 <div class='input-field'><label for="email_forgot">Email</label>
- <input name="email_forgot" id="email_forgot" type="text" autocomplete="off">
- </div>
- <div class='input-field'>
-       <label for="regno_forgot">Registration Number</label>
- <input id="regno_forgot" name="regno_forgot" type="text" autocomplete="off">
- </div>
- <button type="submit" name="forget_password" id="forget_password" class="btn waves-effect waves-light indigo darken-4 right">
-   <i class="material-icons right">send</i>  Forget Password
- </button><br /><br />
- </FORM>
- </div>
-<a href="external_reg.php"><h5>New User?</h5></a>
-</div>
-</BODY>
