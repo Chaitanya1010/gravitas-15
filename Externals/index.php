@@ -1,7 +1,7 @@
 <?php
 session_start();
 //Login automatically if a session already exists
-if(isset($_SESSION["regno"]))
+if(isset($_SESSION["id"]))
 {
 	require("sql_con.php");
 	$regno = $_SESSION["regno"];
@@ -21,7 +21,7 @@ if(isset($_SESSION["regno"]))
 			}
 			if($count==1)
 			{			
-				$_SESSION["regno"]=$regno_db;
+				$_SESSION["id"]=$regno_db;
 				header("location:event_list.php");
 			}
 			else
@@ -39,9 +39,8 @@ if(isset($_SESSION["regno"]))
 if(isset($_POST["login"]))
 {
 	require("sql_con.php");
-
 	$uname=$_POST["uname_id"];
-	$pword=md5($_POST["pword_id"]);
+	$pword=$_POST["pword_id"];
 	$stmt = $mysqli->prepare("SELECT * FROM `external_participants` WHERE `email`=?  AND `pword`=?");
 	$stmt->bind_param("ss", $uname, $pword);	
 	$uname_db="";
@@ -61,7 +60,7 @@ if(isset($_POST["login"]))
 			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
 			{			
 
-				$_SESSION["regno"]=$regno_db;
+				$_SESSION["id"]=$regno_db;
 				header("location:event_list.php");
 			}
 			else
@@ -86,13 +85,11 @@ else if(isset($_POST["forget_password"]))
 	
 	$regno_db="";
 	$email_db="";
-	
-	echo"1";
+
 	$stmt = $mysqli->prepare("SELECT * FROM `external_participants` WHERE `email`=? AND `regno`=? ");
 	$stmt->bind_param("ss", $email_f,$regno_f);	
 	if($stmt->execute())
 	{
-		echo ";";
 		if($rs = $stmt->get_result())
 		{
 			$count = mysqli_num_rows($rs);
@@ -123,6 +120,7 @@ else if(isset($_POST["forget_password"]))
 							//Enable SMTP debugging
 							$mail->SMTPDebug = 0;						
 							$mail->Host = 'smtp.gmail.com';
+							$mail->IsHTML(true);  
 
 							//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 							$mail->Port =  587;

@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION["id"] ="12nmh";
+if(isset($_SESSION["id"]))
+{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -294,3 +295,6 @@ $('.modal-trigger').leanModal();
 </footer>
 </body>
 </html>
+<?php
+}
+?>
