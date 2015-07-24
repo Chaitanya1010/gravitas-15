@@ -233,11 +233,11 @@ else if(isset($_POST["forget_password"]))
 	 <img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
 	 <h4 class="header light white-text">External Registration</h4>
  </header><br />
- <div class='container'>
+ <div class='container '>
 	 <div class='col s12'>
-		 <ul class='tabs'>
-			 <li class='tab col s6'><a href='#log' >Login</a></li>
-			 <li class='tab col s6'><a href='#fgpwd' >Forgot Password</a></li>
+		 <ul class='tabs indigo darken-3 z-depth-1'>
+			 <li class='tab col s6  white-text'><a href='#log' class="white-text waves-effect" >Login</a></li>
+			 <li class='tab col s6  white-text'><a href='#fgpwd'  class="white-text waves-effect">Forgot Password</a></li>
 		 </ul>
 	 </div>
 <div id='log' class='card'>

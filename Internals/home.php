@@ -146,18 +146,18 @@ if(isset($_SESSION["regno"]))
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("cart="+cart+"&team="+team);
 	}
-//Delete an element from the cart
-function del_cart(id)
-{
-	//This deletes the element w.r.t its index
-	cart.splice(id,1);
-	team.splice(id,1);
-	//Refresh the list of events in that category
-	search_events("body",'search');
-	//$('#cart').closeModal();
-	//Refresh the cart after removing the event
-	add_to_cart("refresh");
-}
+	//Delete an element from the cart
+	function del_cart(id)
+	{
+		//This deletes the element w.r.t its index
+		cart.splice(id,1);
+		team.splice(id,1);
+		//Refresh the list of events in that category
+		search_events("body",'search');
+		//$('#cart').closeModal();
+		//Refresh the cart after removing the event
+		add_to_cart("refresh");
+	}
 //To proceed to intermediate page
 function proceed_1()
 {

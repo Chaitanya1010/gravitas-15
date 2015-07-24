@@ -6,7 +6,7 @@ if(isset($_SESSION["regno"]))
 	require 'sql_con.php';
 	$q = "SELECT * FROM `events` WHERE `name` LIKE '$val%'";
 	$res = mysqli_query($mysqli,$q);
-	echo"<TABLE><TR><TH>ID</TH><TH>Name</TH><TH>Price</TH><TH>Total Seats (Internals)</TH><TH>Filled seats (Internals)</TH><TH>Total Seats (Externals)</TH><TH>Filled seats (Externals)</TH><TH>Team</TH><TH>Min</TH><TH>Max</TH><TH>Category</TH><TH>Download</TH></TR>";
+	echo"<TABLE class='striped'><TR><TH>ID</TH><TH>Name</TH><TH>Price</TH><TH>Total Seats (Internals)</TH><TH>Filled seats (Internals)</TH><TH>Total Seats (Externals)</TH><TH>Filled seats (Externals)</TH><TH>Team</TH><TH>Min</TH><TH>Max</TH><TH>Category</TH><TH>Download</TH></TR>";
 	while($arr = mysqli_fetch_array($res))
 	{
 		$cat ="";

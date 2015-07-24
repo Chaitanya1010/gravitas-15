@@ -300,7 +300,7 @@ function excel_appdd()
 }
 </script>
 </head>
-<body>
+<body onload='externals()'>
   <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
     <img src="../gravitaslogo.png" alt class="responsive-img"  width="350px">
     <h4 class="header light white-text">CMS</h4>
@@ -316,11 +316,7 @@ function excel_appdd()
   </div>
 
   </div>
-  <div class="fixed-action-btn" style="bottom:30px; left:24px">
-<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="logout.php">
-  <i class="material-icons">power_settings_new</i>
-</a>
-</div>
+
 <!-- <a href='logout.php' >Logout</a> -->
 <div id="body" class="container">
 </div>

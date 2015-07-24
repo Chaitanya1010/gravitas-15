@@ -13,9 +13,9 @@ if(isset($_SESSION["regno"]))
 	$cat = $_POST["cat"];
 	$q = "INSERT INTO `events` (`id`, `name`, `price`, `total_seats`, `filled_seats`, `total_ext`, `filled_ext`,`team`, `min`, `max`, `type`) VALUES (NULL, '$name', '$price', '$tseats', '0', '$tseats_ext','0','$team', '$min', '$max', '$cat');";
 	if(mysqli_query($mysqli,$q))
-		echo "Yahooo!! Event successfully Added!";
+		echo "<br>Yahooo!! Event successfully Added!";
 	else
-		echo "Oh Snap!! Some Tech error in adding event!";
+		echo "<br>Oh Snap!! Some Tech error in adding event!";
 }
 else
 {
