@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>External Registration</title>
+  <title>GraVITas '15</title>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -9,11 +9,11 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 <style type="text/css">
-.error {
-  border-bottom:2px solid red;
+.error input[type=text]{
+  border-bottom: 2px solid #d50000;
 }
 .input-field label {
-  color: #1a237e;
+  color: #7986cb;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label, input[type=text]:focus + label {
@@ -26,8 +26,8 @@
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid #303f9f;
-  box-shadow: 0 1px 0 0 #303f9f;
+  border-bottom: 1px solid #1a237e;
+  box-shadow: 0 1px 0 0 #1a237e;
 }
 body {
  display: flex;
@@ -114,9 +114,11 @@ function next()
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				if(xmlhttp.responseText=="1")
-					window.location = 'event_list.php';
+					Materialize.toast('Voila! Check your mail!', 30000, 'rounded',function(){window.location="index.php"});
+				else if(xmlhttp.responseText=="0")
+					Materialize.toast('Oh Snap!! Try Again!!', 30000, 'rounded',function(){window.location="index.php"});
 				else
-					window.location='external_reg.php';
+					Materialize.toast('Oh Snap!!Mailer Error!!Try Again!!', 30000, 'rounded',function(){window.location="index.php"});
 			}
 		}
 		xmlhttp.open("POST","sub_reg.php",true);
@@ -124,7 +126,10 @@ function next()
 		xmlhttp.send("name="+name+"&regno="+regno+"&gen="+gen+"&college="+college+"&ph="+phno+"&email="+email+"&clgref="+clg_ref+"&vitref="+vit_ref);
 	}
 	else
+	{
+		Materialize.toast('Enter all details!!', 3000, 'rounded');
 		return false;
+	}
 }
 </script>
 </head>
@@ -248,7 +253,7 @@ $(document).ready(function() {
 
 </script>
 </main>
-<footer class="page-footer indigo darken-2">
+<footer class="page-footer indigo darken-4">
           <div class="footer-copyright">
             <div class="container">
             © COPYRIGHT GRAVITAS 2015

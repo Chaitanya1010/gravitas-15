@@ -45,7 +45,6 @@ if(isset($_SESSION["id"]))
 
 </head>
 <script>
-
 var cart = new Array();
 var team = new Array();
 var lastType = 0;
@@ -149,7 +148,7 @@ function proceed_1()
 	xmlhttp.send("cart="+cart+"&team="+team);
 }
 
-//Back to cart to edit
+//home button
 function back()
 {
 	window.location="event_list.php";
@@ -210,15 +209,30 @@ function checkout()
 		xmlhttp.send("cart="+cart+"&team="+team);
 	}
 }
+function change_pass()
+{
+	document.getElementById("all").innerHTML="<br><br><div class='container'>Please give your Password!<br/><div class='card hoverable'><div class='input-field'><label for='pass1'>Password:</label><input type='password' id='pass1' name='pass1'></div><br/><div class='input-field'><label for='pass2'>Re-type Password:</label><input type='password' id='pass2' name='pass2'></div><input type='hidden' value='$regno_db' id='regno' name='regno'><br><div class='input-field'><button type='submit'onclick='submit_pword()'class='btn waves-effect waves-light indigo darken-2 right'><i class='material-icons right'>send</i>Reset</button></div></div></div>";
+}
 </script>
 <body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">
-	    <div class="fixed-action-btn" style="bottom:30px; left:24px">Logout<br/>
+	    <div class="fixed-action-btn" style="bottom:30px; left:16px">Logout<br/>
 		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="logout.php">
 			<i class="material-icons">power_settings_new</i>
 		</a>
 		</div>
+		<div class="fixed-action-btn" style="bottom:30px; left:106px">Home<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-10px" title="Home" href="event_list.php">
+			<i class="material-icons">home</i>
+		</a>
+		</div>
+		  <div class="fixed-action-btn" style="bottom:30px; left:166px">Change Password<br/>
+		<button class="red btn-floating btn-large waves-effect z-depth-3"  style="left:14px" title="Change Password" onclick="change_pass()">
+			<i class="material-icons">settings</i>
+		</button>
+		</div>
+	
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="../gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
 				<h4 class="header light white-text">External Registration</h4>
@@ -285,9 +299,7 @@ $('.modal-trigger').leanModal();
  </script>
 </main>
 <footer class="page-footer indigo darken-2">
-
           <div class="footer-copyright">
-		
             <div class="container">
             © COPYRIGHT GRAVITAS 2015
             </div>
