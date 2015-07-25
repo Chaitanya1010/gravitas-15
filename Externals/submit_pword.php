@@ -4,7 +4,7 @@ $r = $_POST["r"];
 require("sql_con.php");
 $q1 = "UPDATE `external_participants` SET `pword` = '$p' WHERE `regno`='$r'";
 if(mysqli_query($mysqli,$q1))
-	echo "Voila!! Login Again";
+	echo "Voila!! Password Changed!!";
 else
 	echo "Oh Snap!! Some Error!!";
 ?>

@@ -45,6 +45,7 @@ if(isset($_POST["login"]))
 	$uname_db="";
 	$pword_db="";
 	$regno_db="";
+	$acc="";
 	if($stmt->execute())
 	{
 		if($rs = $stmt->get_result())
@@ -55,8 +56,9 @@ if(isset($_POST["login"]))
 				$uname_db = $arr["email"];
 				$pword_db = $arr["pword"];
 				$regno_db  = $arr["regno"];
+				$acc = $arr["acc_details"];
 			}
-			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
+			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0)&&$acc!="0")
 			{
 
 				$_SESSION["id"]=$regno_db;

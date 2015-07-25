@@ -237,6 +237,67 @@ function checkout()
 	}
 }
 </script>
+<style type="text/css">
+		 .msg
+		 {
+		 	background: #e53935;
+		 	color: #ffffff;
+		 	position: absolute;
+    		left: 400px;
+    		bottom: 110px;
+    		padding: 2px 7px;
+    		border-radius: 25px;
+		 }
+		 body
+		 {
+    		display: flex;
+    		min-height: 100vh;
+    		flex-direction: column;
+  		}
+  		main 
+  		{
+    		flex: 1 0 auto;
+ 		}
+		/* label color */
+   		.input-field label 
+   		{
+     		color: #7986cb;
+   		}
+	   /* label focus color */
+	   .input-field input[type=text]:focus + label 
+	   {
+	   		color: #1a237e;
+	   }
+	   /* label underline focus color */
+	   .input-field input[type=text]:focus 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label underline color */
+	   .input-field input[type=text] 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label focus color */
+	   .input-field input[type=password]:focus + label 
+	   {
+	   		color: #1a237e;
+	   }
+	   /* label underline focus color */
+	   .input-field input[type=password]:focus 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	    /* label underline color */
+	   .input-field input[type=password] 
+	   {
+	    	border-bottom: 1px solid #1a237e;
+	    	box-shadow: 0 1px 0 0 #1a237e;
+	   }
+	</style>
   </head>
 <body>
   <main>
