@@ -12,7 +12,10 @@ if(isset($_SESSION["id"]))
 	$f=0;
 	$q=0;
 	if($committee=="skk")
+	{
+		
 		$q = "SELECT * FROM `od_list` WHERE `preetika` ='1' AND `naiju` = '1' AND `skk`='0' AND `dsw`='0'";
+	}
 	else if($committee=="naiju")
 		$q = "SELECT * FROM `od_list` WHERE `preetika` ='1' AND `naiju` = '0' AND `skk`='0' AND `dsw`='0'";
 	else if($committee=="preetika")

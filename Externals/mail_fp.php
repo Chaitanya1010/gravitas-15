@@ -11,14 +11,22 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js'></script>
   </head>
   <body>
-    <header class='header blue darken-4 z-depth-1' style='text-align:center;padding-top:0.3em;padding-bottom:0.02em'>
-      <img src='../gravitaslogo.png' alt class='responsive-img' width='350px'>
-      <h4 class='header light white-text'>Password Reset - GraVITas'15</h4>
-	 Please follow the link to change password :<a href='localhost/gravitas-15/externals/password_reset.php?p=$ResultStr&e=$email_db&r=$regno_db'>Link</a> 
-	 <br>
-	 Regards,
-	 TG'15.
-    </header>
+    <header class='header blue darken-4 z-depth-1' style='text-align:center;padding-top:0.3em;padding-bottom:0.02em' align='middle'>
+      <img src='cid:logo' alt class='responsive-img' width='350px' style='background-color:indigo;' />
+      <h4 class='header light white-text'>Password Reset - GraVITas'15</h4> </header>
+      Dear Participant, <br><br/>
+      Greetings!! <br/><br/>
+	 Please follow the link to change your password : <a href='localhost/gravitas-15/externals/password_reset.php?p=$ResultStr&e=$email_db&r=$regno_db'>Link</a> 
+	 <br><br/>
+	 Regards,<br><br/>
+	 Team Gravitas'15,<br>
+   VIT University,<br>
+   Vellore.<br/><br/>
+
+   For Technical Assistance: <br/>
+   Ph: +91 9092658797<br/>
+   Email: shambhavi110@gmail.com<br/>
+
 	</body>
 </html>";
 ?>

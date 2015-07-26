@@ -115,7 +115,6 @@ else if(isset($_POST["forget_password"]))
 							$subject= "GraVITas 2015 | Password Reset" ;
 							
 							require("mail_fp.php");
-							echo $to;
 							//Tell PHPMailer to use SMTP
 							$mail->isSMTP();
 
@@ -123,7 +122,7 @@ else if(isset($_POST["forget_password"]))
 							$mail->SMTPDebug = 0;
 							$mail->Host = 'smtp.gmail.com';
 							$mail->IsHTML(true);
-
+							$mail->AddEmbeddedImage('../gravitaslogo.png', 'logo');
 							//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 							$mail->Port =  587;
 

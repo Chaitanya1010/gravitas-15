@@ -31,6 +31,7 @@ if($res==true)
 	$mail->SMTPDebug = 0;
 	$mail->Host = 'smtp.gmail.com';
 	$mail->IsHTML(true);
+	$mail->AddEmbeddedImage('../gravitaslogo.png', 'logo');
 
 	//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 	$mail->Port =  587;

@@ -131,13 +131,21 @@ if(isset($_SESSION["id"]))
 	<div id="all">
 	<TABLE class="striped hoverable">
 	<TR><TH>S.No</TH><TH>Name</TH><TH>Regno</TH><TH>Work</TH><TH>Date</TH><TH>Committee</TH><TH>Approve</TH></TR>
-	
 	<?php
 			require("sql_con.php");
 			$f=0;
 			$q=0;
 			if($committee=="skk")
+			{
+				$q2 = "SELECT count(*) FROM `od_list` WHERE `preetika` ='1' AND `naiju` = '1' AND `skk`='1' AND `dsw`='0'";
+				$res1 = mysqli_query($mysqli,$q2);
+				$count = musqli_num_rows($res1);
+				if($count==25)
+				{
+						require("mail.php");
+				}
 				$q = "SELECT * FROM `od_list` WHERE `preetika` ='1' AND `naiju` = '1' AND `skk`='0' AND `dsw`='0'";
+			}
 			else if($committee=="naiju")
 				$q = "SELECT * FROM `od_list` WHERE `preetika` ='1' AND `naiju` = '0' AND `skk`='0' AND `dsw`='0'";
 			else if($committee=="preetika")

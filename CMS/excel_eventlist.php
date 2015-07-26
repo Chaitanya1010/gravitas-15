@@ -51,12 +51,14 @@ if(isset($_SESSION["regno"]))
 	$file_name = "$event_name"."_Registered_Student_$d.xls";
 	header( "Content-Type: application/vnd.ms-excel");
 	header( "Content-disposition: attachment; filename=$file_name" );
-	
+	$data = "Event ID:\t $event_id\nEvent Name: \t $event_name\n Price:\t $price\nTotal Seats(Internals):\t $t_int \t Filled Seats(Internals):\t $f_int \n Total Seats(Externals):\t $t_ext \t Filled Seats(Externals): \t $f_ext \nCategory:\t $cat\n Team: \t $t \t Min:\t $min \t Max: \t $max";
 	echo "Event ID:\t $event_id\nEvent Name: \t $event_name\n Price:\t $price\nTotal Seats(Internals):\t $t_int \t Filled Seats(Internals):\t $f_int \n Total Seats(Externals):\t $t_ext \t Filled Seats(Externals): \t $f_ext \nCategory:\t $cat\n Team: \t $t \t Min:\t $min \t Max: \t $max";
 
+	$data.="\n ---Internal Participants---\n";
 	echo"\n ---Internal Participants---\n";
 	$q1 = "SELECT * FROM `internal_registration` WHERE `event_id`='$event_id' ";
 	$r1= mysqli_query($mysqli,$q1);
+	$data.="Name\tRegno\tEvent Name\tTeam Size\n\r";
 	echo "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	while($t1=mysqli_fetch_array($r1))
 	{
@@ -67,12 +69,15 @@ if(isset($_SESSION["regno"]))
 		$r3= mysqli_query($mysqli,$q3);
 		$t3 = mysqli_fetch_array($r3);
 		$name = $t3[1];
+		$data.= "$name\t$regno\t$event_name\t$team\r\n";
 		echo "$name\t$regno\t$event_name\t$team\r\n";
 	}
 	
+	$data.="\n ---External Participants--- \n";
 	echo"\n ---External Participants--- \n";
 	$q = "SELECT * FROM `external_registration` WHERE `paid_status` = '1' AND `event_id`='$event_id' ";
 	$r = mysqli_query($mysqli,$q);
+	$data.= "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	echo "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	while($t=mysqli_fetch_array($r))
 	{
@@ -83,8 +88,11 @@ if(isset($_SESSION["regno"]))
 		$r2 = mysqli_query($mysqli,$q2);
 		$t2 = mysqli_fetch_array($r2);
 		$name = $t2[2];
+		$data.="$name \t $regno\t$event_name\t$team\r\n";
 		echo "$name \t $regno\t$event_name\t$team\r\n";
 	}
+	file_put_contents("../example.xls",$data);
+	print "$data";
 }
 else
 {
