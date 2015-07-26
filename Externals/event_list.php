@@ -1,6 +1,8 @@
 <?php
 session_start();
-$_SESSION["id"] ="12nmh";
+if(isset($_SESSION["id"]))
+{
+	$regno = $_SESSION["id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@ $_SESSION["id"] ="12nmh";
      color: #1a237e;
    }
    /* label focus color */
-   .input-field input[type=text]:focus + label {
+   .input-field input[type=text],[type=password]:focus + label {
      color: #303f9f;
    }
     /* label underline focus color */
@@ -28,6 +30,16 @@ $_SESSION["id"] ="12nmh";
    }
    /* label underline focus color */
    .input-field input[type=text]:focus {
+     border-bottom: 1px solid #303f9f;
+     box-shadow: 0 1px 0 0 #303f9f;
+   }
+    /* label underline focus color */
+   .input-field input[type=password] {
+     border-bottom: 1px solid #1a237e;
+     box-shadow: 0 1px 0 0 #1a237e;
+   }
+   /* label underline focus color */
+   .input-field input[type=password]:focus {
      border-bottom: 1px solid #303f9f;
      box-shadow: 0 1px 0 0 #303f9f;
    }
@@ -44,7 +56,6 @@ $_SESSION["id"] ="12nmh";
 
 </head>
 <script>
-
 var cart = new Array();
 var team = new Array();
 var lastType = 0;
@@ -148,7 +159,7 @@ function proceed_1()
 	xmlhttp.send("cart="+cart+"&team="+team);
 }
 
-//Back to cart to edit
+//home button
 function back()
 {
 	window.location="event_list.php";
@@ -209,15 +220,54 @@ function checkout()
 		xmlhttp.send("cart="+cart+"&team="+team);
 	}
 }
+function change_pass()
+{
+	document.getElementById("all").innerHTML="<br><br><div class='container'>Please give your Password!<br/><div class='card hoverable'><div class='input-field'><label for='pass1'>Password:</label><input type='password' id='pass1' name='pass1'></div><br/><div class='input-field'><label for='pass2'>Re-type Password:</label><input type='password' id='pass2' name='pass2'></div><input type='hidden' value='<?php echo $regno ?>' id='regno' name='regno'><br><div class='input-field'><button type='submit'onclick='submit_pword()'class='btn waves-effect waves-light indigo darken-2 right'><i class='material-icons right'>send</i>Reset</button></div></div></div>";
+}
+function submit_pword()
+{
+	var p1 = document.getElementById("pass1").value;
+	var p2 = document.getElementById("pass2").value;
+	var regno = document.getElementById("regno").value;
+	if(p1==""||p2==""||p1!=p2)
+	{
+		Materialize.toast("Both Passwords should match!!", 3000, 'rounded');
+		return false;
+	}
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("pass1").value="";
+			document.getElementById("pass2").value="";
+			Materialize.toast(xmlhttp.responseText, 3000, 'rounded',function(){window.location="index.php"});
+		}
+	}
+	xmlhttp.open("POST","submit_pword.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("p="+p1+"&r="+regno);
+}
 </script>
 <body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">
-	    <div class="fixed-action-btn" style="bottom:30px; left:24px">Logout<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="logout.php">
+	    <div class="fixed-action-btn" style="bottom:30px; left:25px">Logout<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-10px" title="Logout" href="logout.php">
 			<i class="material-icons">power_settings_new</i>
 		</a>
 		</div>
+		<div class="fixed-action-btn" style="bottom:30px; left:100px">Home<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-10px" title="Home" href="event_list.php">
+			<i class="material-icons">home</i>
+		</a>
+		</div>
+		  <div class="fixed-action-btn" style="bottom:30px; left:150px">Change Password<br/>
+		<button class="red btn-floating btn-large waves-effect z-depth-3"  style="left:20px" title="Change Password" onclick="change_pass()">
+			<i class="material-icons">settings</i>
+		</button>
+		</div>
+	
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="../gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
 				<h4 class="header light white-text">External Registration</h4>
@@ -283,14 +333,15 @@ $('.modal-trigger').leanModal();
 
  </script>
 </main>
-<footer class="page-footer indigo darken-2">
-
+<footer class="page-footer indigo darken-4">
           <div class="footer-copyright">
-		
-            <div class="container">
+            <div class="container center-align">
             © COPYRIGHT GRAVITAS 2015
             </div>
           </div>
 </footer>
 </body>
 </html>
+<?php
+}
+?>

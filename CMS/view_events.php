@@ -7,7 +7,7 @@ if(isset($_SESSION["regno"]))
 	$res = mysqli_query($mysqli,$q);
 	echo"<input type='text' id='search_events' name='search_events' onkeyup='search_events(this.value)' placeholder='Search Event...'>";
 	echo "<DIV ID='event_table'>";
-	echo"<TABLE><TR><TH>ID</TH><TH>Name</TH><TH>Price</TH><TH>Total Seats (Internals)</TH><TH>Filled seats (Internals)</TH><TH>Total Seats (Externals)</TH><TH>Filled seats (Externals)</TH><TH>Team</TH><TH>Min</TH><TH>Max</TH><TH>Category</TH><TH>Download</TH></TR>";
+	echo"<TABLE class='striped'><TR><TH>ID</TH><TH>Name</TH><TH>Price</TH><TH>Total Seats (Internals)</TH><TH>Filled seats (Internals)</TH><TH>Total Seats (Externals)</TH><TH>Filled seats (Externals)</TH><TH>Team</TH><TH>Min</TH><TH>Max</TH><TH>Category</TH><TH>Download</TH></TR>";
 	while($arr = mysqli_fetch_array($res))
 	{
 		$cat ="";
@@ -51,4 +51,3 @@ else
 {
 	require 'logout.php';
 }
-	

@@ -7,9 +7,9 @@ if(isset($_SESSION["regno"]))
 	$p = $_POST["p"];
 	$q ="UPDATE `login_cms` SET `password`='$p' WHERE `regno`= '$regno'";
 	if(mysqli_query($mysqli,$q))
-		echo "Voila!!Password Changed!";
+		echo "<br>Voila!!Password Changed!";
 	else
-		echo "Oh Snap!! Error in Changing Password!!";
+		echo "<br>Oh Snap!! Error in Changing Password!!";
 }
 else
 {
