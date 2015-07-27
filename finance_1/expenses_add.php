@@ -4,6 +4,8 @@
 	{
 		echo "
 		<div class='container'>
+		<div class='card'>
+		<div class='card-content'>
 		<div class='row'>
 		<div class='input-field col s12 m6'>
 			<label for='name_expenser'>Name</label> <input type='text' name='name_expenser' id='name_expenser'  autocomplete='off'>
@@ -61,6 +63,8 @@
 		<button type='submit' onclick='submit_expenses();' class='btn waves-effect waves-light indigo darken-4'>
 			<i class='material-icons right'>send</i> Submit
 			</button>
+		</div>
+		</div>
 		</div>
 	</div>";
 	}
