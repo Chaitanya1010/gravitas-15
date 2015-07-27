@@ -1,15 +1,16 @@
 <?php
-	session_start();
-	if(isset($_SESSION['name_fin']))//session_variable
-	{
+  session_start();
+  if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id_verify'])))//session_variable verification
+  {
     $id=$_REQUEST['id_verify'];
 
     if($id==0)
     {
+      //<button onclick='dwnld_all_approved_cat(".$id.")'>Download All Approved</button></br></br></br>
+      //<button onclick='dwnld_all_approved_cat_indiv(".$id.")'>Download All I Approved</button></br></br></br>
+          
   		echo
   			"<h2>Approval of Sponsor</h2>
-          <button onclick='dwnld_all_approved_cat(".$id.")'>Download All Approved</button></br></br></br>
-          <button onclick='dwnld_all_approved_cat_indiv(".$id.")'>Download All I Approved</button></br></br></br>
           <button onclick='approve_cash(".$id.")'>Approve Cash</button></br></br>
     			<button onclick='approve_dd(".$id.")'>Approve DD</button></br></br>
     			<button onclick='approve_cheque(".$id.")'>Approve Cheques</button></br></br></br>";
@@ -57,12 +58,21 @@
     }
 
 	}
+  else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id_verify']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id_verify']))))
+  {
+    session_unset();
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+    session_destroy();
+    header("Location:login_approve.php");
+  }
   else
   {
-      session_unset();
-      session_destroy();
-      header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-      header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-      header("Location:login_approve.php");
+    session_unset();
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+    session_destroy();
+    echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+    exit();
   }
 ?>

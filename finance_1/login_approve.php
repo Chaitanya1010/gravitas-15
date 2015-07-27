@@ -9,7 +9,7 @@
 			header('Location:index.php');
 		}
 
-		else
+		else if(($mode==1)||($mode==2)||($mode==3))
 		{
 			header('Location:approve_home_1.php');
 		}
@@ -22,27 +22,31 @@
 			$pass=$_POST['name'];
 			$sql_login="SELECT * FROM `admin_login` WHERE name='$name' and pass='$pass';";
 			$res_login=mysqli_query($mysqli,$sql_login);
+			if(mysqli_num_rows($res_login)>0)
 			{
-				if(mysqli_num_rows($res_login)>0)
-				{
-					while($arr=mysqli_fetch_array($res_login))
-						$mode=$arr['mode'];
+				while($arr=mysqli_fetch_array($res_login))
+					$mode=$arr['mode'];
 
-					$_SESSION['name_fin']=$name;
-					$_SESSION['mode']=$mode;
+				$_SESSION['name_fin']=$name;
+				$_SESSION['mode']=$mode;
 					
-					if($mode==0)
-					{
-						header('Location:index.php');
-					}
-
-					else
-					{
-						header('Location:approve_home_1.php');
-					}
-
+				if($mode==0)
+				{
+					header('Location:index.php');
 				}
+
+				else
+				{
+					header('Location:approve_home_1.php');
+				}
+
 			}
+			else
+			{
+				echo "Sorry..Either wrong username or password!</br>";
+				echo "<a href='login_approve.php'>Click here to login</login>";
+			}
+			
 		}
 	}
 	else

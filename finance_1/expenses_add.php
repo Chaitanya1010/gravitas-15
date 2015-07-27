@@ -1,5 +1,6 @@
 <?php
-	if(true)//session_variable verification
+	session_start();
+	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
 		echo "
 		<h2>Expenses</h2>
@@ -47,5 +48,22 @@
 		Phone Number :<input type='text' name='phno_expenses' id='phno_expenses'  placeholder='Phone Number' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
 		Remarks:<br> <textarea name='remarks_expenses' rows='5' cols='50' id='remarks_expenses'  placeholder='Details regarding the info added' autocomplete='off'></textarea><br><br>				
 		<button onclick='submit_expenses();'>Submit!</button>";
+	}
+	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:login_approve.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
 	}
 ?>

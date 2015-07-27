@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(true)//session_variable
+	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['cat'])))//session_variable verification
 	{
 		require('sql_con.php');
 		$chq_number=$_REQUEST['name'];
@@ -114,8 +114,21 @@
 			echo "No results to display";
 		}
 	}
-	else //redirect to login page
+	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['cat']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['cat']))))
 	{
-	
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:login_approve.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
 	}
 ?>

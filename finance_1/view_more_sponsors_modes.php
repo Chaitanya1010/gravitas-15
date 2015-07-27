@@ -61,6 +61,5 @@
 		session_destroy();
 		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
 		exit();
-	}
-?>		
+	}	
 ?>

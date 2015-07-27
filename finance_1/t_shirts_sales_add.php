@@ -1,5 +1,6 @@
 <?php
-	if(true)//session_variable verification
+	session_start();
+	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
 		echo"
 		<h2>Shirt Sales</h2>
@@ -14,11 +15,24 @@
 			Remarks:<br> <textarea name='remarks_add_shirts' rows='5' cols='50' id='remarks_add_shirts'  placeholder='Details regarding the info added' autocomplete='off'></textarea><br><br>		
 			<button onclick='submit_add_shirts();'>Submit!</button>";
 	}
-	else//logout
+	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{
-
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:login_approve.php");
 	}
-?>	
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
+	}
+?>
 	
 			
 

@@ -1,10 +1,8 @@
 <?php
-	//Downloading all cash receipts 
-	require 'sql_con.php';
 	session_start();
-	
-	if(true)//use session variable
+	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
+		require 'sql_con.php';
 		$id =$_REQUEST['id'];
 		$cat =	$_REQUEST['cat']; 	
 		$mode = $_SESSION['mode'];
@@ -111,6 +109,6 @@
 		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 		session_destroy();
-		header("Location:login.php");
+		header("Location:login_approve.php");
 	}
 ?>

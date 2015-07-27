@@ -1,7 +1,6 @@
 <?php
 	session_start();
-		
-	if(true)//session_variable
+	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['mode'])))//session_variable verification
 	{
 		require('sql_con.php');
 
@@ -14,13 +13,6 @@
 
 		$counter_flag=0;
 		
-			//query time for adding the data
-			/*
-			1.Add the basic details in basic table.
-			2.Take the unique_id generated
-			2.Add into the respective tables the detailed information with unique_id from basic table.
-			*/			
-			//Adding data to basic table
 			$sql_basic_add="INSERT INTO `finance`.`basic_info` (`category`,`event_name`, `company_name`, `amount`, `phno`, `email_id`, `mode`, `remarks`) VALUES ('2', '$event_name', '$company_name', '$amount', '$phno', '', '$selected', '$remarks');";
 
 			$res_basic_add=mysqli_query($mysqli,$sql_basic_add);
@@ -166,11 +158,24 @@
 				}	
 			}
 		}
-//********************************************************************************************************
+//*******************************************************************************************************//
+	}
 
-		else//re-direct to login page
-		{
-
-		}
+	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['mode']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['mode']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:login_approve.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
 	}
 ?>

@@ -2,8 +2,16 @@
 	session_start();
 	if(isset($_SESSION['name_fin']))//session_variable
 	{
-		$mode=$_SESSION['mode'];
+		  $mode=$_SESSION['mode'];
     	{
+          if($mode==0)
+          {
+            session_unset();
+            header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+            header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+            session_destroy();
+            header("Location:login_approve.php");
+          }
 	        if($mode==1)
 	        {
 	          echo "<h1>1st Approval</h1>";
@@ -18,7 +26,8 @@
 	        {
 	          echo "<h1>3rd Approval</h1>";
 	        }
-	    }
+	   }
+
 		echo "
 		<a href='logout.php' title='Logout'>Log-out</a></br></br>
     		
@@ -54,20 +63,30 @@
 	}
 	else//logout
 	{
-
+      session_unset();
+      header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+      header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+      session_destroy();
+      header("Location:login_approve.php");
 	}
 ?>
 
 <script type="text/javascript">
-function verify_method_pay(id)//display the more options for mode of payement
+//display the more options for mode of payement
+function verify_method_pay(id)  //approve_home_1.php -> approve_1.php
 {
-	var xmlhttp=new XMLHttpRequest();
+  	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("more_credit_options_verify").innerHTML=xmlhttp.responseText;
-		}
+          var res=document.getElementById("more_credit_options_verify").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
+		  }
   	}
   xmlhttp.open("GET","approve_1.php?id_verify="+id,true);
   xmlhttp.send();
@@ -75,7 +94,7 @@ function verify_method_pay(id)//display the more options for mode of payement
 
 /*Approve cash starts*/
 
-function approve_cash(id)
+function approve_cash(id) //approve_1.php -> approve_cash.php
 {
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -83,13 +102,18 @@ function approve_cash(id)
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("select_approve_option").innerHTML=xmlhttp.responseText;
+          var res=document.getElementById("select_approve_option").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
 		  }
   	}
     xmlhttp.open("GET","approve_cash.php?id="+id,true);
     xmlhttp.send();
 }
 
-function search_spon(id,cat)
+function search_spon(id,cat)  //approve_cash.php->search_name_spon.php
 {
     if(id==1)
     {
@@ -115,6 +139,11 @@ function search_spon(id,cat)
       	if (xmlhttp.readyState==4 && xmlhttp.status==200)
       	{
         		document.getElementById("search_results_spon").innerHTML=xmlhttp.responseText;
+            var res=document.getElementById("search_results_spon").innerHTML;
+            if(res.indexOf("dhS8!")>0)
+            {
+              window.location = 'login_approve.php';
+            }
   		  }
     	}
       xmlhttp.open("GET","search_name_spon.php?name="+s+"&id="+id+"&cat="+cat,true);
@@ -126,7 +155,7 @@ function search_spon(id,cat)
     }
 }
 
-function approve_spon_cash(id_but)
+function approve_spon_cash(id_but)  //search_name_spon/approve_cash -> approve_spon_payement
 {
     var s=confirm("Do you want to approve the transaction?");
     if(s)
@@ -137,6 +166,11 @@ function approve_spon_cash(id_but)
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
             {
                 document.getElementById("button_spon_"+id_but).innerHTML=xmlhttp.responseText;
+                var res=document.getElementById("button_spon_"+id_but).innerHTML;
+                if(res.indexOf("dhS8!")>0)
+                {
+                  window.location = 'login_approve.php';
+                }
             }
         }
         xmlhttp.open("GET","approve_spon_payement.php?id="+id_but,true);
@@ -149,7 +183,7 @@ function approve_spon_cash(id_but)
 
 
 /*DD starts from here*/
-function approve_dd(id)
+function approve_dd(id) //approve_1.php -> approve_dd.php
 {
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -157,13 +191,18 @@ function approve_dd(id)
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("select_approve_option").innerHTML=xmlhttp.responseText;
-		}
+          var res=document.getElementById("select_approve_option").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
+		  }
   	}
   xmlhttp.open("GET","approve_dd.php?id="+id,true);
   xmlhttp.send();
 }
 
-function search_spon_dd(id,cat)
+function search_spon_dd(id,cat)//approve_dd -> search_name_spon_dd.php
 {
    var s = document.getElementById("search_dd_numb").value
     if(s!='')
@@ -174,6 +213,11 @@ function search_spon_dd(id,cat)
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
             document.getElementById("search_results_spon_dd").innerHTML=xmlhttp.responseText;
+            var res=document.getElementById("search_results_spon_dd").innerHTML;
+            if(res.indexOf("dhS8!")>0)
+            {
+              window.location = 'login_approve.php';
+            }
         }
       }
 
@@ -186,7 +230,7 @@ function search_spon_dd(id,cat)
     } 
 }
 
-function approve_spon_dd(id_but) 
+function approve_spon_dd(id_but) //search_name_spon_dd.php/  approve_dd.php -> approve_spon_dd_payement.php
 {
     var s=confirm("Do you want to approve the transaction?");
     if(s)
@@ -197,6 +241,11 @@ function approve_spon_dd(id_but)
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
             {
                 document.getElementById("button_spon_dd_"+id_but).innerHTML=xmlhttp.responseText;
+                var res=document.getElementById("button_spon_dd_"+id_but).innerHTML;
+                if(res.indexOf("dhS8!")>0)
+                {
+                  window.location = 'login_approve.php';
+                }
             }
         }
         xmlhttp.open("GET","approve_spon_dd_payement.php?id="+id_but,true);
@@ -208,10 +257,8 @@ function approve_spon_dd(id_but)
 /*Approve DD ends*/
 
 
-
-
 /*Approve Cheque starts*/
-function approve_cheque(id)
+function approve_cheque(id) //approve_1.php -> approve_cheque.php
 {
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -219,7 +266,12 @@ function approve_cheque(id)
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("select_approve_option").innerHTML=xmlhttp.responseText;
-		}
+          var res=document.getElementById("select_approve_option").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
+		  }
   	}
   xmlhttp.open("GET","approve_cheque.php?id="+id,true);
   xmlhttp.send();
@@ -227,7 +279,7 @@ function approve_cheque(id)
 
 
 
-function search_spon_chq(id,cat)
+function search_spon_chq(id,cat)// approve_cheque.php , search_name_spon_chq.php
 {
     var s = document.getElementById("search_chq_numb").value
     if(s!='')
@@ -238,6 +290,11 @@ function search_spon_chq(id,cat)
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
             document.getElementById("search_results_spon_chq").innerHTML=xmlhttp.responseText;
+            var res=document.getElementById("search_results_spon_chq").innerHTML;
+            if(res.indexOf("dhS8!")>0)
+            {
+              window.location = 'login_approve.php';
+            }
         }
       }
 
@@ -250,7 +307,7 @@ function search_spon_chq(id,cat)
     } 
 }
 
-function approve_spon_chq(id_but) 
+function approve_spon_chq(id_but) //approve_cheque -> approve_spon_chq_payement.php
 {
     var s=confirm("Do you want to approve the transaction?");
     if(s)
@@ -261,6 +318,11 @@ function approve_spon_chq(id_but)
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
             {
                 document.getElementById("button_spon_chq_"+id_but).innerHTML=xmlhttp.responseText;
+                var res=document.getElementById("button_spon_chq_"+id_but).innerHTML;
+                if(res.indexOf("dhS8!")>0)
+                {
+                  window.location = 'login_approve.php';
+                }
             }
         }
         xmlhttp.open("GET","approve_spon_chq_payement.php?id="+id_but,true);
@@ -274,7 +336,7 @@ function approve_spon_chq(id_but)
 
 
 /*EXCEL downloads*/
-function download_cash_excel(id,cat)	//Make it as event-wise 
+function download_cash_excel(id,cat)	//Make it as event-wise //approve_cash.php -> excel_cash_dwn.php
 {
 	//var s = document.getElementById("min").value;
 	//var e = document.getElementById("max").value;
@@ -286,11 +348,11 @@ function download_cash_excel(id,cat)	//Make it as event-wise
       		window.location = 'excel_cash_dwn.php?id='+id+'&cat='+cat;
     	}
   	}
-  	xmlhttp.open("GET","excel_cash_dwn.php",true);
+  	xmlhttp.open("GET","excel_cash_dwn.php?id="+id+"&cat="+cat,true);
     xmlhttp.send();
 }
 
-function notify_me_exel_dwnd(id)
+function notify_me_exel_dwnd(id)  //approve_1.php -> excel_cat_category.php
 {
   var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
@@ -300,11 +362,11 @@ function notify_me_exel_dwnd(id)
           window.location.replace("excel_cat_category.php?id="+id);
       }
     }
-    xmlhttp.open("GET","excel_cat_category.php",true);
+    xmlhttp.open("GET","excel_cat_category.php?id="+id,true);
     xmlhttp.send();
 }
 
-function download_chq_excel(id,cat)
+function download_chq_excel(id,cat) //approve_cheque -> excel_cqh_dwn.php
 {
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -314,11 +376,11 @@ function download_chq_excel(id,cat)
       		window.location = 'excel_cqh_dwn.php?id='+id+'&cat='+cat;
     	}
   	}
-  	xmlhttp.open("GET","excel_cqh_dwn.php",true);
+  	xmlhttp.open("GET","excel_cqh_dwn.php?id="+id+"&cat="+cat,true);
     xmlhttp.send();
 }
 
-function download_dd_excel(id,cat)
+function download_dd_excel(id,cat)  //approve_dd.php -> excel_dd_dwn.php
 {
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -328,11 +390,11 @@ function download_dd_excel(id,cat)
       		window.location = 'excel_dd_dwn.php?id='+id+'&cat='+cat;
     	}
   	}
-  	xmlhttp.open("GET","excel_dd_dwn.php",true);
+  	xmlhttp.open("GET","excel_dd_dwn.php?id="+id+"&cat="+cat,true);
     xmlhttp.send();
 }
 
-function dwnld_all_approved_cat(id)
+function dwnld_all_approved_cat(id) //approve_1.php -> excel_approved_category_dwnld.php
 {
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
@@ -342,13 +404,12 @@ function dwnld_all_approved_cat(id)
           window.location = 'excel_approved_category_dwnld.php?id='+id;
       }
     }
-    xmlhttp.open("GET","excel_approved_category_dwnld.php",true);
+    xmlhttp.open("GET","excel_approved_category_dwnld.php?id="+id,true);
     xmlhttp.send();
 }
 
 function dwnld_all_approved_cat_indiv(id)
 {
-
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
@@ -357,10 +418,8 @@ function dwnld_all_approved_cat_indiv(id)
           window.location = 'excel_approved_category_dwnld_indiv.php?id='+id;
       }
     }
-    xmlhttp.open("GET","excel_approved_category_dwnld_indiv.php",true);
+    xmlhttp.open("GET","excel_approved_category_dwnld_indiv.php?id="+id,true);
     xmlhttp.send();
-
-
 }
 
 </script>

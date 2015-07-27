@@ -2,6 +2,18 @@
 	session_start();
 	if(isset($_SESSION['name_fin']))//session_variable
 	{
+		$mode=$_SESSION['mode'];
+    	{
+          if(!$mode==0)
+          {
+            session_unset();
+            header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+            header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+            session_destroy();
+            header("Location:login_approve.php");
+          }
+    }
+
 		echo "
 			<a href='logout.php' title='Logout'>Log-out</a></br></br>
  
@@ -258,21 +270,27 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 /*Sponsorship calls ends*/
 
 /*accomodation starts*/
-function accomodation_revenue()
+function accomodation_revenue() //revenue_select.php -> accomodation_add.php
 {
+	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-	xmlhttp.open("GET","accomodation_add.php",true);
+	xmlhttp.open("GET","accomodation_add.php?id="+id_numb,true);
 	xmlhttp.send();
 }
 
-function submit_add_accomodation()
+function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_submit_data.php
 {
 	var purpose_stall_add= document.getElementById('event_acco_add').value;
 	var stall_person_name_add= document.getElementById('inst_name_add').value;
@@ -283,7 +301,7 @@ function submit_add_accomodation()
 	var mode= document.getElementsByName('mode');
 	var selected=99;
 	
-	for(var i=0;i<=3;i++)
+	for(var i=0;i<1;i++)
 	{
 		if(mode[i].checked)
 		{
@@ -304,6 +322,11 @@ function submit_add_accomodation()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
 
@@ -338,22 +361,28 @@ function submit_add_accomodation()
 /*Accomodation ends*/
 
 ///Stall starts
-function stall_rent_revenue()
+function stall_rent_revenue()	//revenue_select.php -> stall_rent_add.php
 {
+	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+      		if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-  xmlhttp.open("GET","stall_rent_add.php",true);
+  xmlhttp.open("GET","stall_rent_add.php?id="+id_numb,true);
   xmlhttp.send();
 }
 
 
-function submit_add_stall()
+function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 {
 	var purpose_stall_add= document.getElementById('purpose_stall_add').value;
 	var stall_person_name_add= document.getElementById('stall_person_name_add').value;
@@ -384,6 +413,11 @@ function submit_add_stall()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
 
@@ -456,21 +490,27 @@ function submit_add_stall()
 
 /*T-shirt sales starts*/
 
-function t_shirts_revenue()
+function t_shirts_revenue() //revenue_select.php -> t_shirts_sales_add.php
 {
+	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("select_option").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-	xmlhttp.open("GET","t_shirts_sales_add.php",true);
+	xmlhttp.open("GET","t_shirts_sales_add.php?id="+id_numb,true);
 	xmlhttp.send();
 }
 
-function submit_add_shirts()
+function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.php
 {
 	var shirts_person_name_add= document.getElementById('shirts_person_name_add').value;
 	var date_shirts_add= document.getElementById('date_shirts_add').value;
@@ -502,6 +542,11 @@ function submit_add_shirts()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("select_option").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
 
@@ -538,21 +583,27 @@ function submit_add_shirts()
 
 ///	Workshop call start's from here
 
-function workshops_revenue()
+function workshops_revenue()	//revenue_select.php -> workshop_add.php
 {
+	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-	xmlhttp.open("GET","workshop_add.php",true);
+	xmlhttp.open("GET","workshop_add.php?id="+id_numb,true);
 	xmlhttp.send();
 }
 
-function submit_add_workshop()
+function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.php
 {
 	var person_name_workshop= document.getElementById('person_name_workshop').value;
 	var company_name_workshop= document.getElementById('company_name_workshop').value;
@@ -584,6 +635,12 @@ function submit_add_workshop()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
+
 		}
   	}
 
@@ -619,21 +676,27 @@ function submit_add_workshop()
 //****************************************************************************
 
 //Renvenue starts here
-function others_revenue()
+function others_revenue()	// revenue_select.php -> others_revenue_add.php
 {
+	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-	xmlhttp.open("GET","others_revenue_add.php",true);
+	xmlhttp.open("GET","others_revenue_add.php?id="+id_numb,true);
 	xmlhttp.send();
 }
 
-function submit_others_revenue()
+function submit_others_revenue() //others_revenue_add.php -> others_revenue_submit_data.php
 {
 	var event_name= document.getElementById('event_name').value;
 	var company_name= document.getElementById('company_name').value;
@@ -664,6 +727,11 @@ function submit_others_revenue()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("revenue_detail").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("revenue_detail").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
 
@@ -843,21 +911,28 @@ function submit_internal()	//int_registrations.php -> internal_submit_data.php
 
 /*Expenses calls starts*/
 
-function expenses()
+function expenses()	//index.php -> expenses_add.php
 {
+	var id_numb=100;
+
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("select_option").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("select_option").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
-  xmlhttp.open("GET","expenses_add.php",true);
+  xmlhttp.open("GET","expenses_add.php?id="+id_numb,true);
   xmlhttp.send();
 }
 
-function add_prizes()
+function add_prizes()	//general call for CSS
 {
 	var e = document.getElementById('branch_expenses');
 	var branch = e.options[e.selectedIndex].value;
@@ -871,7 +946,7 @@ function add_prizes()
 	}
 }
 
-function submit_expenses()
+function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 {
 	var e = document.getElementById('branch_expenses');
 	var branch = e.options[e.selectedIndex].value;
@@ -904,6 +979,11 @@ function submit_expenses()
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
       		document.getElementById("select_option").innerHTML=xmlhttp.responseText;
+      		var res=document.getElementById("select_option").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'login_approve.php';
+			}
 		}
   	}
   	if(branch==16)
