@@ -14,27 +14,165 @@
           }
     }
 
-		echo "
-			<a href='logout.php' title='Logout'>Log-out</a></br></br>
- 
-			<h1>Finance Portal</h1></br>
-			<button onclick='ext_registrations()'>External Registrations</button></br></br>
-			<button onclick='int_registrations()'>Internals</button></br></br>
-			<button onclick='revenue()'>Revenue</button></br></br>
-			<button onclick='expenses()'>Expenses</button></br></br></br>";
-		
-		echo "<div id='select_option'>
-		<h2>External Regsitrations</h2>
-			<button onclick='ext_registrations_excel()'>Excel Download</button></br></br>
-			Id Updated:<input type='text' name='update_ext_id'  placeholder='Id of the last register' id='update_ext_id' autocomplete='off' onkeypress='return isNumber(event)'></br></br>
-			Amount From Externals till ID:<input type='text' name='amount_external'  placeholder='Amount Credited' id='amount_external' autocomplete='off' onkeypress='return isNumber(event)'></br></br>
-			Number of External Participants:<input type='text' name='number_external'  placeholder='Ex:200,250.,etc' id='number_external' autocomplete='off' onkeypress='return isNumber(event)'></br></br>
-			Date Updated: <input type='date' name='update_ext_date' id='update_ext_date' placeholder='Ex:5-6-2015' autocomplete='off'></br></br>
-			Remarks:<br> <textarea name='remarks_external' rows='5' cols='50' id='remarks_external'  placeholder='Details regarding the info added' autocomplete='off'></textarea><br><br>		
-			<button onclick='submit_external();'>Submit!</button>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>GraVITas'15</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<style>
+	/* label color */
+	.input-field label {
+		color: #1a237e;
+	}
+	/* label focus color */
+	.input-field input[type=text]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field input[type=text] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	.input-field input[type=text]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	label {
+		color: #1a237e;
+	}
+	/* label focus color */
+	input[type=text]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	input[type=text] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	input[type=text]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	.input-field input[type=password]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field input[type=password] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	.input-field input[type=password]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	.input-field textarea:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field textarea {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	 textarea:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+<main>
+<header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+	<img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
+	<h4 class="header light white-text">Finance Portal</h4>
+</header>
+<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
+<div class="col s12">
+	<ul class="tabs indigo darken-2">
+		<li class="tab col s2"><a href="#" class="white-text waves-effect" onclick="ext_registrations()">External Registrations</a></li>
+		<li class="tab col s2"><a href="#" class="white-text waves-effect" onclick="int_registrations()">Internals</a></li>
+		<li class="tab col s2"><a href="#" class="white-text waves-effect" onclick="revenue()">Revenue</a></li>
+		<li class="tab col s2"><a href="#" class="white-text waves-effect" onclick="expenses()">Expenses</a></li>
+	</ul>
+</div>
+
+</div>
+			<!-- <a href='logout.php' title='Logout'>Log-out</a></br></br> -->
 
 
-		</div>";
+
+		<div id='select_option'>
+			<button class='btn-floating btn-medium waves-effect waves-light indigo darken-4 right' onclick='ext_registrations_excel();' style='margin-right:2em'><i class='material-icons'>play_for_work</i></button></br>
+			<div class='container'>
+			<div class='card'>
+				<div class='card-content'>
+					<div class='row'>
+						<div class='input-field col s12 m4'>
+							<label for='update_ext_id'>ID updated</label>
+							<input type='text' name='update_ext_id'  id='update_ext_id' autocomplete='off' onkeypress='return isNumber(event)'>
+						</div>
+						<div class='input-field col s12 m4'>
+							<label for='amount_external'>Amount from Externals</label>
+							<input type='text' name='amount_external'  id='amount_external' autocomplete='off' onkeypress='return isNumber(event)'>
+						</div>
+						<div class='input-field col s12 m4'>
+							<label for='number_external'>Number of External Participants</label>
+							<input type='text' name='number_external' id='number_external' autocomplete='off' onkeypress='return isNumber(event)'>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='input-field col s12 m8'>
+							<label for='update_ext_date'>Date Updated</label>
+			 				<input type='date' name='update_ext_date' class='datepicker' id='update_ext_date' autocomplete='off'>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='input-field col s12'>
+
+			 			<textarea name='remarks_external' rows='5' cols='50' id='remarks_external' class='materialize-textarea'  autocomplete='off'></textarea>
+						<label for='remarks_external'>Remarks</label>
+					</div>
+				</div>
+			<button type="submit" onclick="submit_external();" class="btn waves-effect waves-light indigo darken-4">
+			  <i class="material-icons right">send</i> Submit
+			  </button>
+
+		</div>
+		</div>
+<script>
+$(document).ready(function() {
+
+
+
+});
+$('.datepicker').pickadate({
+selectMonths: true, // Creates a dropdown to control month
+selectYears: 15
+});
+</script>
+</div>
+		</div>
+		<?php
 	}
 	else
   	{
@@ -113,7 +251,7 @@ function revenue()	//index.php -> revenue_select.php
 }
 
 
-function total()	//change CSS properties accordingly	
+function total()	//change CSS properties accordingly
 {
 	var note_1000 = document.getElementById('note_1000').value;
 	var note_500 = document.getElementById('note_500').value;
@@ -187,7 +325,7 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 	var remarks= document.getElementById('remarks_sponsor').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=3;i++)
 	{
 		if(mode[i].checked)
@@ -242,7 +380,7 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
   		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==1)
 	{
 		var dd_numb = document.getElementById('dd_number').value;
@@ -254,7 +392,7 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==2)
 	{
 		var cheque_numb = document.getElementById('cheque_number').value;
@@ -311,7 +449,7 @@ function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_s
 	var remarks= document.getElementById('remarks_acco_add').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<1;i++)
 	{
 		if(mode[i].checked)
@@ -320,7 +458,7 @@ function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_s
 			break;
 		}
 	}
-	
+
 	if(selected==99)
 	{
 		alert('No options selected');
@@ -402,7 +540,7 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 	var remarks= document.getElementById('remarks_add_stall').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=3;i++)
 	{
 		if(mode[i].checked)
@@ -411,7 +549,7 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 			break;
 		}
 	}
-	
+
 	if(selected==99)
 	{
 		alert('No options selected');
@@ -458,7 +596,7 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
   		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==1)
 	{
 		var dd_numb = document.getElementById('dd_number').value;
@@ -470,7 +608,7 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==2)
 	{
 		var cheque_numb = document.getElementById('cheque_number').value;
@@ -531,7 +669,7 @@ function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.
 	var remarks= document.getElementById('remarks_add_shirts').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=1;i++)
 	{
 		if(mode[i].checked)
@@ -540,7 +678,7 @@ function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.
 			break;
 		}
 	}
-	
+
 	if(selected==99)
 	{
 		alert('No options selected');
@@ -624,7 +762,7 @@ function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.ph
 	var remarks= document.getElementById('remarks_workshop').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=1;i++)
 	{
 		if(mode[i].checked)
@@ -633,7 +771,7 @@ function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.ph
 			break;
 		}
 	}
-	
+
 	if(selected==99)
 	{
 		alert('No options selected');
@@ -717,7 +855,7 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 	var remarks= document.getElementById('remarks_sponsor').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=3;i++)
 	{
 		if(mode[i].checked)
@@ -772,7 +910,7 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
   		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==1)
 	{
 		var dd_numb = document.getElementById('dd_number').value;
@@ -784,7 +922,7 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 		xmlhttp.send();
   		return;
 	}
-	
+
 	else if(selected==2)
 	{
 		var cheque_numb = document.getElementById('cheque_number').value;
@@ -952,7 +1090,7 @@ function add_prizes()	//general call for CSS
 		document.getElementById('extra_prizes_info').style.display='block';
 	}
 	else
-	{	
+	{
 		document.getElementById('extra_prizes_info').style.display='none';
 	}
 }
@@ -968,7 +1106,7 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 	var phno=document.getElementById('phno_expenses').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
-	
+
 	for(var i=0;i<=3;i++)
 	{
 		if(mode[i].checked)
@@ -1037,13 +1175,13 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		}
 
 		else
-		{	
+		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&mode="+selected+"&name="+name_p+"&purpose="+purpose+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&note_1000="+note_1000+"&note_500="+note_500+"&note_100="+note_100+"&note_50="+note_50+"&note_20="+note_20+"&note_10="+note_10+"&note_5="+note_5+"&note_2="+note_2+"&note_1="+note_1,true);
 	  		xmlhttp.send();
 	  		return;
 		}
 	}
-	
+
 	else if(selected==1)
 	{
 		var dd_numb = document.getElementById('dd_number').value;
@@ -1052,7 +1190,7 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var issue_date_dd = document.getElementById('issue_date_dd').value;
 
 		if(branch==16)
-		{	
+		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
 			xmlhttp.send();
   			return;
@@ -1065,7 +1203,7 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
   		}
 
 	}
-	
+
 	else if(selected==2)
 	{
 		var cheque_numb = document.getElementById('cheque_number').value;
@@ -1074,7 +1212,7 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var issue_date_chq = document.getElementById('issue_date_chq').value;
 
 		if(branch==16)
-		{	
+		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
 			xmlhttp.send();
 		  	return;
@@ -1094,13 +1232,13 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var issue_date_net = document.getElementById('issue_date_net').value;
 
 		if(branch==16)
-		{	
+		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
 			xmlhttp.send();
 	  		return;
 	  	}
 	  	else
-	  	{	
+	  	{
 	  		xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
 			xmlhttp.send();
 	  		return;
@@ -1113,7 +1251,7 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 /*********************************************************************************************/
 
 //Reg-Ex calls
-function isNumber(evt)  
+function isNumber(evt)
 {
 		var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
@@ -1126,6 +1264,7 @@ function isNumber(evt)
 //downloading excel for adding the data
 function ext_registrations_excel()	//int_registrations.php -> excel_intreg.php
 {
+	Materialize.toast('Starting Download', 4000,'rounded');
 	var id_numb=100;
   	var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
@@ -1142,6 +1281,7 @@ function ext_registrations_excel()	//int_registrations.php -> excel_intreg.php
 //downloading excel for adding the data
 function int_registrations_excel()	//int_registrations.php -> excel_intreg.php
 {
+	Materialize.toast('Starting Download', 4000,'rounded')
 	var id_numb=100;
 	var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()

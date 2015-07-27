@@ -3,16 +3,21 @@
 	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
 		echo "
-		<h2>Expenses</h2>
-			Name: <input type='text' name='name_expenser' id='name_expenser'  placeholder='Name' autocomplete='off'><br><br>
-			Purpose: <input type='text' name='purpose_expense' id='purpose_expense'  placeholder='Purpose of Expense' autocomplete='off'><br><br>
-		Branch:
-			<select id='branch_expenses' onchange='add_prizes()' name='branch_expenses'>
-				<option value='0'>Choose Any One</option>  
+		<div class='container'>
+		<div class='row'>
+		<div class='input-field col s12 m6'>
+			<label for='name_expenser'>Name</label> <input type='text' name='name_expenser' id='name_expenser'  autocomplete='off'>
+			</div>
+			<div class='input-field col s12 m6'>
+			<label for='purpose_expense'>Purpose</label> <input type='text' name='purpose_expense' id='purpose_expense' autocomplete='off'>
+			</div>
+			<div class='input-field col s12 m6'>
+			<select id='branch_expenses' class='browser-default' onchange='add_prizes()' name='branch_expenses'>
+				<option value='0'>Choose Branch</option>
 				<option value='11'>Advertisements</option>
 				<option value='12'>Marketing and Publicity</option>
 				<option value='13'>Printing</option>
-				<option value='14'>Stationaries</option>  
+				<option value='14'>Stationaries</option>
 				<option value='15'>Photos and Videos</option>
 				<option value='16'>Prize Money</option>
 				<option value='17'>Stall Installation</option>
@@ -21,33 +26,43 @@
 				<option value='20'>Workshop</option>
 				<option value='21'>Reimburesement to Merit Students</option>
 				<option value='22'>Miscellaneous</option>
-			</select></br></br>
-		<div id='extra_prizes_info' style='display:none'>
-			Event Names:</br>
-			<select id='event_prize_names' onchange='event_names_prizes()' name='event_prize_names'>
-				<option value='0'>Choose Any One</option>  
+			</select>
+			</div>
+			</div>
+		<div id='extra_prizes_info' style='display:none' class='col s12 m6'>
+			<select id='event_prize_names' onchange='event_names_prizes()' class='browser-default' class='col s12 m6' name='event_prize_names'>
+				<option value='0'>Event Names</option>
 				<option value='1'>Event 1</option>
 				<option value='2'>Event 2</option>
 			</select></br></br>
-			
+
 			First Prize: <input type='text' id='first_prize_cash' autocomplete='off' onkeypress='return isNumber(event)' placeholder='Ex:50000'/></br></br>
-			
+
 			Second Prize: <input type='text' id='second_prize_cash' autocomplete='off' onkeypress='return isNumber(event)' placeholder='Ex:5000'/></br></br>
-			
+
 			Third Prize: <input type='text' id='third_prize_cash' autocomplete='off' onkeypress='return isNumber(event)' placeholder='Ex:500'/></br></br>
 
 		</div>
-		Amount :<input type='text' name='amount_expenses'  placeholder='Amount Required' id='amount_expenses' autocomplete='off' onkeypress='return isNumber(event)'></br></br>
+		<div class='row'>
+		<div class='input-field col s12 m6'>
+		<label for='amount_expenses'>Amount</label><input type='text' name='amount_expenses'  id='amount_expenses' autocomplete='off' onkeypress='return isNumber(event)'></div>
+		<div class='input-field col s12 m6'>
+		<label for='phno_expenses'>Phone Number</label><input type='text' name='phno_expenses' id='phno_expenses' autocomplete='off' onkeypress='return isNumber(event)'>
+		</div>
+		</div>
 		Modes:</br>
-			<input type = 'radio' value ='cash' name ='mode' id='1' onclick='method_pay(this.id)'>Creditted with Cash<br>
-			<input type = 'radio' value ='dd' name ='mode' id='2' onclick='method_pay(this.id)'>Creditted with DD<br>
-			<input type = 'radio' value ='cheque' name ='mode' id='3' onclick='method_pay(this.id)'>Creditted with Cheque<br>
-			<input type = 'radio' value ='net_transfer' name ='mode' id='4' onclick='method_pay(this.id)'>Creditted with NET Banking<br>
+		<input type = 'radio' value ='cash' class='with-gap' name ='mode' id='1' onclick='method_pay(this.id)'><label for='1'>Cash</label>
+		<input type = 'radio' value ='dd' class='with-gap' name ='mode' id='2' onclick='method_pay(this.id)'><label for='2'>DD</label>
+		<input type = 'radio' value ='cheque' class='with-gap' name ='mode' id='3' onclick='method_pay(this.id)'><label for='3'>Cheque</label>
+		<input type = 'radio' value ='net_transfer' class='with-gap' name ='mode' id='4' onclick='method_pay(this.id)'><label for='4'>NET Banking</label>
 		</br><div id='more_credit_options'></div><br>
-			
-		Phone Number :<input type='text' name='phno_expenses' id='phno_expenses'  placeholder='Phone Number' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
-		Remarks:<br> <textarea name='remarks_expenses' rows='5' cols='50' id='remarks_expenses'  placeholder='Details regarding the info added' autocomplete='off'></textarea><br><br>				
-		<button onclick='submit_expenses();'>Submit!</button>";
+
+		<div class='input-field'><textarea name='remarks_expenses' rows='5' cols='50' class='materialize-textarea' id='remarks_expenses'   autocomplete='off'></textarea><label for='remarks_expenses'>Remarks</label></div>
+		<button type='submit' onclick='submit_expenses();' class='btn waves-effect waves-light indigo darken-4'>
+			<i class='material-icons right'>send</i> Submit
+			</button>
+		</div>
+	</div>";
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{

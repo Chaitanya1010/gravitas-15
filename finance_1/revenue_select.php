@@ -3,21 +3,27 @@
 	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
 		echo "
-		<h2>Revenue</h2>
-		Branch:
-			<select id='branch_revenue' onchange='notify_me(this.value)' name='branch_expenses'>
-			
-			  <option value='0'>Choose Any One</option>  
+		<div class='container'>
+		<div class='row'>
+		<div class='input-field col s12 m5'>
+			<select id='branch_revenue' onchange='notify_me(this.value)' class='browser-default' name='branch_expenses'>
+
+			  <option value='0'>Branch</option>
 			  <option value='1'>Sponsors</option>
 			  <option value='2' >Accomodation</option>
 			  <option value='3'>Stall Rent</option>
 			  <option value='4'>T-Shirt Sales</option>
 			  <option value='5'>Workshops</option>
 			  <option value='6'>Others</option>
-			</select></br></br>
-			<div id='revenue_detail' name='revenue_detail'></div>";
+			</select>
+			</div></div>
+			<div id='revenue_detail' name='revenue_detail'></div>
+		</div>
+		<script>
+			$('select').material_select();
+		</script>";
 	}
-		
+
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{
 		session_unset();
