@@ -7,23 +7,20 @@
 
 		$mode=$_SESSION['mode'];
 		
-		if($id==100)
+		if($id==100)//External
 			echo "
-		<h3>Cash approval</h3>
-		Search by Name of Person:<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' placeholder='Name of Event' id='search_per_name' autocomplete='off'></br>or</br>
-		Search by Date:<input type='date' name='search_comp_name' onkeyup='search_spon(2,".$id.")' placeholder='Name of Company' id='search_comp_name' autocomplete='off'>(*Please Enter the complete date)</br></br>";
+		<h3>Externals</h3>
+		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
+		<button onclick='submit_reg_app(".$id.");'>Submit!</button>
+		";
 		
 		else
 			echo "
-			<h3>Cash approval</h3>
-			Search by Name of Event:<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' placeholder='Name of Event' id='search_per_name' autocomplete='off'></br>or</br>
-			Search by Name of Company:<input type='text' name='search_comp_name' onkeyup='search_spon(2,".$id.")' placeholder='Name of Company' id='search_comp_name' autocomplete='off'></br></br>";
+		<h3>Internals</h3>
+		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
+		<button onclick='submit_reg_app(".$id.");'>Submit!</button>
+		";
 		
-
-		echo "<div id='search_results_spon'>";
-
-		echo"<button onclick='download_cash_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button></br></br>
-			<button onclick='download_cash_excel(this.id,".$id.")' id='1'>Excel Download for All</button></br></br>";
 
 			if($mode==1)
 				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='0' LIMIT 0,30";
