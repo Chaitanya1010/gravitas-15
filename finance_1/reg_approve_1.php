@@ -9,149 +9,196 @@
 		
 		if($id==100)//External
 			echo "
-		<h3>Externals</h3>
-		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
-		<button onclick='submit_reg_app(".$id.");'>Submit!</button>
-		";
-		
+		<h3>Externals</h3>";
 		else
 			echo "
-		<h3>Internals</h3>
+		<h3>Internals</h3>";
+
+		echo"
 		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
-		<button onclick='submit_reg_app(".$id.");'>Submit!</button>
-		";
-		
+		<button onclick='submit_reg_app(".$id.");'>Submit!</button></br></br>
+		";		
 
 			if($mode==1)
-				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='0' LIMIT 0,30";
-			
-			else if($mode==2)
-				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='1' and approval_2='0' LIMIT 0,30";
-
-			else if($mode==3)
-				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='1' and approval_2='1' and approval_3='0' LIMIT 0,30";
-			
-			$res_cash = mysqli_query($mysqli,$sql_cash);
-			if(mysqli_num_rows($res_cash)>0)
 			{
-				while($arr_cash=mysqli_fetch_array($res_cash))
+				if($id==100)
+					$sql_reg = "SELECT * FROM  `data_externals` WHERE approval_1='0' LIMIT 0,30";
+
+				else
+					$sql_reg = "SELECT * FROM  `data_internals` WHERE approval_1='0' LIMIT 0,30";
+			}
+
+			if($mode==2)
+			{
+				if($id==100)
+					$sql_reg = "SELECT * FROM  `data_externals` WHERE approval_2='0' LIMIT 0,30";
+
+				else
+					$sql_reg = "SELECT * FROM  `data_internals` WHERE approval_2='0' LIMIT 0,30";
+			}
+
+			if($mode==3)
+			{
+				if($id==100)
+					$sql_reg = "SELECT * FROM  `data_externals` WHERE approval_3='0' LIMIT 0,30";
+
+				else
+					$sql_reg = "SELECT * FROM  `data_internals` WHERE approval_3='0' LIMIT 0,30";
+			}
+			
+			$res_reg = mysqli_query($mysqli,$sql_reg);
+			if(mysqli_num_rows($res_reg)>0)
+			{
+				if($id==100)
 				{
-					$unique_id_basic=$arr_cash['unique_id_basic'];
-					echo "ID=".$unique_id_basic."</br>";
-					$note_1=$arr_cash['note_1'];
-					$note_2=$arr_cash['note_2'];
-					$note_5=$arr_cash['note_5'];
-					$note_10=$arr_cash['note_10'];
-					$note_20=$arr_cash['note_20'];
-					$note_50=$arr_cash['note_50'];
-					$note_100=$arr_cash['note_100'];
-					$note_500=$arr_cash['note_500'];
-					$note_1000=$arr_cash['note_1000'];
-					$app_1=$arr_cash['approval_1'];
-					$app_2=$arr_cash['approval_2'];
-					$app_3=$arr_cash['approval_3'];
-					$cash_id=$arr_cash['unique_id_note'];
-
-					$sql_cash_basic="SELECT * FROM  `basic_info` WHERE unique_id='$unique_id_basic' and category=$id";
-					$res_cash_basic=mysqli_query($mysqli,$sql_cash_basic);
-
-					if(mysqli_num_rows($res_cash_basic)>0)
+					while($arr_reg=mysqli_fetch_array($res_reg))
 					{
-						while($arr_basic=mysqli_fetch_array($res_cash_basic))
-						{
-							$event_name=$arr_basic['event_name'];
-							$company_name=$arr_basic['company_name'];
-							$amount=$arr_basic['amount'];
-							$phno=$arr_basic['phno'];
-							$email_id=$arr_basic['email_id'];
-							$remarks=$arr_basic['remarks'];
-						}
-					}
-					else
-					{
-						echo "<br/>No selected DATA<br/>";
-					}
-					
+							$reg_id=$arr_reg['unique_id_externals'];
+							$number_externals=$arr_reg['number_external'];
+							$amount_external=$arr_reg['amount_external'];
+							$update_ext_date=$arr_reg['update_ext_date'];
+							$update_ext_id=$arr_reg['update_ext_id'];
+							$remarks=$arr_reg['remarks_external'];
+							$app_1=$arr_reg['approval_1'];
+							$app_2=$arr_reg['approval_2'];
+							$app_3=$arr_reg['approval_3'];
+							
+							echo "
+							Updated ID=".$update_ext_id."</br>Amount=".$amount_external."</br>
+							Number of Externals=".$number_externals."</br>Updated Date=".$update_ext_date."</br>
+							Remarks=".$remarks;
 
-					echo "
-					Event name=".$event_name."</br>Company name=".$company_name."</br>Amount=".$amount."</br>Phone number=".$phno."</br>Email=".$email_id."</br>Remarks=".$remarks."</br>";
-					echo "Denomination:<br/>";
-					if($note_1!=0)
-						echo"1 X".$note_1."</br>";
-					if($note_2!=0)
-						echo"2 X".$note_2."</br>";
-					if($note_5!=0)
-						echo"5 X".$note_5."</br>"."</br>";
-					if($note_10!=0)
-						echo"10 X".$note_10."</br>";
-					if($note_20!=0)
-						echo"20 X".$note_20."</br>";
-					if($note_50!=0)
-						echo"50 X".$note_50."</br>";
-					if($note_100!=0)
-						echo"100 X".$note_100."</br>";
-					if($note_500!=0)
-						echo"500 X".$note_500."</br>";
-					if($note_1000!=0)
-						echo"1000 X".$note_1000."</br>";
+							if($mode==1)
+							{
+								if($app_1==0)//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+							}
 
+							else if($mode==2)
+							{
+								if(($app_1==1)&&($app_2==0))//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else if(($app_1==1)&&($app_2==1))
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+								else if(($app_1==0)&&($app_2==0))
+								{
+									echo "</br><b>Waiting For 1st Approval</b></br>";
+								}
+							}
 
-					//approving data
-
-						if($mode==1)
-						{
-							if($app_1==0)//not approved..provide a button
+							else if($mode==3)
 							{
-								echo "<div id='button_spon_".$cash_id."'></br><button onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
+								if(($app_1==1)&&($app_2==1)&&($app_3==0))//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else if(($app_1==1)&&($app_2==1)&&($app_3==1))
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+								else if(($app_1==0)&&($app_2==0)&&($app_3==0))
+								{
+									echo "</br><b>Waiting For 1st Approval and 2nd Approval</b></br>";
+								}
+								else if(($app_1==1)&&($app_2==0)&&($app_3==0))
+								{
+									echo "</br><b>Waiting For 2nd Approval</b></br>";
+								}
 							}
-							else
-							{
-								echo "</br><b>Approved</b></br>";
-							}
-						}
-
-						else if($mode==2)
-						{
-							if(($app_1==1)&&($app_2==0))//not approved..provide a button
-							{
-								echo "<div id='button_spon_".$cash_id."'></br><button onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
-							}
-							else if(($app_1==1)&&($app_2==1))
-							{
-								echo "</br><b>Approved</b></br>";
-							}
-							else if(($app_1==0)&&($app_2==0))
-							{
-								echo "</br><b>Waiting For 1st Approval</b></br>";
-							}
-						}
-
-						else if($mode==3)
-						{
-							if(($app_1==1)&&($app_2==1)&&($app_3==0))//not approved..provide a button
-							{
-								echo "<div id='button_spon_".$cash_id."'></br><button onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
-							}
-							else if(($app_1==1)&&($app_2==1)&&($app_3==1))
-							{
-								echo "</br><b>Approved</b></br>";
-							}
-							else if(($app_1==0)&&($app_2==0)&&($app_3==0))
-							{
-								echo "</br><b>Waiting For 1st Approval and 2nd Approval</b></br>";
-							}
-							else if(($app_1==1)&&($app_2==0)&&($app_3==0))
-							{
-								echo "</br><b>Waiting For 2nd Approval</b></br>";
-							}
-						}
 
 
 					echo"</br></br>";
+					}
+				}
+				else
+				{
+					while($arr_reg=mysqli_fetch_array($res_reg))
+					{
+							$reg_id=$arr_reg['unique_id_internals'];
+							$number_externals=$arr_reg['number_internal'];
+							$amount_external=$arr_reg['amount_internal'];
+							$update_ext_date=$arr_reg['update_int_date'];
+							$update_ext_id=$arr_reg['update_int_id'];
+							$remarks=$arr_reg['remarks_internal'];
+							$app_1=$arr_reg['approval_1'];
+							$app_2=$arr_reg['approval_2'];
+							$app_3=$arr_reg['approval_3'];
+
+							echo "
+							Updated ID=".$update_ext_id."</br>Amount=".$amount_external."</br>
+							Number of Externals=".$number_externals."</br>Updated Date=".$update_ext_date."</br>
+							Remarks=".$remarks;
+
+							if($mode==1)
+							{
+								if($app_1==0)//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+							}
+
+							else if($mode==2)
+							{
+								if(($app_1==1)&&($app_2==0))//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else if(($app_1==1)&&($app_2==1))
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+								else if(($app_1==0)&&($app_2==0))
+								{
+									echo "</br><b>Waiting For 1st Approval</b></br>";
+								}
+							}
+
+							else if($mode==3)
+							{
+								if(($app_1==1)&&($app_2==1)&&($app_3==0))//not approved..provide a button
+								{
+									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+								}
+								else if(($app_1==1)&&($app_2==1)&&($app_3==1))
+								{
+									echo "</br><b>Approved</b></br>";
+								}
+								else if(($app_1==0)&&($app_2==0)&&($app_3==0))
+								{
+									echo "</br><b>Waiting For 1st Approval and 2nd Approval</b></br>";
+								}
+								else if(($app_1==1)&&($app_2==0)&&($app_3==0))
+								{
+									echo "</br><b>Waiting For 2nd Approval</b></br>";
+								}
+							}
+
+
+						echo"</br></br>";
+								
+					}
 
 				}
+		}
+
+			else
+			{
+				echo "<br/>No selected DATA<br/>";
 			}
-		echo "</div>";		
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{

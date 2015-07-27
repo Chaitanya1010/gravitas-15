@@ -448,6 +448,58 @@ function dwnld_all_approved_cat_indiv(id)
     xmlhttp.send();
 }
 
+
+function submit_reg_app(cat)//(cat to see int or ext and id to know the count)
+{
+    var id_reg=document.getElementById('id_reg').value;
+    var key=100;
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          window.location = 'excel_extreg_approve.php?id='+id_reg+'&key='+key+'&cat='+cat;
+      }
+    }
+    xmlhttp.open("GET","excel_extreg_approve.php?id="+id_reg+"&key="+key+"&cat="+cat,true);
+    xmlhttp.send();
+}
+//Excel sheets done
+
+//INTERNALS AND EXTERNALS APPROVAL
+function approve_register(id,cat)//id gives the unique-id of the transaction and cat gives info regarding ext or internal
+{
+    var s=confirm("Do you want to approve the transaction?");
+    if(s)
+    {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("button_reg_"+id).innerHTML=xmlhttp.responseText;
+                var res=document.getElementById("button_reg_"+id).innerHTML;
+                if(res.indexOf("dhS8!")>0)
+                {
+                  window.location = 'login_approve.php';
+                }
+            }
+        }
+        xmlhttp.open("GET","approve_reg_payement.php?id="+id+"&cat="+cat,true);
+        xmlhttp.send();
+        return true;
+    }
+    return false;
+}
+
+//Reg-ex calls
+function isNumber(evt)  
+{
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+             return false;
+        return true;
+}
 </script>
 				
 				

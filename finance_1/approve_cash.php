@@ -6,7 +6,67 @@
 		$id=$_REQUEST['id'];
 
 		$mode=$_SESSION['mode'];
+
+		if($id==0)//sponsors
+		{
+			$first_data="Company Name";
+			$second_data="Person Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
+
+		if($id==1)	//Accomodation
+		{
+			$first_data="Event Name";
+			$second_data="Institute Name and Place";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of days";
+			$sixth_data="Remarks";
+		}
 		
+		if($id==2)	//Stall - Rent
+		{
+			$first_data="Purpose of Stall";
+			$second_data="Person Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of days";
+			$sixth_data="Remarks";
+		}
+		
+		if($id==3)	//Stall - Rent
+		{
+			$first_data="Person Name";
+			$second_data="Date";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of T-shirts ordered";
+			$sixth_data="Remarks";
+		}
+
+		if($id==4)	//Workshops
+		{
+			$first_data="Name of Workshop";
+			$second_data="Workshop Conducting Company Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
+
+		if($id==5)	//Others
+		{
+			$first_data="Name/Event name";
+			$second_data="Sponsor Company/Person name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
+
 		if($id==3)
 			echo "
 		<h3>Cash approval</h3>
@@ -76,8 +136,8 @@
 					}
 					
 
-					echo "
-					Event name=".$event_name."</br>Company name=".$company_name."</br>Amount=".$amount."</br>Phone number=".$phno."</br>Email=".$email_id."</br>Remarks=".$remarks."</br>";
+					echo 
+					$first_data."=".$event_name."</br>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
 					echo "Denomination:<br/>";
 					if($note_1!=0)
 						echo"1 X".$note_1."</br>";
