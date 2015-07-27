@@ -105,6 +105,10 @@ main {
 <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 	<img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
 	<h4 class="header light white-text">Finance Portal</h4>
+	<a class="indigo darken-1 btn waves-effect z-depth-3 right"   title="Logout" href="logout.php">
+		<i class="material-icons">power_settings_new</i>
+	</a>
+	<br /><br />
 </header>
 <div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
 <div class="col s12">
