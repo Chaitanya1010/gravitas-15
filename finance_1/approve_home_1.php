@@ -30,7 +30,14 @@
 
 		echo "
 		<a href='logout.php' title='Logout'>Log-out</a></br></br>
-    		
+    	
+      Registration:</br>
+        <input type = 'radio' value ='external' name ='mode_registration' id='100' onclick='registrations_verify(this.id)'>External Registration<br>
+        <input type = 'radio' value ='internal' name ='mode_registration' id='101' onclick='registrations_verify(this.id)'>Internal Registration<br>
+        	
+         </br></br></br> 
+
+
 			Modes:</br>
 				<input type = 'radio' value ='sponsor' name ='mode_verify' id='0' onclick='verify_method_pay(this.id)'>Sponsor<br>
 				<input type = 'radio' value ='accomodation' name ='mode_verify' id='1' onclick='verify_method_pay(this.id)'>Accomodation<br>
@@ -89,6 +96,25 @@ function verify_method_pay(id)  //approve_home_1.php -> approve_1.php
 		  }
   	}
   xmlhttp.open("GET","approve_1.php?id_verify="+id,true);
+  xmlhttp.send();
+}
+
+function registrations_verify(id)
+{
+  var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          document.getElementById("more_credit_options_verify").innerHTML=xmlhttp.responseText;
+          var res=document.getElementById("more_credit_options_verify").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
+      }
+    }
+  xmlhttp.open("GET","reg_approve_1.php?id="+id,true);
   xmlhttp.send();
 }
 
