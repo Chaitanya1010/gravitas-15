@@ -108,7 +108,7 @@ main {
 	<a class="indigo darken-1 btn waves-effect z-depth-3 right"   title="Logout" href="logout.php">
 		<i class="material-icons">power_settings_new</i>
 	</a>
-	<br /><br />
+	<br />
 </header>
 <div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
 <div class="col s12">
