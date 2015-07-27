@@ -490,6 +490,7 @@ function download_cash_excel(id,cat)	//Make it as event-wise //approve_cash.php 
 
 function notify_me_exel_dwnd(id)  //approve_1.php -> excel_cat_category.php
 {
+	Materialize.toast('Starting Download', 4000, 'rounded');
   var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
