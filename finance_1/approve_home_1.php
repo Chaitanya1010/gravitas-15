@@ -4,6 +4,7 @@
 	{
 		  $mode=$_SESSION['mode'];
     	{
+				$head = '';
           if($mode==0)
           {
             session_unset();
@@ -14,48 +15,150 @@
           }
 	        if($mode==1)
 	        {
-	          echo "<h1>1st Approval</h1>";
+	          $head = 'First Approval';
 	        }
 
 	        if($mode==2)
 	        {
-	          echo "<h1>2nd Approval</h1>";
+	          $head = "2nd Approval";
 	        }
-	        
+
 	        if($mode==3)
 	        {
-	          echo "<h1>3rd Approval</h1>";
+	          $head = "3rd Approval";
 	        }
 	   }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>GraVITas'15</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<style>
+	/* label color */
+	.input-field label {
+		color: #1a237e;
+	}
+	/* label focus color */
+	.input-field input[type=text]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field input[type=text] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	.input-field input[type=text]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	label {
+		color: #1a237e;
+	}
+	/* label focus color */
+	input[type=text]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	input[type=text] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	input[type=text]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	.input-field input[type=password]:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field input[type=password] {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	.input-field input[type=password]:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	.input-field textarea:focus + label {
+		color: #303f9f;
+	}
+	/* label underline focus color */
+	.input-field textarea {
+		border-bottom: 1px solid #1a237e;
+		box-shadow: 0 1px 0 0 #1a237e;
+	}
+	/* label underline focus color */
+	 textarea:focus {
+		border-bottom: 1px solid #303f9f;
+		box-shadow: 0 1px 0 0 #303f9f;
+	}
+	body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
 
-		echo "
-		<a href='logout.php' title='Logout'>Log-out</a></br></br>
-    	
-      Registration:</br>
-        <input type = 'radio' value ='external' name ='mode_registration' id='100' onclick='registrations_verify(this.id)'>External Registration<br>
-        <input type = 'radio' value ='internal' name ='mode_registration' id='101' onclick='registrations_verify(this.id)'>Internal Registration<br>
-        	
-         </br></br></br> 
+main {
+	flex: 1 0 auto;
+}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
+</head>
+<body>
+<main>
+<header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
+	<img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
+	<h4 class="header light white-text"><?php echo $head; ?></h4>
+	<a class="indigo darken-1 btn waves-effect z-depth-3 right"   title="Logout" href="logout.php">
+		<i class="material-icons">power_settings_new</i>
+	</a>
+	<br />
+</header>
+<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
+<div class="col s12">
+	<ul class="tabs indigo darken-2">
+		<li class="tab col s2"><a href="#reg" class="white-text waves-effect">Registrations</a></li>
+		<li class="tab col s2"><a href="#mod" class="white-text waves-effect">Modes</a></li>
+	</ul>
+</div>
+</div>
+<div class='container'>
+<div id='reg'>
+        <input type = 'radio' class='with-gap' value ='external' name ='mode_registration' id='100' onclick='registrations_verify(this.id)'>
+				<label for='100'>External Registration</label>
+        <input type = 'radio' class='with-gap' value ='internal' name ='mode_registration' id='101' onclick='registrations_verify(this.id)'>
+				<label for='101'>Internal Registration</label>
 
-			Modes:</br>
-				<input type = 'radio' value ='sponsor' name ='mode_verify' id='0' onclick='verify_method_pay(this.id)'>Sponsor<br>
-				<input type = 'radio' value ='accomodation' name ='mode_verify' id='1' onclick='verify_method_pay(this.id)'>Accomodation<br>
-				<input type = 'radio' value ='stall_rent' name ='mode_verify' id='2' onclick='verify_method_pay(this.id)'>Stall Rent<br>
-				<input type = 'radio' value ='shirt_sales' name ='mode_verify' id='3' onclick='verify_method_pay(this.id)'>T Shirt Sales<br>
-				<input type = 'radio' value ='workshop' name ='mode_verify' id='4' onclick='verify_method_pay(this.id)'>Workshops<br>
-				<input type = 'radio' value ='others' name ='mode_verify' id='5' onclick='verify_method_pay(this.id)'>Others<br>
+</div>
+<div id='mod'>
+
+				<input type = 'radio' value ='sponsor' name ='mode_verify' id='0' onclick='verify_method_pay(this.id)'><label for=''0>Sponsor</label>
+				<input type = 'radio' value ='accomodation' name ='mode_verify' id='1' onclick='verify_method_pay(this.id)'><label for='1'>Accomodation</label>
+				<input type = 'radio' value ='stall_rent' name ='mode_verify' id='2' onclick='verify_method_pay(this.id)'><label for='2'>Stall Rent</label>
+				<input type = 'radio' value ='shirt_sales' name ='mode_verify' id='3' onclick='verify_method_pay(this.id)'><label for='3'>T Shirt Sales</label>
+				<input type = 'radio' value ='workshop' name ='mode_verify' id='4' onclick='verify_method_pay(this.id)'><label for='4'>Workshops</label>
+				<input type = 'radio' value ='others' name ='mode_verify' id='5' onclick='verify_method_pay(this.id)'><label for='5'>Others</label>
 				</br>
-
-        <h3>Excel Downloads for Expenses</h3>
-
-        Branch:
-        <select id='branch_revenue' onchange='notify_me_exel_dwnd(this.value)' name='branch_expenses'>
-          <option value='0'>Choose Any One</option>  
+</div>
+        <h5 class='header light'>Dowload expenses (xls)</h5>
+				<div class='row'>
+					<div class='input-field col s8 m5'>
+        <select id='branch_revenue' class='browser-default' onchange='notify_me_exel_dwnd(this.value)' name='branch_expenses'>
+          <option value='0'>Choose Branch</option>
           <option value='11'>Advertisements</option>
           <option value='12'>Marketing and Publicity</option>
           <option value='13'>Printing</option>
-          <option value='14'>Stationaries</option>  
+          <option value='14'>Stationaries</option>
           <option value='15'>Photos and Videos</option>
           <option value='16'>Prize Money</option>
           <option value='17'>Stall Installation</option>
@@ -64,9 +167,16 @@
           <option value='20'>Workshop</option>
           <option value='21'>Reimburesement to Merit Students</option>
           <option value='22'>Miscellaneous</option>
-        </select></br></br>
+        </select>
+			</div>
+		</div>
 
-        <div id='more_credit_options_verify'></div><br>";
+        <div id='more_credit_options_verify'></div><br>
+			</div>
+		</main>
+	</body>
+	</html>
+				<?php
 	}
 	else//logout
 	{
@@ -247,13 +357,13 @@ function search_spon_dd(id,cat)//approve_dd -> search_name_spon_dd.php
         }
       }
 
-      xmlhttp.open("GET","search_name_spon_dd.php?name="+s+"&cat="+cat,true); 
+      xmlhttp.open("GET","search_name_spon_dd.php?name="+s+"&cat="+cat,true);
       xmlhttp.send();
     }
     else
     {
       document.getElementById("search_results_spon_dd").innerHTML="Search results are displayed here";
-    } 
+    }
 }
 
 function approve_spon_dd(id_but) //search_name_spon_dd.php/  approve_dd.php -> approve_spon_dd_payement.php
@@ -324,13 +434,13 @@ function search_spon_chq(id,cat)// approve_cheque.php , search_name_spon_chq.php
         }
       }
 
-      xmlhttp.open("GET","search_name_spon_chq.php?name="+s+"&cat="+cat,true); 
+      xmlhttp.open("GET","search_name_spon_chq.php?name="+s+"&cat="+cat,true);
       xmlhttp.send();
     }
     else
     {
       document.getElementById("search_results_spon_chq").innerHTML="Search results are displayed here";
-    } 
+    }
 }
 
 function approve_spon_chq(id_but) //approve_cheque -> approve_spon_chq_payement.php
@@ -493,7 +603,7 @@ function approve_register(id,cat)//id gives the unique-id of the transaction and
 }
 
 //Reg-ex calls
-function isNumber(evt)  
+function isNumber(evt)
 {
     var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
@@ -501,5 +611,3 @@ function isNumber(evt)
         return true;
 }
 </script>
-				
-				

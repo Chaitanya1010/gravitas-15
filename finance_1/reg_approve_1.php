@@ -6,18 +6,18 @@
 		$id=$_REQUEST['id'];
 
 		$mode=$_SESSION['mode'];
-		
+
 		if($id==100)//External
 			echo "
-		<h3>Externals</h3>";
+		<h5 class='header light'>Externals</h5>";
 		else
 			echo "
-		<h3>Internals</h3>";
+		<h5 class='header light'>Internals</h5>";
 
 		echo"
 		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
 		<button onclick='submit_reg_app(".$id.");'>Submit!</button></br></br>
-		";		
+		";
 
 			if($mode==1)
 			{
@@ -45,7 +45,7 @@
 				else
 					$sql_reg = "SELECT * FROM  `data_internals` WHERE approval_3='0' LIMIT 0,30";
 			}
-			
+
 			$res_reg = mysqli_query($mysqli,$sql_reg);
 			if(mysqli_num_rows($res_reg)>0)
 			{
@@ -62,7 +62,7 @@
 							$app_1=$arr_reg['approval_1'];
 							$app_2=$arr_reg['approval_2'];
 							$app_3=$arr_reg['approval_3'];
-							
+
 							echo "
 							Updated ID=".$update_ext_id."</br>Amount=".$amount_external."</br>
 							Number of Externals=".$number_externals."</br>Updated Date=".$update_ext_date."</br>
@@ -189,7 +189,7 @@
 
 
 						echo"</br></br>";
-								
+
 					}
 
 				}
