@@ -26,7 +26,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==2)	//Stall - Rent
 		{
 			$first_data="Purpose of Stall";
@@ -36,7 +36,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==3)	//Stall - Rent
 		{
 			$first_data="Person Name";
@@ -68,32 +68,54 @@
 		}
 
 		if($id==3)
-			echo "
-		<h3>Cash approval</h3>
-		Search by Name of Person:<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' placeholder='Name of Event' id='search_per_name' autocomplete='off'></br>or</br>
-		Search by Date:<input type='date' name='search_comp_name' onkeyup='search_spon(2,".$id.")' placeholder='Name of Company' id='search_comp_name' autocomplete='off'>(*Please Enter the complete date)</br></br>";
-		
+		{	echo "
+		<h5>Cash approval</h5>
+		<div class='row'>
+		<div class='input-field col s12 m5'>
+		<label for='search_per_name'>Search by Name of Person</label>
+		<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' id='search_per_name' autocomplete='off'>
+		</div><div class='col s12 m1 center'><h5>OR</h5></div>
+		<div class='input-field col s12 m5'>
+		<input type='date' name='search_comp_name' onkeyup='search_spon(2,".$id.")' class='datepicker' id='search_comp_name' autocomplete='off'></div>
+		</div>";
+		?>
+		<script>
+		$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15
+		});
+		</script>
+		<?php
+}
 		else
 			echo "
-			<h3>Cash approval</h3>
-			Search by Name of Event:<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' placeholder='Name of Event' id='search_per_name' autocomplete='off'></br>or</br>
-			Search by Name of Company:<input type='text' name='search_comp_name' onkeyup='search_spon(2,".$id.")' placeholder='Name of Company' id='search_comp_name' autocomplete='off'></br></br>";
-		
+			<h5>Cash approval</h5>
+			<div class='row'>
+			<div class='input-field col s12 m5'>
+			<label for='search_per_name'>Search by Name of Event</label>
+			<input type='text' name='search_per_name' onkeyup='search_spon(1,".$id.")' id='search_per_name' autocomplete='off'>
+			</div><div class='col s12 m1 center'><h5>OR</h5></div>
+			<div class='input-field col s12 m5'>
+			<label for='search_comp_name'>Search by Name of Company</label>
+			<input type='text' name='search_comp_name' onkeyup='search_spon(2,".$id.")' id='search_comp_name' autocomplete='off'>
+			</div>
+			</div>";
+
 
 		echo "<div id='search_results_spon'>";
 
-		echo"<button onclick='download_cash_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button></br></br>
-			<button onclick='download_cash_excel(this.id,".$id.")' id='1'>Excel Download for All</button></br></br>";
+		echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_cash_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>
+			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_cash_excel(this.id,".$id.")' id='1'>Excel Download for All</button><br/>";
 
 			if($mode==1)
 				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='0' LIMIT 0,30";
-			
+
 			else if($mode==2)
 				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='1' and approval_2='0' LIMIT 0,30";
 
 			else if($mode==3)
 				$sql_cash = "SELECT * FROM  `mode_cash` WHERE `mode_cash`.`category`=".$id." and approval_1='1' and approval_2='1' and approval_3='0' LIMIT 0,30";
-			
+
 			$res_cash = mysqli_query($mysqli,$sql_cash);
 			if(mysqli_num_rows($res_cash)>0)
 			{
@@ -134,9 +156,9 @@
 					{
 						echo "<br/>No selected DATA<br/>";
 					}
-					
 
-					echo 
+
+					echo
 					$first_data."=".$event_name."</br>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
 					echo "Denomination:<br/>";
 					if($note_1!=0)
@@ -214,7 +236,7 @@
 
 				}
 			}
-		echo "</div>";		
+		echo "</div>";
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{

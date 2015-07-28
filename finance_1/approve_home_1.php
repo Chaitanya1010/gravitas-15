@@ -142,12 +142,12 @@ main {
 </div>
 <div id='mod'>
 
-				<input type = 'radio' value ='sponsor' name ='mode_verify' id='0' onclick='verify_method_pay(this.id)'><label for=''0>Sponsor</label>
-				<input type = 'radio' value ='accomodation' name ='mode_verify' id='1' onclick='verify_method_pay(this.id)'><label for='1'>Accomodation</label>
-				<input type = 'radio' value ='stall_rent' name ='mode_verify' id='2' onclick='verify_method_pay(this.id)'><label for='2'>Stall Rent</label>
-				<input type = 'radio' value ='shirt_sales' name ='mode_verify' id='3' onclick='verify_method_pay(this.id)'><label for='3'>T Shirt Sales</label>
-				<input type = 'radio' value ='workshop' name ='mode_verify' id='4' onclick='verify_method_pay(this.id)'><label for='4'>Workshops</label>
-				<input type = 'radio' value ='others' name ='mode_verify' id='5' onclick='verify_method_pay(this.id)'><label for='5'>Others</label>
+				<input type = 'radio' value ='sponsor' class='with-gap' name ='mode_verify' id='0' onclick='verify_method_pay(this.id)'><label for='0'>Sponsor</label>
+				<input type = 'radio' value ='accomodation' class='with-gap' name ='mode_verify' id='1' onclick='verify_method_pay(this.id)'><label for='1'>Accomodation</label>
+				<input type = 'radio' value ='stall_rent' class='with-gap' name ='mode_verify' id='2' onclick='verify_method_pay(this.id)'><label for='2'>Stall Rent</label>
+				<input type = 'radio' value ='shirt_sales' class='with-gap' name ='mode_verify' id='3' onclick='verify_method_pay(this.id)'><label for='3'>T Shirt Sales</label>
+				<input type = 'radio' value ='workshop' class='with-gap' name ='mode_verify' id='4' onclick='verify_method_pay(this.id)'><label for='4'>Workshops</label>
+				<input type = 'radio' value ='others' class='with-gap' name ='mode_verify' id='5' onclick='verify_method_pay(this.id)'><label for='5'>Others</label>
 				</br>
 </div>
         <h5 class='header light'>Dowload expenses (xls)</h5>
