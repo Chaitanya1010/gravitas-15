@@ -122,7 +122,11 @@
 				while($arr_cash=mysqli_fetch_array($res_cash))
 				{
 					$unique_id_basic=$arr_cash['unique_id_basic'];
-					echo "ID=".$unique_id_basic."</br>";
+					//echo "ID=".$unique_id_basic."</br>";
+					?>
+					<div class='card'>
+						<div class='card-content'>
+					<?php
 					$note_1=$arr_cash['note_1'];
 					$note_2=$arr_cash['note_2'];
 					$note_5=$arr_cash['note_5'];
@@ -157,9 +161,7 @@
 						echo "<br/>No selected DATA<br/>";
 					}
 
-
-					echo
-					$first_data."=".$event_name."</br>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
+			echo "<h5 class='header light'>".$event_name."</h5>".$second_data."=".$company_name."<span class='right'>".$third_data."=".$amount."</span><br />".$fourth_data."=".$phno."<span class='right'>".$fifth_data."=".$email_id."</span></br>".$sixth_data."=".$remarks."</br>";
 					echo "Denomination:<br/>";
 					if($note_1!=0)
 						echo"1 X".$note_1."</br>";
@@ -187,7 +189,7 @@
 						{
 							if($app_1==0)//not approved..provide a button
 							{
-								echo "<div id='button_spon_".$cash_id."'></br><button onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
+								echo "<div id='button_spon_".$cash_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
 							}
 							else
 							{
@@ -199,7 +201,7 @@
 						{
 							if(($app_1==1)&&($app_2==0))//not approved..provide a button
 							{
-								echo "<div id='button_spon_".$cash_id."'></br><button onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
+								echo "<div id='button_spon_".$cash_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_cash(".$cash_id.")'>Approve the Transaction</button></div></br>";
 							}
 							else if(($app_1==1)&&($app_2==1))
 							{
@@ -232,7 +234,7 @@
 						}
 
 
-					echo"</br></br>";
+					echo"</div></div>";
 
 				}
 			}

@@ -505,6 +505,7 @@ function notify_me_exel_dwnd(id)  //approve_1.php -> excel_cat_category.php
 
 function download_chq_excel(id,cat) //approve_cheque -> excel_cqh_dwn.php
 {
+	Materialize.toast('Starting Download', 4000, 'rounded');
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
@@ -519,6 +520,7 @@ function download_chq_excel(id,cat) //approve_cheque -> excel_cqh_dwn.php
 
 function download_dd_excel(id,cat)  //approve_dd.php -> excel_dd_dwn.php
 {
+	Materialize.toast('Starting Download', 4000, 'rounded');
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
@@ -533,6 +535,7 @@ function download_dd_excel(id,cat)  //approve_dd.php -> excel_dd_dwn.php
 
 function dwnld_all_approved_cat(id) //approve_1.php -> excel_approved_category_dwnld.php
 {
+	Materialize.toast('Starting Download', 4000, 'rounded');
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
@@ -547,6 +550,7 @@ function dwnld_all_approved_cat(id) //approve_1.php -> excel_approved_category_d
 
 function dwnld_all_approved_cat_indiv(id)
 {
+	Materialize.toast('Starting Download', 4000, 'rounded');
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {

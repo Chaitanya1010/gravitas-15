@@ -26,7 +26,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==2)	//Stall - Rent
 		{
 			$first_data="Purpose of Stall";
@@ -36,7 +36,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==3)	//Stall - Rent
 		{
 			$first_data="Person Name";
@@ -68,32 +68,36 @@
 		}
 
 		echo "
-		<h3>Cheque approval</h3>";
-		echo"
-		Search by Cheque number:<input type='text' name='search_chq_numb' onkeyup='search_spon_chq(3,".$id.")' placeholder='Cheque Number' id='search_chq_numb' autocomplete='off'></br></br>
+		<h5>Cheque approval</h5>";
+		echo"<div class='row'><div class='input-field col s12 m6'>
+		<label for='search_chq_numb'>Search by Cheque number</label><input type='text' name='search_chq_numb' onkeyup='search_spon_chq(3,".$id.")' id='search_chq_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_chq'>";
-			
-			echo"<button onclick='download_chq_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button></br></br>
-			<button onclick='download_chq_excel(this.id,".$id.")' id='1'>Excel Download for All</button></br></br>";
+
+			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>
+			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
 
 
 			if($mode==1)
 				$sql_chq = "SELECT * FROM  `mode_cheque` WHERE `mode_cheque`.`category`=".$id." and approval_1='0' LIMIT 0,30";
-			
+
 			else if($mode==2)
 				$sql_chq = "SELECT * FROM  `mode_cheque` WHERE `mode_cheque`.`category`=".$id." and approval_1='1' and approval_2='0' LIMIT 0,30";
 
 			else if($mode==3)
 				$sql_chq = "SELECT * FROM  `mode_cheque` WHERE `mode_cheque`.`category`=".$id." and approval_1='1' and approval_2='1' and approval_3='0' LIMIT 0,30";
 
-			
+
 			$res_chq = mysqli_query($mysqli,$sql_chq);
 			if(mysqli_num_rows($res_chq)>0)
 			{
 				while($arr_chq=mysqli_fetch_array($res_chq))
 				{
 					$unique_id_basic=$arr_chq['unique_id_basic'];
-					echo "ID=".$unique_id_basic."</br>";
+					// echo "ID=".$unique_id_basic."</br>";
+					?>
+					<div class='card'>
+						<div class='card-content'>
+					<?php
 
 					$chq_number=$arr_chq['cheque_number'];
 					$branch_chq=$arr_chq['branch_name_chq'];
@@ -123,19 +127,19 @@
 					{
 						echo "<br/>No selected DATA<br/>";
 					}
-					
-					echo 
-					$first_data."=".$event_name."</br>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
-					
+
+					echo
+					"<h5 class='header light'>".$event_name."</h5>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
+
 					echo "Cheque number=".$chq_number."</br>Branch Name=".$branch_chq."</br>Bank Name=".$bank_chq."</br>Issue date".$issue_date_chq."</br>";
-					
+
 					//approving data
 
 						if($mode==1)
 						{
 							if($app_1_chq==0)//not approved..provide a button
 							{
-								echo "<div id='button_spon_chq_".$chq_id."'></br><button onclick='return approve_spon_chq(".$chq_id.")'>Approve the Transaction</button></div></br>";
+								echo "<div id='button_spon_chq_".$chq_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_chq(".$chq_id.")'>Approve the Transaction</button></div></br>";
 							}
 
 							else
@@ -183,11 +187,11 @@
 							}
 						}
 
-					echo"</br></br>";
+					echo"</div></div>";
 
 				}
 			}
-		echo "</div>";		
+		echo "</div>";
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{
