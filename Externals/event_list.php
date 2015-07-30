@@ -20,7 +20,7 @@ if(isset($_SESSION["id"]))
      color: #1a237e;
    }
    /* label focus color */
-   .input-field input[type=text],[type=password]:focus + label {
+   .input-field input[type=text]:focus + label {
      color: #303f9f;
    }
     /* label underline focus color */
@@ -290,13 +290,13 @@ function submit_pword()
 <body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">
-	    <div class="fixed-action-btn" style="bottom:30px; left:25px">Logout<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-10px" title="Logout" href="logout.php">
+	    <div class="fixed-action-btn" style="bottom:30px; left:20px">Logout<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-9px" title="Logout" href="logout.php">
 			<i class="material-icons">power_settings_new</i>
 		</a>
 		</div>
-		<div class="fixed-action-btn" style="bottom:30px; left:100px">Home<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-10px" title="Home" href="event_list.php">
+		<div class="fixed-action-btn" style="bottom:30px; left:95px">Home<br/>
+		<a class="red btn-floating btn-large waves-effect z-depth-3"  style="left:-8px" title="Home" href="event_list.php">
 			<i class="material-icons">home</i>
 		</a>
 		</div>
@@ -319,7 +319,8 @@ function submit_pword()
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="2" onclick="search_events('body',this)">Technical</a></li>
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="3" onclick="search_events('body',this)">Management</a></li>
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="4" onclick="search_events('body',this)">Informal</a></li>
-					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="5" onclick="search_events('body',this)">Combos & Accomodation</a></li>
+					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="5" onclick="search_events('body',this)">Combos</a></li>
+					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="6" onclick="search_events('body',this)">Accomodation</a></li>
 			  </ul>
 			</div>
 			
@@ -332,7 +333,7 @@ function submit_pword()
 				</div>&nbsp;
 				<ul class="collapsible popout col s6" style="float:right" data-collapsible="accordion">
 				<li>
-					<div class="collapsible-header indigo lighten-5 black-text waves-effect"><i class="material-icons ">library_books</i><i class="material-icons right ">more_vert</i>Registered Events</div>
+					<div class="collapsible-header indigo lighten-5 black-text waves-effect"><i class="material-icons ">library_books</i><i class="material-icons right ">more_vert</i>Registered Details</div>
 					<div class="collapsible-body"><?php require("registered_events.php"); ?></div>
 				</li>
 				</ul>

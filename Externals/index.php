@@ -4,32 +4,27 @@ if(isset($_SESSION["id"]))
 {
 	require("sql_con.php");
 	$regno = $_SESSION["id"];
-	$stmt = $mysqli->prepare("SELECT * FROM `external_participants` WHERE `regno`=?");
-	$stmt->bind_param("s", $regno);
+	$stmt = "SELECT * FROM `external_participants` WHERE `regno`='$regno'";
 	$uname_db="";
 	$pword_db="";
 	$regno_db="";
-	if($stmt->execute())
+	$rs = mysqli_query($mysqli,$stmt);
+	if($rs)
 	{
-		if($rs = $stmt->get_result())
+		$count = mysqli_num_rows($rs);
+		while ($arr = mysqli_fetch_array($rs))
 		{
-			$count = mysqli_num_rows($rs);
-			while ($arr = mysqli_fetch_array($rs))
-			{
-				$regno_db  = $arr["regno"];
-			}
-			if($count==1)
-			{
-				$_SESSION["id"]=$regno_db;
-				header("location:event_list.php");
-			}
-			else
-			{
-				echo "<div class='msg'>OH! Snap!! Login Again! Session Expired!</div>";
-			}
+			$regno_db  = $arr["regno"];
+		}
+		if($count==1)
+		{
+			$_SESSION["id"]=$regno_db;
+			header("location:event_list.php");
 		}
 		else
-			echo"<div class='msg'>Result set not fetched mysqli_error()</div>";
+		{
+			echo "<div class='msg'>OH! Snap!! Login Again! Session Expired!</div>";
+		}
 	}
 	else
 		echo "<div class='msg'>Query not executed mysqli_error()</div>";
@@ -40,37 +35,32 @@ if(isset($_POST["login"]))
 	require("sql_con.php");
 	$uname=$_POST["uname_id"];
 	$pword=$_POST["pword_id"];
-	$stmt = $mysqli->prepare("SELECT * FROM `external_participants` WHERE `email`=?  AND `pword`=?");
-	$stmt->bind_param("ss", $uname, $pword);
+	$stmt = "SELECT * FROM `external_participants` WHERE `email`='$uname'  AND `pword`='$pword'";
 	$uname_db="";
 	$pword_db="";
 	$regno_db="";
 	$acc="";
-	if($stmt->execute())
+	$rs=mysqli_query($mysqli,$stmt);
+	if($rs)
 	{
-		if($rs = $stmt->get_result())
+		$count = mysqli_num_rows($rs);
+		while ($arr = mysqli_fetch_array($rs))
 		{
-			$count = mysqli_num_rows($rs);
-			while ($arr = mysqli_fetch_array($rs))
-			{
-				$uname_db = $arr["email"];
-				$pword_db = $arr["pword"];
-				$regno_db  = $arr["regno"];
-				$acc = $arr["acc_details"];
-			}
-			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0)&&$acc!="0")
-			{
+			$uname_db = $arr["email"];
+			$pword_db = $arr["pword"];
+			$regno_db  = $arr["regno"];
+			$acc = $arr["acc_details"];
+		}
+		if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0)&&$acc!="0")
+		{
 
-				$_SESSION["id"]=$regno_db;
-				header("location:event_list.php");
-			}
-			else
-			{
-				echo "<div class='msg'>Oh Snap!! Incorrect User Name/Password</div>";
-			}
+			$_SESSION["id"]=$regno_db;
+			header("location:event_list.php");
 		}
 		else
-			echo "<div class='msg'>Oh Snap!! Result Set not fetched!!</div>";
+		{
+			echo "<div class='msg'>Oh Snap!! Incorrect User Name/Password</div>";
+		}
 	}
 	else
 		echo "<div class='msg'>Query not executed!!</div>";
@@ -87,12 +77,10 @@ else if(isset($_POST["forget_password"]))
 	$regno_db="";
 	$email_db="";
 
-	$stmt = $mysqli->prepare("SELECT * FROM `external_participants` WHERE `email`=? AND `regno`=? ");
-	$stmt->bind_param("ss", $email_f,$regno_f);
-	if($stmt->execute())
+	$stmt = "SELECT * FROM `external_participants` WHERE `email`='$email_f' AND `regno`='$regno_f'";
+	$rs = mysqli_query($mysqli,$q);
+	if($rs)
 	{
-		if($rs = $stmt->get_result())
-		{
 			$count = mysqli_num_rows($rs);
 			while ($arr = mysqli_fetch_array($rs))
 			{
@@ -103,15 +91,16 @@ else if(isset($_POST["forget_password"]))
 			{
 				require("generate_hash.php");
 				$ResultStr = generateHash();
-				$stmt = $mysqli->prepare("UPDATE `external_participants` SET `pword`= ? WHERE `email`=? AND `regno` =?");
-				$stmt->bind_param("sss", $ResultStr, $email_db, $regno_db);
-				if($stmt->execute())
+				$stmt1 = "UPDATE `external_participants` SET `pword`= '$ResultStr' WHERE `email`='$email_db' AND `regno` ='$regno_db'";
+				$rs = mysqli_query($mysqli,$stmt1);
+				if($rs)
 				{
 					if($mail->smtpConnect())
 					{
-					date_default_timezone_set('Asia/Calcutta');
-					require 'mail/PHPMailerAutoload.php';
-					//Create a new PHPMailer instance
+						date_default_timezone_set('Asia/Calcutta');
+						require 'mail/PHPMailerAutoload.php';
+						
+						//Create a new PHPMailer instance
 							$mail = new PHPMailer();
 							$to= $email_db;
 							$subject= "GraVITas 2015 | Password Reset" ;
@@ -165,15 +154,9 @@ else if(isset($_POST["forget_password"]))
 							{
 								echo "<div class='msg'>Yahooo! Check your mail!!</div>";
 							}
-						}
-
-				}
-				else
-				{
-					echo "<div class='msg'>Oh Snap!! Something went wrong!! </div>";
+					}
 				}
 			}
-		}
 	}
 	mysqli_close($mysqli);
 }
