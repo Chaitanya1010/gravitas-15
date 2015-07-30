@@ -355,13 +355,8 @@ $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
-<<<<<<< HEAD
  </script>
  <script>
-=======
-</script>
-<script>
->>>>>>> origin/master
  $(document).ready(function() {
     $('select').material_select();
     $('.collapsible').collapsible({
@@ -375,12 +370,7 @@ $('.modal-trigger').leanModal();
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
 
-<<<<<<< HEAD
  </script>
-=======
-  });
-</script>
->>>>>>> origin/master
 </main>
 <footer class="page-footer indigo darken-4">
           <div class="footer-copyright">
