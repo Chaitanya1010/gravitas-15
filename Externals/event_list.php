@@ -250,7 +250,7 @@ function checkout()
 		}
 		xmlhttp.open("POST","online_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&numb="numb);
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
 	}
 }
 function change_pass()
@@ -355,8 +355,8 @@ $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
-  </script>
- <script>
+</script>
+<script>
  $(document).ready(function() {
     $('select').material_select();
     $('.collapsible').collapsible({
@@ -369,8 +369,7 @@ $('.modal-trigger').leanModal();
   });
 
   });
-
- </script>
+</script>
 </main>
 <footer class="page-footer indigo darken-4">
           <div class="footer-copyright">

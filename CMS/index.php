@@ -1,4 +1,10 @@
  <?php
+ session_start();
+if(isset($_SESSION['regno']))
+{
+	header("location:home.php");
+}
+ 
 if(isset($_POST["login"]))
 {
 	require("sql_con.php");
@@ -20,7 +26,6 @@ if(isset($_POST["login"]))
 			}
 			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
 			{
-				session_start();
 				$_SESSION["regno"]=$uname;
 				header("location:home.php");
 			}

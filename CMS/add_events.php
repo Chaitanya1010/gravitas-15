@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["regno"]))
+if((isset($_SESSION["regno"]))&&(isset($_REQUEST['numb'])))
 {
 	echo"<div class='row'><div class='input-field col s12 m6'>
 	<label for='ename'>Name</label><input type='text' name='ename' id='ename' autocomplete='off'></div>
@@ -24,7 +24,21 @@ if(isset($_SESSION["regno"]))
 	<div id='msg'></div>
 	";
 }
-else
-{
-	require 'logout.php';
-}
+else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['numb']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['numb']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
+	}
+?>

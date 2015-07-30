@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["regno"]))
+if((isset($_SESSION["regno"]))&&(isset($_REQUEST['numb'])))
 {
 	require 'sql_con.php';
 	echo "<Input type='text' id='search_dd' name='search_dd' autocomple='off' onkeyup='search_dd(this.value)' placeholder='Search DD number..'><br>";
@@ -15,8 +15,21 @@ if(isset($_SESSION["regno"]))
 	echo "</table></div>";
 	echo "<button id='download_appdd' name='download_appdd' onclick='excel_appdd()'>Download</button>";
 }
-else
-{
-	require 'logout.php';
-}
+else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['numb']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['numb']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
+	}
 ?>
