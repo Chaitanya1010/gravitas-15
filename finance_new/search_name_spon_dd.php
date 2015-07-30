@@ -5,6 +5,7 @@
 		require('sql_con.php');
 		$dd_number=$_REQUEST['name'];
 		$category=$_REQUEST['cat'];
+		$id=$_REQUEST['id'];
 
 		$mode=$_SESSION['mode'];
 

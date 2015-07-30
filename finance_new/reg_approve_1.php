@@ -14,9 +14,9 @@
 			echo "
 		<h5 class='header light'>Internals</h5>";
 
-		echo"
-		ID For excel download:<input type='text' name='id_reg' id='id_reg' placeholder='Ex:103' autocomplete='off' onkeypress='return isNumber(event)'><br><br>
-		<button onclick='submit_reg_app(".$id.");'>Submit!</button></br></br>
+		echo"<div class='row'><div class='input-field col s12 m6'>
+		<label for='id_reg'>ID For excel download</label><input type='text' name='id_reg' id='id_reg' autocomplete='off' onkeypress='return isNumber(event)'></div><div class='col s12 m4'>
+		<button  class='btn waves-effect waves white indigo-text darken-4' onclick='submit_reg_app(".$id.");'>Submit!</button></div></div>
 		";
 
 			if($mode==1)
@@ -53,6 +53,10 @@
 				{
 					while($arr_reg=mysqli_fetch_array($res_reg))
 					{
+						?>
+						<div class='card'>
+							<div class='card-content'>
+						<?php
 							$reg_id=$arr_reg['unique_id_externals'];
 							$number_externals=$arr_reg['number_external'];
 							$amount_external=$arr_reg['amount_external'];
@@ -72,7 +76,7 @@
 							{
 								if($app_1==0)//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else
 								{
@@ -84,7 +88,7 @@
 							{
 								if(($app_1==1)&&($app_2==0))//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else if(($app_1==1)&&($app_2==1))
 								{
@@ -100,7 +104,7 @@
 							{
 								if(($app_1==1)&&($app_2==1)&&($app_3==0))//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else if(($app_1==1)&&($app_2==1)&&($app_3==1))
 								{
@@ -117,13 +121,17 @@
 							}
 
 
-					echo"</br></br>";
+					echo"</div></div>";
 					}
 				}
 				else
 				{
 					while($arr_reg=mysqli_fetch_array($res_reg))
 					{
+						?>
+						<div class='card'>
+							<div class='card-content'>
+						<?php
 							$reg_id=$arr_reg['unique_id_internals'];
 							$number_externals=$arr_reg['number_internal'];
 							$amount_external=$arr_reg['amount_internal'];
@@ -143,7 +151,7 @@
 							{
 								if($app_1==0)//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else
 								{
@@ -155,7 +163,7 @@
 							{
 								if(($app_1==1)&&($app_2==0))//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else if(($app_1==1)&&($app_2==1))
 								{
@@ -171,7 +179,7 @@
 							{
 								if(($app_1==1)&&($app_2==1)&&($app_3==0))//not approved..provide a button
 								{
-									echo "<div id='button_reg_".$reg_id."'></br><button onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_reg_".$reg_id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_register(".$reg_id.",".$id.")'>Approve the Transaction</button></div></br>";
 								}
 								else if(($app_1==1)&&($app_2==1)&&($app_3==1))
 								{
@@ -188,13 +196,12 @@
 							}
 
 
-						echo"</br></br>";
+						echo"</div></div>";
 
 					}
 
 				}
 		}
-
 			else
 			{
 				echo "<br/>No selected DATA<br/>";
