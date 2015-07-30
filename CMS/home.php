@@ -54,32 +54,44 @@ function isNumber(evt)
 //MAIN PAGE
 function externals()
 {
+	var numb=100;
   		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","externals.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 }
 
 function add_events()
 {
+		var numb=100;
   		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","add_events.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 }
 function team_change(val)
 {
@@ -148,6 +160,11 @@ function sub_event()
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("msg").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("msg").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			document.getElementById("ename").value="";
 			document.getElementById("eprice").value="";
 			document.getElementById("tseats").value="";
@@ -160,17 +177,23 @@ function sub_event()
 }
 function view_events()
 {
+	var numb=100;
   		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","view_events.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 }
 function search_events(val)
 {
@@ -180,6 +203,11 @@ function search_events(val)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("event_table").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("event_table").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","search_events.php",true);
@@ -209,6 +237,11 @@ function final_change()
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("msg").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("msg").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			document.getElementById("new1").value="";
 			document.getElementById("new2").value="";
 		}
@@ -220,19 +253,26 @@ function final_change()
 //EXTERNALS
 //REG STUDENTS
 function reg_students()
-{
+{	
+	var numb=100;
   		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("ext_body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("ext_body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","reg_students.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 }
+
 function search_extreg(val)
 {
   		var xmlhttp=new XMLHttpRequest();
@@ -241,12 +281,19 @@ function search_extreg(val)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("table").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("table").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
+				
 			}
 		}
 		xmlhttp.open("POST","search_extreg.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("val="+val);
 }
+
 function excel_extreg()
 {
 	window.location='excel_extreg.php';
@@ -254,17 +301,23 @@ function excel_extreg()
 //APPROVE DD
 function app_dd()
 {
-  		var xmlhttp=new XMLHttpRequest();
+	var numb=100;
+  	var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("ext_body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("ext_body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","app_dd.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 }
 function search_dd(val)
 {
@@ -274,6 +327,11 @@ function search_dd(val)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("table").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("table").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","search_dd.php",true);
@@ -288,6 +346,11 @@ function approve_ddno(val)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("table").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("table").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","approve_ddno.php",true);
@@ -322,8 +385,12 @@ function excel_appdd()
 </div>
 <?php
 }
-else
-{
-	require 'logout.php';
-}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+	}
 ?>
