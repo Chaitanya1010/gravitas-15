@@ -82,7 +82,7 @@
 		<div class='card hoverable'>
 <?php
 session_start();
-if(isset($_SESSION["id"]))
+if((isset($_SESSION["id"]))&&(isset($_REQUEST["Tpsltranid"])))
 {
 	require("sql_con.php");
 	$refno = $_REQUEST["Refno"];
@@ -135,6 +135,7 @@ if(isset($_SESSION["id"]))
 	}
 }
 else
+<<<<<<< HEAD
 	require("logout.php");
 ?>
 <br><a href='event_list.php' class="waves-effect waves-light indigo darken-2 btn z-depth-1"></a>
@@ -144,3 +145,13 @@ else
 </body>
 </head>
 </html>
+=======
+{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+}
+?>
+>>>>>>> origin/master

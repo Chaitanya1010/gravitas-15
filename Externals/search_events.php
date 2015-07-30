@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["id"]))
+if((isset($_SESSION["id"]))&&(isset($_REQUEST['key'])))
 {
 	require("sql_con.php");
 	$regno=$_SESSION["id"];//take from sessions
@@ -71,6 +71,21 @@ if(isset($_SESSION["id"]))
 		}
 	}
 }
-else
-	require("logout.php");
+	else if((isset($_SESSION['id']))&&(!isset($_REQUEST['key']))||((!isset($_SESSION['id']))&&(!isset($_REQUEST['key']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
+	}
 ?>

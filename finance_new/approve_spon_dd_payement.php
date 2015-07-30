@@ -22,6 +22,10 @@
 		if($res_approve)
 		{
 			echo "</br><b>Approved</b></br>";
+			if($mode==3)
+			{
+				require 'mail_approval.php';
+			}
 		}
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))

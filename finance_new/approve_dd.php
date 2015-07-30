@@ -26,7 +26,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==2)	//Stall - Rent
 		{
 			$first_data="Purpose of Stall";
@@ -36,7 +36,7 @@
 			$fifth_data="No.of days";
 			$sixth_data="Remarks";
 		}
-		
+
 		if($id==3)	//Stall - Rent
 		{
 			$first_data="Person Name";
@@ -68,13 +68,13 @@
 		}
 
 		echo "
-		<h3>DD approval</h3>";
-		echo"
-		Search by DD number:<input type='text' name='search_dd_numb' onkeyup='search_spon_dd(3,".$id.")' placeholder='DD Number' id='search_dd_numb' autocomplete='off'></br></br>
+		<h5>DD approval</h5>";
+		echo"<div class='row'><div class='input-field col s12 m6'>
+		<label for='search_dd_numb'>Search by DD number</label><input type='text' name='search_dd_numb' onkeyup='search_spon_dd(3,".$id.")'  id='search_dd_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_dd'>";
 
-			echo"<button onclick='download_dd_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button></br></br>
-			<button onclick='download_dd_excel(this.id,".$id.")' id='1'>Excel Download for All</button></br></br>";
+			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>
+			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
 
 
 			if($mode==1)
@@ -92,8 +92,11 @@
 				while($arr_dd=mysqli_fetch_array($res_dd))
 				{
 					$unique_id_basic=$arr_dd['unique_id_basic'];
-					echo "ID=".$unique_id_basic."</br>";
-
+					//echo "ID=".$unique_id_basic."</br>";
+?>
+<div class='card'>
+	<div class='card-content'>
+<?php
 					$dd_number=$arr_dd['dd_number'];
 					$branch_dd=$arr_dd['branch_name_dd'];
 					$bank_dd=$arr_dd['bank_name_dd'];
@@ -123,19 +126,19 @@
 					{
 						echo "<br/>No selected DATA<br/>";
 					}
-					
-					echo 
+
+					echo
 					$first_data."=".$event_name."</br>".$second_data."=".$company_name."</br>".$third_data."=".$amount."</br>".$fourth_data."=".$phno."</br>".$fifth_data."=".$email_id."</br>".$sixth_data."=".$remarks."</br>";
-					
-						echo "DD number=".$dd_number."</br>Branch Name=".$branch_dd."</br>Bank Name=".$bank_dd."</br>Issue date".$issue_date_dd."</br>";
-					
+
+						echo "<b>DD number=".$dd_number."</b></br>Branch Name=".$branch_dd."</br>Bank Name=".$bank_dd."</br>Issue date".$issue_date_dd."</br>";
+
 					//approving data
 
 						if($mode==1)
 						{
 							if($app_1_dd==0)//not approved..provide a button
 							{
-								echo "<div id='button_spon_dd_".$dd_id."'></br><button onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
+								echo "<div id='button_spon_dd_".$dd_id."'></br><button  class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
 							}
 							else
 							{
@@ -146,7 +149,7 @@
 						{
 							if(($app_1_dd==1)&&($app_2_dd==0))//not approved..provide a button
 							{
-								echo "<div id='button_spon_dd_".$dd_id."'></br><button onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
+								echo "<div id='button_spon_dd_".$dd_id."'></br><button  class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
 							}
 
 							else if(($app_1_dd==1)&&($app_2_dd==1))
@@ -159,12 +162,12 @@
 								echo "</br><b>Waiting For 1st Approval</b></br>";
 							}
 						}
-						
+
 						else if($mode==3)
 						{
 							if(($app_1_dd==1)&&($app_2_dd==1)&&($app_3_dd==0))//not approved..provide a button
 							{
-									echo "<div id='button_spon_dd_".$dd_id."'></br><button onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
+									echo "<div id='button_spon_dd_".$dd_id."'></br><button  class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_spon_dd(".$dd_id.")'>Approve the Transaction</button></div></br>";
 							}
 
 							else if(($app_1_dd==1)&&($app_2_dd==1)&&($app_3_dd==1))
@@ -183,11 +186,11 @@
 							}
 						}
 
-					echo"</br></br>";
+					echo"</div></div>";
 
 				}
 			}
-		echo "</div>";		
+		echo "</div>";
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{

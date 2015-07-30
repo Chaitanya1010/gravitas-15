@@ -5,7 +5,9 @@
 		require('sql_con.php');
 		$chq_number=$_REQUEST['name'];
 		$category=$_REQUEST['cat'];
-
+		$id=$_REQUEST['id'];
+		
+		
 		$mode=$_SESSION['mode'];
 
 		if($id==0)//sponsors

@@ -84,6 +84,11 @@ function search_events(val,stype)
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("events").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("events").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
 		}
 	}
 	xmlhttp.open("POST","search_events.php",true);
@@ -93,22 +98,29 @@ function search_events(val,stype)
 }
 function cart_initialize()
 {
+	var numb=100;
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("cart").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("cart").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
 		}
 	}
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
 
 }
 //	To add an element to the cart and to refresh the cart after removing
 function add_to_cart(id)
 {
+	var numb=100;
 	if(id!="refresh")//refresh is used when an element is deleted from cart
 	{
 			cart[cart.length]=id;
@@ -123,12 +135,17 @@ function add_to_cart(id)
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("cart").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("cart").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
 			search_events("body",'search');
 		}
 	}
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
 }
 //Delete an element from the cart
 function del_cart(id)
@@ -145,6 +162,7 @@ function del_cart(id)
 //To proceed to intermediate page
 function proceed_1()
 {
+	var numb=100;
 	$('#cart').closeModal();
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
@@ -152,11 +170,16 @@ function proceed_1()
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("all").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("all").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
 		}
 	}
 	xmlhttp.open("POST","proceed_1.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
 }
 //home button
 function back()
@@ -196,6 +219,11 @@ function checkout()
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("all").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","demand_draft.php",true);
@@ -204,6 +232,7 @@ function checkout()
 	}
 	else if(pay=="1") // For Online Payment
 	{
+		var numb=100;
 		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
@@ -211,12 +240,17 @@ function checkout()
 			{
 				//document.getElementById("pay").innerHTML=xmlhttp.responseText;
 				document.getElementById("all").innerHTML=xmlhttp.responseText;//except registered events
+				var res=document.getElementById("all").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 				document.getElementById("form").submit();
 			}
 		}
 		xmlhttp.open("POST","online_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team);
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="numb);
 	}
 }
 function change_pass()
@@ -240,6 +274,11 @@ function submit_pword()
 		{
 			document.getElementById("pass1").value="";
 			document.getElementById("pass2").value="";
+			var res=xmlhttp.responseText;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
 			Materialize.toast(xmlhttp.responseText, 3000, 'rounded',function(){window.location="index.php"});
 		}
 	}
@@ -344,5 +383,16 @@ $('.modal-trigger').leanModal();
 <?php
 }
 else
+<<<<<<< HEAD
 	require("logout.php");
+=======
+{
+	session_unset();
+	session_destroy();
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+	header("Location:index.php");
+	exit();
+}
+>>>>>>> origin/master
 ?>

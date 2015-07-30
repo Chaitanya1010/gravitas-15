@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["id"]))
+if((isset($_SESSION["id"]))&&(isset($_REQUEST['t'])))
 {
 	$trans_id = $_POST["t"];
 	$sum = $_POST["s"];
@@ -17,5 +17,12 @@ if(isset($_SESSION["id"]))
 		curl_close ($request);
 }
 else
-	require("logout.php");
+{	
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+		exit();		
+}
 ?>

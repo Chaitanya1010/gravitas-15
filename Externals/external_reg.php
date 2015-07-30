@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION["temp_sess"]="hiosamba";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,10 +117,21 @@ function next()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
+<<<<<<< HEAD
 				if(xmlhttp.responseText==1)
 					Materialize.toast('Voila! Check your mail!', 5000, 'rounded',function(){window.location="index.php"});
 				else if(xmlhttp.responseText==0)
 					Materialize.toast('Oh Snap!! Try Again!!', 5000, 'rounded',function(){window.location="index.php"});
+=======
+				if(xmlhttp.responseText=="1")
+					Materialize.toast('Voila! Check your mail!', 30000, 'rounded',function(){window.location="index.php"});
+				else if(xmlhttp.responseText=="0")
+					Materialize.toast('Oh Snap!! Try Again!!', 30000, 'rounded',function(){window.location="index.php"});
+				else if(xmlhttp.responseText.indexOf("dhS8!")>0)
+				{
+							window.location = 'index.php';
+				}
+>>>>>>> origin/master
 				else
 					Materialize.toast(xmlhttp.responseText +'Oh Snap!!Mailer Error!!Try Again!!', 5000, 'rounded',function(){window.location="index.php"});
 			}

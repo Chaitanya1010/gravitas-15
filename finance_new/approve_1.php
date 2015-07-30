@@ -64,7 +64,7 @@
       echo
         "<h5 class='header light'>Approval of Externals</h5>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button><button onclick='approve_dd(".$id.")'>Approve DD</button>
-          <button onclick='approve_cheque(".$id.")'>Approve Cheques</button>";
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>";
     }
     if($id==101)  //Internal
     {
