@@ -383,9 +383,6 @@ $('.modal-trigger').leanModal();
 <?php
 }
 else
-<<<<<<< HEAD
-	require("logout.php");
-=======
 {
 	session_unset();
 	session_destroy();
@@ -394,5 +391,4 @@ else
 	header("Location:index.php");
 	exit();
 }
->>>>>>> origin/master
 ?>

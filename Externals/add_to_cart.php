@@ -8,7 +8,7 @@ if((isset($_SESSION["id"]))&&($_REQUEST['numb']))
 	$sum=0;
 ?>
 	<div class="modal-content">
-	<?php
+<?php
 	echo"<TABLE class='striped'><TR><TH class='dark'>Name</TH><TH class='dark'>Price (&#8377;) </TH><TH class='dark'>Team</TH><TH class='dark'>Remove</TH></TR>";
 	if($cart!="")
 	{
@@ -30,7 +30,7 @@ if((isset($_SESSION["id"]))&&($_REQUEST['numb']))
 	}
 	else
 		echo "<TR><td colspan='4' align='center'>No Events Added Yet</TD></tr></Table>";
-}
+	}
 	else if((isset($_SESSION['id']))&&(!isset($_REQUEST['numb']))||((!isset($_SESSION['id']))&&(!isset($_REQUEST['numb']))))
 	{
 		session_unset();

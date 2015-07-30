@@ -134,9 +134,6 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST["Tpsltranid"])))
 		}		
 	}
 }
-else
-<<<<<<< HEAD
-	require("logout.php");
 ?>
 <br><a href='event_list.php' class="waves-effect waves-light indigo darken-2 btn z-depth-1"></a>
 </div>
@@ -145,7 +142,8 @@ else
 </body>
 </head>
 </html>
-=======
+}
+else
 {
 		session_unset();
 		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
