@@ -36,9 +36,6 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST['dd'])))
 		$res3 = mysqli_query($mysqli,$q3);
 		if($res3==true)
 			echo"</TABLE><B>TOTAL = $sum<br>Demand Draft No: $dd</B><br>Pls Send the Demand Draft within 7 working days with your details to<br>VIT University,<br> Vellore- 632014, <br>Tamil Nadu.<br><div class=' fixed-action-btn' style='bottom: 30px; right: 24px;'>Home<br>
-				<a class='red btn-floating btn-large waves-effect modal-trigger z-depth-3' title='Home' href='event_list.php'>
-					<i class='large material-icons'>home</i>
-				</a>
 			</div>";
 		else
 			echo "error";

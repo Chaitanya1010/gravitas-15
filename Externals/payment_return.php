@@ -142,6 +142,7 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST["Tpsltranid"])))
 </body>
 </head>
 </html>
+<?php
 }
 else
 {
@@ -152,4 +153,3 @@ else
 		header("Location:index.php");
 }
 ?>
->>>>>>> origin/master

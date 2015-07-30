@@ -12,7 +12,6 @@
   </head>
   <body>
     <header class='header blue darken-4 z-depth-1' style='text-align:center;padding-top:0.3em;padding-bottom:0.02em' align='middle'>
-      <img src='cid:logo' alt class='responsive-img' align='center' width='400px' style='background-color:indigo;' />
       <h4 class='header light white-text'>Password Reset - GraVITas'15</h4> </header>
       Dear Participant, <br><br/>
       Greetings!! <br/><br/>
