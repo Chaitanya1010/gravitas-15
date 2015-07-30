@@ -158,7 +158,6 @@ function proceed_1()
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("cart="+cart+"&team="+team);
 }
-
 //home button
 function back()
 {
@@ -281,7 +280,7 @@ function submit_pword()
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="2" onclick="search_events('body',this)">Technical</a></li>
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="3" onclick="search_events('body',this)">Management</a></li>
 					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="4" onclick="search_events('body',this)">Informal</a></li>
-					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="5" onclick="search_events('body',this)">Combos</a></li>
+					<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="5" onclick="search_events('body',this)">Combos & Accomodation</a></li>
 			  </ul>
 			</div>
 			
@@ -344,4 +343,6 @@ $('.modal-trigger').leanModal();
 </html>
 <?php
 }
+else
+	require("logout.php");
 ?>

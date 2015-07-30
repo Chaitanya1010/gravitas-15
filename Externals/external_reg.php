@@ -113,12 +113,12 @@ function next()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				if(xmlhttp.responseText=="1")
-					Materialize.toast('Voila! Check your mail!', 30000, 'rounded',function(){window.location="index.php"});
-				else if(xmlhttp.responseText=="0")
-					Materialize.toast('Oh Snap!! Try Again!!', 30000, 'rounded',function(){window.location="index.php"});
+				if(xmlhttp.responseText==1)
+					Materialize.toast('Voila! Check your mail!', 5000, 'rounded',function(){window.location="index.php"});
+				else if(xmlhttp.responseText==0)
+					Materialize.toast('Oh Snap!! Try Again!!', 5000, 'rounded',function(){window.location="index.php"});
 				else
-					Materialize.toast('Oh Snap!!Mailer Error!!Try Again!!', 30000, 'rounded',function(){window.location="index.php"});
+					Materialize.toast(xmlhttp.responseText +'Oh Snap!!Mailer Error!!Try Again!!', 5000, 'rounded',function(){window.location="index.php"});
 			}
 		}
 		xmlhttp.open("POST","sub_reg.php",true);
@@ -158,28 +158,8 @@ function next()
 <input type="radio" id="gender2" name="gender" value="female" class="with-gap"><label for="gender2">Female</label>
 </div>
 <div class="input-field col s6 m4">
-
-<select id="college" name="college">
-<?php
-$flag =0;
-require("sql_con.php");
-$q1 = "SELECT * FROM `colleges`";
-$arr = mysqli_query($mysqli,$q1);
-while($row = mysqli_fetch_array($arr))
-{
-	if($flag==0)
-	{
-		echo "<option value = ".$row[1]." selected>$row[1]</option>";
-	$flag++;
-	}
-	else
-		echo "<option value = ".$row[1].">$row[1]</option>";
-
-}
-mysqli_close();
-?>
-</select>
-<label>College</label>
+<input type="text" autocomplete="off" id="college" name="college" onkeypress="return isAlpha(event)">
+<label>College and State</label>
 </div>
 <div class="input-field col s12 m5">
   <label for="email">Email</label>

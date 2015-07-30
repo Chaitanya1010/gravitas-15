@@ -12,7 +12,7 @@ if(isset($_SESSION["id"]))
 	$sum=0;
 	$date = date("Y-m-d");
 
-	echo"<div class='container row'><TABLE  class='striped'><TR><TH>Name</TH><TH>Price</TH><TH>Team Size</TH></TR>";
+	echo"<div class='container row'><TABLE class='striped'><TR><TH>Name</TH><TH>Price</TH><TH>Team Size</TH></TR>";
 	if($cart!="")
 	{
 		$cart_array = explode(",",$cart);

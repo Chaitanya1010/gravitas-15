@@ -89,7 +89,7 @@ if(isset($_SESSION["id"]))
 					Materialize.toast("Oh Snap!! Something Fishy!! Try Again!!", 3000, 'rounded');
 				else if(xmlhttp.responseText==1)
 					window.location="home_org.php";
-				else
+				else if(xmlhttp.responseText==2)
 					window.location="home_fac.php";
 			}
 		}

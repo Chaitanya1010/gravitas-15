@@ -6,7 +6,7 @@ if(isset($_SESSION["id"]))
 	$cart=$_POST["cart"];
 	$team=$_POST["team"];
 	$sum=0;
-	?>
+?>
 	<div class="modal-content">
 	<?php
 	echo"<TABLE class='striped'><TR><TH class='dark'>Name</TH><TH class='dark'>Price (&#8377;) </TH><TH class='dark'>Team</TH><TH class='dark'>Remove</TH></TR>";

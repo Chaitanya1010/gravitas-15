@@ -107,6 +107,8 @@ else if(isset($_POST["forget_password"]))
 				$stmt->bind_param("sss", $ResultStr, $email_db, $regno_db);
 				if($stmt->execute())
 				{
+					if($mail->smtpConnect())
+					{
 					date_default_timezone_set('Asia/Calcutta');
 					require 'mail/PHPMailerAutoload.php';
 					//Create a new PHPMailer instance
@@ -146,6 +148,7 @@ else if(isset($_POST["forget_password"]))
 
 							//Set who the message is to be sent to
 							$mail->addAddress($to, $to);
+							
 
 							//Set the subject line
 							$mail->Subject = $subject;
@@ -162,6 +165,7 @@ else if(isset($_POST["forget_password"]))
 							{
 								echo "<div class='msg'>Yahooo! Check your mail!!</div>";
 							}
+						}
 
 				}
 				else

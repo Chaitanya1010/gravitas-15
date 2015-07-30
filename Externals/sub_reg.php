@@ -15,6 +15,8 @@ $q ="INSERT INTO `external_participants` (`name`, `regno`, `gender`, `college`, 
 $res = mysqli_query($mysqli,$q);
 if($res==true)
 {
+	if($mail->smtpConnect())
+	{
 	date_default_timezone_set('Asia/Calcutta');
 	require 'mail/PHPMailerAutoload.php';
 	//Create a new PHPMailer instance
@@ -32,7 +34,6 @@ if($res==true)
 	$mail->Host = 'smtp.gmail.com';
 	$mail->IsHTML(true);
 	$mail->AddEmbeddedImage('../gravitaslogo.png', 'logo');
-
 	//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 	$mail->Port =  587;
 
@@ -76,6 +77,7 @@ if($res==true)
 	{
 		echo 1;
 	}
+}
 }
 else
 	echo 0;

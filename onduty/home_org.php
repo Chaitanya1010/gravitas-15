@@ -174,6 +174,7 @@ if(isset($_SESSION["id"]))
 						<select id="school" name="school">
 						<option value="sas">SAS</option>
 						<option value="site" selected>SITE</option>
+						<option value="ssl">SCSE</option>
 						<option value="ssl">SSL</option>
 						<option value="select">SELECT</option>
 						<option value="sense">SENSE</option>
