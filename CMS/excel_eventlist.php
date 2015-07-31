@@ -84,7 +84,7 @@ if(isset($_SESSION["regno"]))
 		$regno = $t[1];
 		$team = $t[3];
 
-		$q2 = "SELECT * FROM `external_participants` WHERE `regno` ='$regno'";
+		$q2 = "SELECT * FROM `external_participants` WHERE `id` ='$regno'";
 		$r2 = mysqli_query($mysqli,$q2);
 		$t2 = mysqli_fetch_array($r2);
 		$name = $t2[2];

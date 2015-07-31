@@ -1,23 +1,14 @@
 <?php
-$to= "";
-$subject= "" ;
-$message="";
-$loc=""; //File attchment location
+$subject= "GraVITas '15 | Event Registration" ;
 
-/* For attachment use:
-	$data shd have the data to be printed in the xls with tab space
-	file_put_contents("../example.xls",$data);
-	print "$data";
-*/
+date_default_timezone_set('Asia/Calcutta');
+require 'mail/PHPMailerAutoload.php';
+		
+//Create a new PHPMailer instance
+$mail = new PHPMailer();
 
 if($mail->smtpConnect())
 {
-	date_default_timezone_set('Asia/Calcutta');
-	require 'mail/PHPMailerAutoload.php';
-			
-	//Create a new PHPMailer instance
-	$mail = new PHPMailer();
-
 	//Tell PHPMailer to use SMTP
 	$mail->isSMTP();
 
@@ -25,7 +16,6 @@ if($mail->smtpConnect())
 	$mail->SMTPDebug = 0;
 	$mail->Host = 'smtp.gmail.com';
 	$mail->IsHTML(true);
-	$mail->addAttachment($loc); 
 
 	//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 	$mail->Port =  587;

@@ -10,7 +10,8 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST['numb'])))
 	$sum=0;
 	$trans_id="";
 	$date = date("Y-m-d");
-
+	$time = date("h:i:s");
+	
 	if($cart!="")	
 	{
 		$cart_array = explode(",",$cart);
@@ -28,9 +29,9 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST['numb'])))
 			{
 				$q = "SELECT * FROM `events` WHERE `id`=$cart_array[$i]";
 				$r = mysqli_query($mysqli,$q);
-				$t=mysqli_fetch_array($r);
+				$t = mysqli_fetch_array($r);
 
-				$q1= "INSERT INTO `external_registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd` , `trans_id` , `paid_status`,`date`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]','0','$trans_id', '0','$date')";
+				$q1= "INSERT INTO `external_registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd` , `trans_id` , `paid_status`,`date`,`time`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]','0','$trans_id', '0','$date','$time')";
 				$res = mysqli_query($mysqli,$q1);
 				if($res==true)
 				{

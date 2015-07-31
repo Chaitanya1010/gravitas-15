@@ -8,6 +8,7 @@ if(isset($_SESSION["id"]))
 	$uname_db="";
 	$pword_db="";
 	$regno_db="";
+	$id="";
 	$rs = mysqli_query($mysqli,$stmt);
 	if($rs)
 	{
@@ -15,10 +16,11 @@ if(isset($_SESSION["id"]))
 		while ($arr = mysqli_fetch_array($rs))
 		{
 			$regno_db  = $arr["regno"];
+			$id = $arr["id"];
 		}
 		if($count==1)
 		{
-			$_SESSION["id"]=$regno_db;
+			$_SESSION["id"]=$id;
 			header("location:event_list.php");
 		}
 		else
@@ -40,6 +42,7 @@ if(isset($_POST["login"]))
 	$pword_db="";
 	$regno_db="";
 	$acc="";
+	$id="";
 	$rs=mysqli_query($mysqli,$stmt);
 	if($rs)
 	{
@@ -50,11 +53,12 @@ if(isset($_POST["login"]))
 			$pword_db = $arr["pword"];
 			$regno_db  = $arr["regno"];
 			$acc = $arr["acc_details"];
+			$id = $arr["id"];
 		}
 		if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0)&&$acc!="0")
 		{
 
-			$_SESSION["id"]=$regno_db;
+			$_SESSION["id"]=$id;
 			header("location:event_list.php");
 		}
 		else
