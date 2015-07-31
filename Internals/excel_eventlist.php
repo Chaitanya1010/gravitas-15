@@ -60,13 +60,13 @@ if(isset($_SESSION["regno"]))
 	echo "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	while($t1=mysqli_fetch_array($r1))
 	{
-		$regno = $t1[1];
-		$team = $t1[3];
+		$regno = $t1["regno"];
+		$team = $t1["team"];
 
 		$q3 = "SELECT * FROM `internal_participants` WHERE `regno` ='$regno'";
 		$r3= mysqli_query($mysqli,$q3);
 		$t3 = mysqli_fetch_array($r3);
-		$name = $t3[1];
+		$name = $t3["name"];
 		echo "$name\t$regno\t$event_name\t$team\r\n";
 	}
 	
@@ -76,13 +76,13 @@ if(isset($_SESSION["regno"]))
 	echo "Name\tRegno\tEvent Name\tTeam Size\n\r";
 	while($t=mysqli_fetch_array($r))
 	{
-		$regno = $t[1];
-		$team = $t[3];
+		$id = $t["user_id"];
+		$team = $t["team"];
 
-		$q2 = "SELECT * FROM `external_participants` WHERE `regno` ='$regno'";
+		$q2 = "SELECT * FROM `external_participants` WHERE `id` ='$id'";
 		$r2 = mysqli_query($mysqli,$q2);
 		$t2 = mysqli_fetch_array($r2);
-		$name = $t2[2];
+		$name = $t2["name"];
 		echo "$name \t $regno\t$event_name\t$team\r\n";
 	}
 }

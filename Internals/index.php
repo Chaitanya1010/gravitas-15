@@ -1,42 +1,42 @@
  <?php
+session_start();
+if(isset($_SESSION["regno"]))
+{
+    header("location:home.php");
+
+}
 if(isset($_POST["login"]))
 {
 	require("sql_con.php");
 	$uname=$_POST["regno"];
 	$pword=$_POST["pword"];
-	$stmt = $mysqli->prepare("SELECT * FROM `login_internals` WHERE `regno`=?  AND `password`=?");
-	$stmt->bind_param("ss", $uname, $pword);
+	$stmt = "SELECT * FROM `login_internals` WHERE `regno`='$uname'  AND `password`='$pword'";
 	$uname_db="";
 	$pword_db="";
-	if($stmt->execute())
+    $rs = mysqli_query($mysqli,$stmt);
+	if($rs)
 	{
-		if($rs = $stmt->get_result())
+		$count = mysqli_num_rows($rs);
+		while ($arr = mysqli_fetch_array($rs))
 		{
-			$count = mysqli_num_rows($rs);
-			while ($arr = mysqli_fetch_array($rs))
-			{
-				$uname_db = $arr["regno"];
-				$pword_db = $arr["password"];
-			}
-			if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
-			{
-				session_start();
-				$_SESSION["regno"]=$uname;
-				header("location:home.php");
-			}
-			else
-			{
-				echo 'Incorrect User Name/Password';
-			}
+			$uname_db = $arr["regno"];
+			$pword_db = $arr["password"];
+		}
+		if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
+		{
+			$_SESSION["regno"]=$uname;
+			header("location:home.php");
 		}
 		else
-			echo"Result set not fetched mysqli_error()";
+		{
+			echo 'Incorrect User Name/Password';
+		}
 	}
 	else
 		echo "Query not executed mysqli_error()";
 mysqli_close($mysqli);
 }
- ?>
+?>
  <!DOCTYPE html>
 <html lang="en">
 <head>

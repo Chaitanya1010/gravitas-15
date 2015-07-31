@@ -82,13 +82,13 @@
 		<div class='card hoverable'>
 <?php
 session_start();
-if((isset($_SESSION["id"]))&&(isset($_REQUEST["Tpsltranid"])))
+if((isset($_SESSION["id"]))&&(isset($_REQUEST["Refno"])))
 {
 	require("sql_con.php");
 	$refno = $_REQUEST["Refno"];
-	$tpsl = $_REQUEST["Tpsltranid"];
-	$bankref = $_REQUEST["Bankrefno"];
-	$txndate = $_REQUEST["Txndate"];
+	$tpsl = $_REQUEST["tpsltranid"];
+	$bankref = $_REQUEST["bankrefno"];
+	$txndate = $_REQUEST["txndate"];
 	$status = $_REQUEST["status"];
 	echo "$refno\n$tpsl\n$bankref\n$txndate\n$status";
 	$q = "SELECT `trans_id` FROM `online_payment` WHERE `trans_id`='$refno'";
