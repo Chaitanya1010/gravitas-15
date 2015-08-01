@@ -1,5 +1,6 @@
 <?php
-	if((isset($_SESSION["temp_sess"]))&&(isset($_REQUEST['regno'])))
+	session_start();
+	if((isset($_SESSION["temp_sess"]))&&(isset($_POST["regno"])))
 	{
 		require("sql_con.php");
 		$name=$_POST["name"];
@@ -25,7 +26,8 @@
 			$subject= "GraVITas 2015 | User Authentication" ;
 				
 			require("mail_nu.php");
-
+			if($mail->smtpConnect())
+			{
 			//Tell PHPMailer to use SMTP
 			$mail->isSMTP();
 
@@ -33,7 +35,6 @@
 			$mail->SMTPDebug = 0;
 			$mail->Host = 'smtp.gmail.com';
 			$mail->IsHTML(true);
-			$mail->AddEmbeddedImage('../gravitaslogo.png', 'logo');
 
 			//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 			$mail->Port =  587;
@@ -78,6 +79,9 @@
 			{
 				echo 1;
 			}
+			}
+			else
+				echo 2;
 		}
 		else
 			echo 0;

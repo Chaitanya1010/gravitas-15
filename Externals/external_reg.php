@@ -75,36 +75,19 @@ function next()
 	if(name=="")
 	{
 		flag=1;
-		document.getElementById("name").className = document.getElementById("name").className.replace("error", "");
-		document.getElementById("name").className = document.getElementById("name").className + "error";
 	}
-	else
-		document.getElementById("name").className = document.getElementById("name").className.replace("error", ""); // this removes the error class
-
 	if(regno=="")
 	{
 		flag=1;
-		document.getElementById("regno").className = document.getElementById("regno").className.replace("error", "");
-		document.getElementById("regno").className = document.getElementById("regno").className + "error";  // this adds the error class
 	}
-	else
-		document.getElementById("regno").className = document.getElementById("regno").className.replace("error", ""); // this removes the error class
 	if(phno=="")
 	{
 		flag=1;
-		document.getElementById("phno").className = document.getElementById("phno").className.replace("error", "");
-		document.getElementById("phno").className = document.getElementById("phno").className + "error";  // this adds the error class
 	}
-	else
-		document.getElementById("phno").className = document.getElementById("phno").className.replace("error", ""); // this removes the error class
 	if(email==""||!email.match(mailformat))
 	{
 		flag=1;
-		document.getElementById("email").className = document.getElementById("email").className.replace("error", "");
-		document.getElementById("email").className = document.getElementById("email").className + "error";  // this adds the error class
 	}
-	else
-		document.getElementById("email").className = document.getElementById("email").className.replace("error", ""); // this removes the error class
 	for (var i = 0; i < gender.length; i++)
 	{
 			if (gender[i].checked)
@@ -112,12 +95,13 @@ function next()
 	}
 	if(flag==0)
 	{
+		document.getElementById("proceed").disabled=true;
 		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-
+				document.getElementById("proceed").disabled=false;
 				if(xmlhttp.responseText=="1")
 					Materialize.toast('Voila! Check your mail!', 30000, 'rounded',function(){window.location="index.php"});
 				else if(xmlhttp.responseText=="0")
@@ -154,11 +138,11 @@ function next()
       <div class="row">
         <div class="input-field col s12 m6">
           <label for="name">Name</label>
-      <input type="text" id="name" name="name" onkeypress="return isAlpha(event)">
+      <input type="text" id="name" name="name" autocomplete="off" onkeypress="return isAlpha(event)">
     </div>
     <div class="input-field col s12 m6">
       <label for="regno">Registration Number</label>
-<input type="text" id="regno" name="regno" >
+<input type="text" id="regno" name="regno"  autocomplete="off">
 </div>
 </div>
 <div class="row">
@@ -168,16 +152,16 @@ function next()
 </div>
 <div class="input-field col s6 m4">
 <input type="text" autocomplete="off" id="college" name="college" onkeypress="return isAlpha(event)">
-<label>College and State</label>
+<label for="college">College and State</label>
 </div>
 <div class="input-field col s12 m5">
   <label for="email">Email</label>
-<input type="email" id="email" name="email"></div>
+<input type="text" id="email" name="email"  autocomplete="off"></div>
 </div>
 <div class="row">
 <div class="input-field col s12 m6">
   <label for="phno">Phone Number</label>
-<input type="text" id="phno" name="phno" maxlength="10" onkeyPress="return isNumber(event)">
+<input type="text" id="phno" name="phno" maxlength="10"  autocomplete="off" onkeyPress="return isNumber(event)">
 </div>
 <div class="input-field col s12 m6">
 <select  id="clgref" name="clgref" >
@@ -243,11 +227,11 @@ $(document).ready(function() {
 </script>
 </main>
 <footer class="page-footer indigo darken-4">
-          <div class="footer-copyright">
-            <div class="container">
+        <div class="footer-copyright">
+           <div class="container">
             © COPYRIGHT GRAVITAS 2015
-            </div>
-          </div>
-        </footer>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

@@ -3,7 +3,7 @@ if(isset($_SESSION["id"]))
 {
 	require("sql_con.php");
 	$regno=$_SESSION["id"]; //take from sessions
-	$q = "SELECT * FROM `external_registration` WHERE `regno` = '$regno'";
+	$q = "SELECT * FROM `external_registration` WHERE `user_id` = '$regno'";
 	$r = mysqli_query($mysqli,$q);
 	echo "<TABLE class='striped'><TR><TH>Event Name</TH><TH>Team Size</TH><th>Payment Status</th></TR>";
 	while($t=mysqli_fetch_array($r))

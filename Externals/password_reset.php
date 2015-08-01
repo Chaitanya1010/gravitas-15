@@ -72,7 +72,7 @@
 <body>
 	<header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 		<img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
-		<h4 class="header light white-text">External Registration</h4>
+		<h4 class="header light white-text">External Registration - Password</h4>
 	</header>
 	<main>
 <?php
@@ -93,7 +93,7 @@ if($a=="0")
 }
 if($c==1)
 {
-	echo "<br><br><div class='container'>Please give your Password!<br/><div class='card hoverable'>
+	echo "<br><br><div class='container'><br/><div class='card hoverable'><div  class='card-content'>
 		<div class='input-field'>
 		<label for='pass1'>Password:</label>
 		<input type='password' id='pass1' name='pass1'>
@@ -102,8 +102,8 @@ if($c==1)
 		<label for='pass2'>Re-type Password:</label>
 		<input type='password' id='pass2' name='pass2'>
 		</div><input type='hidden' value='$regno_db' id='regno' name='regno'><br>
-		<div class='input-field'><button type='submit'onclick='submit_pword()'class='btn waves-effect waves-light indigo darken-2 right'>
-		<i class='material-icons right'>send</i>Reset</button></div>
+		<div class='input-field'><button type='submit'onclick='submit_pword()'class='btn waves-effect waves-light indigo darken-2 left'>
+		<i class='material-icons right'>send</i>Reset</button><br/><br/></div></div>
 		</div></div>";
 }
 else

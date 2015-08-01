@@ -31,11 +31,11 @@ if((isset($_SESSION["id"]))&&(isset($_REQUEST['numb'])))
 				$r = mysqli_query($mysqli,$q);
 				$t = mysqli_fetch_array($r);
 
-				$q1= "INSERT INTO `external_registration` (`id`, `regno`, `event_id`, `team`, `price`, `dd` , `trans_id` , `paid_status`,`date`,`time`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]','0','$trans_id', '0','$date','$time')";
+				$q1= "INSERT INTO `external_registration` (`id`,`user_id`,`event_id`,`team`,`price`,`dd` ,`trans_id` ,`paid_status`,`date`,`time`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]','0','$trans_id', '0','$date','$time')";
 				$res = mysqli_query($mysqli,$q1);
 				if($res==true)
 				{
-					$q2 = "UPDATE `events` SET `filled_ext`= `filled_ext`+$team_array[$i] WHERE `id`= '$t[0]'";
+					$q2 = "UPDATE `events` SET `filled_ext`= `filled_ext`+ $team_array[$i] WHERE `id`= '$t[0]'";
 					$res2 = mysqli_query($mysqli,$q2);
 					$sum+=$t[2];
 				} 

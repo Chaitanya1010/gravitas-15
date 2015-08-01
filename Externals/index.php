@@ -82,7 +82,7 @@ else if(isset($_POST["forget_password"]))
 	$email_db="";
 
 	$stmt = "SELECT * FROM `external_participants` WHERE `email`='$email_f' AND `regno`='$regno_f'";
-	$rs = mysqli_query($mysqli,$q);
+	$rs = mysqli_query($mysqli,$stmt);
 	if($rs)
 	{
 			$count = mysqli_num_rows($rs);
@@ -99,8 +99,7 @@ else if(isset($_POST["forget_password"]))
 				$rs = mysqli_query($mysqli,$stmt1);
 				if($rs)
 				{
-					if($mail->smtpConnect())
-					{
+				
 						date_default_timezone_set('Asia/Calcutta');
 						require 'mail/PHPMailerAutoload.php';
 						
@@ -108,7 +107,8 @@ else if(isset($_POST["forget_password"]))
 							$mail = new PHPMailer();
 							$to= $email_db;
 							$subject= "GraVITas 2015 | Password Reset" ;
-							
+							if($mail->smtpConnect())
+							{
 							require("mail_fp.php");
 							//Tell PHPMailer to use SMTP
 							$mail->isSMTP();
@@ -117,7 +117,6 @@ else if(isset($_POST["forget_password"]))
 							$mail->SMTPDebug = 0;
 							$mail->Host = 'smtp.gmail.com';
 							$mail->IsHTML(true);
-							$mail->AddEmbeddedImage('../gravitaslogo.png', 'logo');
 							//Set the SMTP port number - 465 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 							$mail->Port =  587;
 
