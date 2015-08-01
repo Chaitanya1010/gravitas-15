@@ -56,22 +56,14 @@ if(isset($_SESSION["regno"]))
 
 </head>
 <script>
-<?php
-$regno ="s";
-?>
 var cart = new Array();
 var team = new Array();
 var lastType = 0;
-var reg = "<?php echo $regno; ?>";
+var regno = "<?php echo $regno ?>";
 //To display the events in each type
 //val - value typed in search box or "body" while refreshing the events list
-function test(reg)
-{
-	alert(reg);
-}
 function search_events(val,stype)
 {
-	alert(reg);
   if(stype=="search")
     type=lastType;
   else if(stype==0)
@@ -102,7 +94,7 @@ function search_events(val,stype)
 	}
 	xmlhttp.open("POST","search_events.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("key="+val+"&type="+type+"&cart="+cart+"&user_regno="+regno);
+	xmlhttp.send("key="+val+"&type="+type+"&cart="+cart+"&regno="+regno);
 	lastType = type;
 }
 function cart_initialize()
@@ -123,7 +115,7 @@ function cart_initialize()
 	}
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
 
 }
 //	To add an element to the cart and to refresh the cart after removing
@@ -154,7 +146,7 @@ function add_to_cart(id)
 	}
 	xmlhttp.open("POST","add_to_cart.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
 }
 //Delete an element from the cart
 function del_cart(id)
@@ -188,12 +180,19 @@ function proceed_1()
 	}
 	xmlhttp.open("POST","proceed_1.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
+	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
 }
 //home button
 function back()
 {
 	window.location="event_list.php";
+}
+function payment(val)
+{
+	if(val==0)
+		document.getElementById("dd").innerHTML="<div class='input-field col s4'><input type='text' id='rrno' name='rrno' placeholder='Receipt Number'><br></div>";
+	else
+		document.getElementById("dd").innerHTML="";
 }
 //checkout to payment gateway
 function checkout()
@@ -205,12 +204,10 @@ function checkout()
 			if (p[i].checked)
 				pay = p[i].value;
 	}
-	if(pay=="0") // For DD
+	if(pay=="0") // For card payment
 	{
-		var ddno = document.getElementById("ddno").value;
-		var bname = document.getElementById("ddbank").value;
-		var dd_date = document.getElementById("dddate").value;
-		if(ddno==""||bname==""||dd_date=="")
+		var rrno = document.getElementById("rrno").value;
+		if(rrno=="")
 		{
 			alert("Enter all Details");
 			return;
@@ -228,11 +225,11 @@ function checkout()
 				}
 			}
 		}
-		xmlhttp.open("POST","demand_draft.php",true);
+		xmlhttp.open("POST","card_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&dd="+ddno+"&bname="+bname+"&dd_date="+dd_date);
+		xmlhttp.send("cart="+cart+"&team="+team+"&rr="+rrno+"&regno="+regno);
 	}
-	else if(pay=="1") // For Online Payment
+	else if(pay=="1") // For cash Payment
 	{
 		var numb=100;
 		var xmlhttp=new XMLHttpRequest();
@@ -250,13 +247,13 @@ function checkout()
 				document.getElementById("form").submit();
 			}
 		}
-		xmlhttp.open("POST","online_pay.php",true);
+		xmlhttp.open("POST","cash_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb);
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
 	}
 }
 </script>
-<body onload='test("<?php echo $regno; ?>")' >
+<body onload="search_events('body',0)" >
   <main>
 	  <div id="register_events">
 	   
@@ -328,12 +325,15 @@ $('.modal-trigger').leanModal();
 
  </script>
 </main>
-<footer class="page-footer indigo darken-4">
-          <div class="footer-copyright">
-            <div class="container center-align">
-            © COPYRIGHT GRAVITAS 2015
-            </div>
-          </div>
+
+
+	<footer class="page-footer indigo darken-4">
+  <div class="footer-copyright">
+    <div class="container">
+      © COPYRIGHT GRAVITAS 2015
+      <a class='modal-trigger right' href='#credits'>Developers</a>
+    </div>
+  </div>
 </footer>
 </body>
 </html>
