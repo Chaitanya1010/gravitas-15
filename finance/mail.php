@@ -66,4 +66,5 @@ if($mail->smtpConnect())
 		echo "<div class='msg'>Yahooo! Check your mail!!</div>";
 	}
 }
+unlink($loc);
 ?>
