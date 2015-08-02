@@ -39,7 +39,7 @@ if($mail->smtpConnect())
 	$mail->Username = "noreply.vitgravitas@gmail.com";
 
 	//Password to use for SMTP authentication
-	$mail->Password = "Gravitas15";
+	$mail->Password = "Sherlok123";
 
 	//Set who the message is to be sent from
 	$mail->setFrom('noreply.vitgravitas@gmail.com', 'GraVITas 2015');
