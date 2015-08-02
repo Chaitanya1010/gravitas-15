@@ -19,7 +19,7 @@
 		if(isset($_POST['name'])&&$_POST['pass'])
 		{
 			$name=$_POST['name'];
-			$pass=$_POST['name'];
+			$pass=$_POST['pass'];
 			$sql_login="SELECT * FROM `admin_login` WHERE name='$name' and pass='$pass';";
 			$res_login=mysqli_query($mysqli,$sql_login);
 			if(mysqli_num_rows($res_login)>0)
