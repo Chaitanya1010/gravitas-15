@@ -1,8 +1,8 @@
 <?php
 
-$to="";
-$subject= "" ;
-$message="";
+$to="shambhavi110@gmail.com";
+$subject= "hf";
+$message="gf";
 $loc="excel.xls"; 
 
 	$data = "name\tchaitanya\tis\ta\tnut";
