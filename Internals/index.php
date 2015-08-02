@@ -1,9 +1,8 @@
- <?php
+<?php
 session_start();
 if(isset($_SESSION["regno"]))
 {
-    header("location:home.php");
-
+    header("Location:home.php");
 }
 if(isset($_POST["login"]))
 {
@@ -25,11 +24,12 @@ if(isset($_POST["login"]))
 		if(($count==1&&$uname!=""&&$pword!=""&&strcmp($uname,$uname_db)==0)&&(strcmp($pword,$pword_db)==0))
 		{
 			$_SESSION["regno"]=$uname;
-			header("location:home.php");
+			
+			header("Location:home.php");
 		}
 		else
 		{
-			echo 'Incorrect User Name/Password';
+			echo "<div class='msg'>Incorrect User Name/Password</div>";
 		}
 	}
 	else
@@ -44,46 +44,65 @@ mysqli_close($mysqli);
   <meta http-equiv="content-type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-   /* label color */
-   .input-field label {
-     color: #1a237e;
-   }
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-     color: #303f9f;
-   }
-    /* label underline focus color */
-   .input-field input[type=text] {
-     border-bottom: 1px solid #1a237e;
-     box-shadow: 0 1px 0 0 #1a237e;
-   }
-   /* label underline focus color */
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid #303f9f;
-     box-shadow: 0 1px 0 0 #303f9f;
-   }
-   .input-field input[type=password]:focus + label {
-     color: #303f9f;
-   }
-    /* label underline focus color */
-   .input-field input[type=password] {
-     border-bottom: 1px solid #1a237e;
-     box-shadow: 0 1px 0 0 #1a237e;
-   }
-   /* label underline focus color */
-   .input-field input[type=password]:focus {
-     border-bottom: 1px solid #303f9f;
-     box-shadow: 0 1px 0 0 #303f9f;
-   }
-   body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
+  .msg
+     {
+      background: #e53935;
+      color: #ffffff;
+      position: absolute;
+      left: 200px;
+      bottom: 110px;
+      padding: 4px 9px;
+      border-radius: 25px;
+     }
+     body
+     {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      main 
+      {
+        flex: 1 0 auto;
+      }
+    /* label color */
+      .input-field label 
+      {
+        color: #7986cb;
+      }
+     /* label focus color */
+     .input-field input[type=text]:focus + label 
+     {
+        color: #1a237e;
+     }
+     /* label underline focus color */
+     .input-field input[type=text]:focus 
+     {
+        border-bottom: 1px solid #1a237e;
+        box-shadow: 0 1px 0 0 #1a237e;
+     }
+      /* label underline color */
+     .input-field input[type=text] 
+     {
+        border-bottom: 1px solid #1a237e;
+        box-shadow: 0 1px 0 0 #1a237e;
+     }
+      /* label focus color */
+     .input-field input[type=password]:focus + label 
+     {
+        color: #1a237e;
+     }
+     /* label underline focus color */
+     .input-field input[type=password]:focus 
+     {
+        border-bottom: 1px solid #1a237e;
+        box-shadow: 0 1px 0 0 #1a237e;
+     }
+      /* label underline color */
+     .input-field input[type=password] 
+     {
+        border-bottom: 1px solid #1a237e;
+        box-shadow: 0 1px 0 0 #1a237e;
+     }
   </style>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
@@ -121,7 +140,7 @@ mysqli_close($mysqli);
   <div class="footer-copyright">
     <div class="container">
       © COPYRIGHT GRAVITAS 2015
-      <a class='modal-trigger right' href='#credits'>Developers</a>
+      <a class='modal-trigger right white-text' href='#credits'>Developers</a>
     </div>
   </div>
 </footer>

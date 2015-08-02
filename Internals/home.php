@@ -14,6 +14,20 @@ if(isset($_SESSION["regno"]))
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<script>
+	function isNumber(evt)
+	{
+		var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+             return false;
+        return true;
+	}
+	function isAlpha(evt)
+	{
+       	var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 32 && charCode != 46 && charCode > 31 && (charCode < 97 || charCode > 122)&& (charCode < 65 || charCode > 90))
+             return false;
+        return true;
+	}
 	function events()
 	{
 		var xmlhttp=new XMLHttpRequest();
@@ -38,29 +52,35 @@ if(isset($_SESSION["regno"]))
 					document.getElementById("event_table").innerHTML=xmlhttp.responseText;
 				}
 			}
-			xmlhttp.open("POST","search_all_events.php",true);
-			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xmlhttp.send("val="+val);
+			xmlhttp.open('POST','search_all_events.php',true);
+			xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+			xmlhttp.send('val='+val);
 	}
 	function excel_eventlist(val)
 	{
+		Materialize.toast('Downloading...',2000,'rounded');
 		window.location='excel_eventlist.php?val='+val;
 	}
 	function registration()
 	{	
-		document.getElementById("body").innerHTML="<div class ='container'><div class='card hoverable'><div class='card-content'><div class='input-field'><label for='regno'>Registration Number</label><br/><input type='text' name='regno' id='regno'  autocomplete='off'></div><div class ='input-field'><button onclick='reg_go()' class='waves-effect waves-light indigo darken-2 btn z-depth-1'>Submit</button></div></div></div></div>";
+		document.getElementById('body').innerHTML="<div class ='container'><div class='card hoverable'><form class='card-content' id='form' action='event_list.php' method='post'><div class='input-field'><label for='name'>Name</label><br/><input type='text' name='name' id='name' onkeypress='return isAlpha(event)' autocomplete='off'></div><div class='input-field'><label for='regno'>Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off'></div><div class='input-field'><label for='email'>Email</label><br/><input type='text' name='email' id='email' autocomplete='off'></div><div class='input-field'><label for='phno'>Phone Number</label><br/><input type='text' name='phno' id='phno' onkeypress='return isNumber(event)' autocomplete='off'></div><div class ='input-field'><button onclick='reg_go()' class='waves-effect waves-light indigo darken-2 btn z-depth-1'>Submit</button></div></form>";
 	}
 	function reg_go()
 	{
+		var name = document.getElementById("name").value;
 		var regno = document.getElementById("regno").value;
+		var email = document.getElementById("email").value;
+		var phno = document.getElementById("phno").value;
 		var pattern = /^[0-1]{1}[0-9]{1}[a-zA-Z]{3}[0-9]{4}$/;
-		if(regno.match(pattern))
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(regno.match(pattern)&&email.match(mailformat)&&name!=""&& phno.length==10)
 		{
-			window.location ="event_list.php?r="+regno;
+			document.getElementById("form").submit();
 		}
 		else
 		{
-			Materialize.toast("Enter Valid Register Number",3000,"rounded");
+			Materialize.toast("Enter all details",3000,"rounded");
+			return false;
 		}	
 	}
 </script>
@@ -131,17 +151,8 @@ if(isset($_SESSION["regno"]))
   <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
     <img src="../gravitaslogo.png" alt class="responsive-img" width="350px">
     <h4 class="header light white-text">Internal Registration</h4>
-  </header>
-  	 <div class="fixed-action-btn" style="bottom:30px; left:24px">Logout<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="logout.php">
-			<i class="material-icons">power_settings_new</i>
-		</a>
-		</div>
-		 <div class="fixed-action-btn" style="bottom:30px; right:24px">Home<br/>
-		<a class="red btn-floating btn-large waves-effect z-depth-3"  title="Logout" href="home.php">
-			<i class="material-icons">home</i>
-		</a>
-		</div>
+ </header>
+  
 		<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
 			<div class="col s12">
 			  <ul class="tabs indigo darken-2">
@@ -150,19 +161,39 @@ if(isset($_SESSION["regno"]))
 			  </ul>
 			</div>
 		 </div>
-<div id='body'><div class ="container"><div class="card hoverable"><div class="card-content"><div class="input-field">
-<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno'  autocomplete='off'></div><div class ="input-field"><button onclick='reg_go()' class="waves-effect waves-light indigo darken-2 btn z-depth-1">Submit</button>
+<div id="body"><div class ="container"><div class="card hoverable">
+<form class="card-content" id="form" onsubmit="return reg_go()" action="event_list.php" method="post">
+<div class="input-field">
+<label for="name">Name</label><br/><input type='text' name='name' id='name' autocomplete='off' onkeypress="return isAlpha(event)">
+</div>
+<div class="input-field">
+<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off'>
+</div>
+<div class="input-field">
+<label for="email">Email</label><br/><input type='text' name='email' id='email' autocomplete='off'>
+</div>
+<div class="input-field">
+<label for="phno">Phone Number</label><br/><input type='text' name='phno' id='phno' autocomplete='off' onkeypress="return isNumber(event)">
+</div>
+<div class ="input-field"><button class="waves-effect waves-light indigo darken-2 btn z-depth-1">Submit</button>
+</div>
+</form>
 </div>
 </div>
 </div>
-</div>
-</div>
+
 </main>
 	<footer class="page-footer indigo darken-4">
   <div class="footer-copyright">
     <div class="container">
-      © COPYRIGHT GRAVITAS 2015
-      <a class='modal-trigger right' href='#credits'>Developers</a>
+      <a class='modal-trigger white-text right' href='#credits'>Meet the developers</a>
+      		<a class="red btn waves-effect z-depth-3 "  title="Logout" href="logout.php">
+			<i class="material-icons">power_settings_new</i>
+		</a>
+			<a class="red btn waves-effect z-depth-3"  title="Logout" href="home.php">
+			<i class="material-icons">home</i>
+		</a>
+
     </div>
   </div>
 </footer>

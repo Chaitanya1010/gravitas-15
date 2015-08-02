@@ -22,8 +22,9 @@ if(isset($_SESSION["regno"]))
 		{
 			$q = "SELECT * FROM `events` WHERE `id`=$cart_array[$i]";
 			$r = mysqli_query($mysqli,$q);
-			$t=mysqli_fetch_array($r);
-			$q1= "INSERT INTO `internal_registration` (`id`, `regno`, `event_id`, `team`, `price` ,`date`, `time`, `rrno` ,`cord_login`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$t[2]', '$date','$time','$rr','$cord_login')";
+			$t = mysqli_fetch_array($r);
+			$val = $t[2]*$team_array[$i]; 
+			$q1 = "INSERT INTO `internal_registration` (`id`, `regno`, `event_id`, `team`, `price` ,`date`, `time`, `rrno` ,`cord_login`) VALUES (NULL, '$regno', '$t[0]', '$team_array[$i]', '$val', '$date','$time','$rr','$cord_login')";
 			$res = mysqli_query($mysqli,$q1);
 			if($res==true)
 			{

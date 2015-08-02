@@ -42,7 +42,7 @@ if(isset($_SESSION["regno"]))
 		else
 			$max=$arr[9];
 		echo "<TR><TD>$arr[0]</TD><TD>$arr[1]</TD><TD>$arr[2]</TD><TD>$arr[3]</TD><TD>$arr[4]</TD><TD>$arr[5]</TD><TD>$arr[6]</TD><TD>$t</TD><TD>$min</TD><TD>$max</TD><TD>$cat</TD>
-		<TD><button id='$arr[0]' name ='$arr[0]' onclick='excel_eventlist(this.id)'class='waves-effect waves-light indigo darken-2 btn z-depth-1'><i class='material-icons'>play_for_work</i>
+		<TD><button id='$arr[0]' name ='$arr[0]' onclick='excel_eventlist(this.id)'class='indigo btn-floating btn-large waves-effect z-depth-3'><i class='material-icons'>play_for_work</i>
 </button></TD></TR>";
 	}
 	echo"</TABLE></div></div>

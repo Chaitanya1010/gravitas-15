@@ -1,8 +1,11 @@
 <?php
 session_start();
-if(isset($_SESSION["regno"]))
+if(isset($_SESSION["regno"])&&isset($_POST["regno"])&&isset($_POST["name"])&&isset($_POST["phno"])&&isset($_POST["email"]))
 {
-	$regno = $_GET["r"];
+	$regno = $_POST["regno"];
+	$name = $_POST["name"];
+	$ph = $_POST["phno"];
+	$email = $_POST["email"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,8 +61,12 @@ if(isset($_SESSION["regno"]))
 <script>
 var cart = new Array();
 var team = new Array();
+var combo = new Array();
 var lastType = 0;
 var regno = "<?php echo $regno ?>";
+var name = "<?php echo $name ?>";
+var ph = "<?php echo $ph ?>";
+var email = "<?php echo $email ?>";
 //To display the events in each type
 //val - value typed in search box or "body" while refreshing the events list
 function search_events(val,stype)
@@ -182,11 +189,7 @@ function proceed_1()
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
 }
-//home button
-function back()
-{
-	window.location="event_list.php";
-}
+
 function payment(val)
 {
 	if(val==0)
@@ -325,15 +328,44 @@ $('.modal-trigger').leanModal();
 
  </script>
 </main>
-
-
 	<footer class="page-footer indigo darken-4">
   <div class="footer-copyright">
     <div class="container">
       © COPYRIGHT GRAVITAS 2015
-      <a class='modal-trigger right' href='#credits'>Developers</a>
+      <a class='modal-trigger right white-text' href='#credits'>Developers</a>
+      </div>
+  </div>
+</footer>
+<div id="credits" class="modal">
+  <div class="modal-content" style='padding:0'>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-image">
+            <img src="credits.jpg">
+            <span class="card-title">Developers</span>
+          </div>
+          <div class="card-content" style='padding:0'>
+            <div class='row'>
+              <div class='col s6'>
+              <h5 class='header light'><a href="https://in.linkedin.com/pub/chaitanya-tetali/86/763/aa2" target='_blank'>Tetali Chaitanya</a></h5>
+                Back End
+              </div>
+              <div class='col s6'>
+                <h5 class='header light'><a href="https://www.linkedin.com/in/rajalakshmisenthil" target='_blank'>Rajalakshmi Senthil</a></h5>
+                Back End
+              </div>
+              <div class='col s6'>
+                <h5 class='header light'><a href="https://in.linkedin.com/in/shubhodeep9" target='_blank'>Shubhodeep Mukherjee</a></h5>
+                Front End
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 </footer>
 </body>
 </html>
@@ -341,11 +373,10 @@ $('.modal-trigger').leanModal();
 }
 else
 {
-	session_unset();
-	session_destroy();
-	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-	header("Location:index.php");
-	exit();
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
 }
 ?>
