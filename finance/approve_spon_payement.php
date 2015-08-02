@@ -21,7 +21,7 @@
 		if($res_approve)
 		{
 			echo "</br><b>Approved</b></br>";
-			require("mail");
+			require("mail.php");
 		}
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
