@@ -3,13 +3,11 @@
 $to= "";
 $subject= "" ;
 $message="";
-$loc=""; //File attchment location
+$loc="excel.xls"; 
 
-/* For attachment use:
-	$data shd have the data to be printed in the xls with tab space
-	file_put_contents("../example.xls",$data);
+	$data = "name\tchaitanya\tis\ta\tnut";
+	file_put_contents("excel.xls",$data);
 	print "$data";
-*/
 
 if($mail->smtpConnect())
 {
