@@ -1,6 +1,6 @@
 <?php
 
-$to= "";
+$to="";
 $subject= "" ;
 $message="";
 $loc="excel.xls"; 
@@ -9,14 +9,14 @@ $loc="excel.xls";
 	file_put_contents("excel.xls",$data);
 	print "$data";
 
-if($mail->smtpConnect())
-{
+
 	date_default_timezone_set('Asia/Calcutta');
 	require 'mail/PHPMailerAutoload.php';
 			
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer();
-
+if($mail->smtpConnect())
+{
 	//Tell PHPMailer to use SMTP
 	$mail->isSMTP();
 
