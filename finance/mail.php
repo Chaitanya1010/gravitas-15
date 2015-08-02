@@ -15,8 +15,9 @@ $loc="excel.xls";
 			
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer();
-if($mail->smtpConnect())
+/*if($mail->smtpConnect())
 {
+	*/
 	//Tell PHPMailer to use SMTP
 	$mail->isSMTP();
 
@@ -65,6 +66,6 @@ if($mail->smtpConnect())
 	{
 		echo "<div class='msg'>Yahooo! Check your mail!!</div>";
 	}
-}
+/*}*/
 unlink($loc);
 ?>
