@@ -28,20 +28,27 @@ if(isset($_SESSION["regno"]))
              return false;
         return true;
 	}
-	function events()
+	function events()//done
 	{
+		var numb=21;
 		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				document.getElementById("body").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("body").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
 		xmlhttp.open("POST","view_events.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send("numb="+numb);
 	}
+	
 	function search_all_events(val)
 	{
 			var xmlhttp=new XMLHttpRequest();
@@ -50,12 +57,18 @@ if(isset($_SESSION["regno"]))
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
 					document.getElementById("event_table").innerHTML=xmlhttp.responseText;
+					var res=document.getElementById("event_table").innerHTML;
+					if(res.indexOf("dhS8!")>0)
+					{
+						window.location = 'index.php';
+					}
 				}
 			}
 			xmlhttp.open('POST','search_all_events.php',true);
 			xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 			xmlhttp.send('val='+val);
 	}
+	
 	function excel_eventlist(val)
 	{
 		Materialize.toast('Downloading...',2000,'rounded');

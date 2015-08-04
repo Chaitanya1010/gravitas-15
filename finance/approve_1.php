@@ -17,7 +17,7 @@
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button>
     			<button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd(".$id.")'>Approve DD</button>
     			<button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking/button>";
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking</button>";
 
     	echo "<div id='select_approve_option'></div>";
     }
@@ -34,7 +34,7 @@
         "<h5 class='header light'>Approval of Stall Rents</h5>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd(".$id.")'>Approve DD</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>;
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking</button>";
           
       echo "<div id='select_approve_option'></div>";

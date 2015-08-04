@@ -308,6 +308,7 @@ function checkout()
 	}
 	if(pay=="0") // For card payment
 	{
+		var numb=100;
 		var rrno = document.getElementById("rrno").value;
 		if(rrno=="")
 		{
@@ -329,7 +330,7 @@ function checkout()
 		}
 		xmlhttp.open("POST","card_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&rr="+rrno+"&regno="+regno+"&phno="+phno+"&combo="+combo);
+		xmlhttp.send("numb="+numb+"cart="+cart+"&team="+team+"&rr="+rrno+"&regno="+regno+"&phno="+phno+"&combo="+combo);
 	}
 	else if(pay=="1") // For cash Payment
 	{

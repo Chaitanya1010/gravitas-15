@@ -1,6 +1,6 @@
 <?php
-session_start();
-if(isset($_SESSION["regno"]))
+	session_start();
+	if((isset($_SESSION['regno']))&&(isset($_REQUEST['numb'])))
 {
 	require("sql_con.php");
 	$cart = $_POST["cart"];
@@ -35,7 +35,7 @@ if(isset($_SESSION["regno"]))
 		
 		echo"<TR><TH>Total</TH><TH colspan='3'>&#8377; $sum</TH></TR></TABLE>";
 		echo"<b>Payment Mode:</B><div class='input-field'><input type='radio' name='pay' id='pay1' value='0' onclick='payment(this.value)' class='with-gap indigo'><label for='pay1'>Card Payment</label><BR/><input type='radio' name='pay' id='pay2' value='1'  class='with-gap'checked onclick='payment(this.value)'><label for='pay2'>Cash Payment</label><br>";
-		echo"<div id='dd'></div><br></div>";
+		echo"<div id='dd'></div><br><button class='btn waves-effect waves-light indigo darken-4' onclick='checkout()' id='proceed_2' name='proceed_2'><i class='material-icons left'>check_circle</i>Checkout </button></div></div>";
 		if($flag==1)
 		{
 			echo "<br/><br/><br/><br/><br/><br/><div class ='container row'><div class='card card-content'><TABLE class='striped'><TR><TH>S.No</TH><TH>Combo Workshops</TH></TR>";
@@ -50,9 +50,25 @@ if(isset($_SESSION["regno"]))
 			echo "</TABLE></div></div>";
 		}
 	}
+	echo"</div>";
 }
-else
-	require("logout.php");
+else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['numb']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['id']))))
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		header("Location:index.php");
+	}
+	else
+	{
+		session_unset();
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+		session_destroy();
+		echo "<div>Ah4*!bb dhS8!) Nh5@n</div>";
+		exit();
+	}
 ?>
-</div>
+
 
