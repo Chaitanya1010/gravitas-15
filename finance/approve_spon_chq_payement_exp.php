@@ -7,21 +7,15 @@
 		
 		$mode=$_SESSION['mode'];
 
-		if($mode==1)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_1` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
+		if($mode==55)
+			$sql_approve="UPDATE  `finance`.`mode_cheque_expenditure` SET  `approval_1` =  '1' WHERE  `mode_cheque_expenditure`.`unique_id_chq` =$id;";
 		
-		else if($mode==2)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_2` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
-		
-		else if($mode==3)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_3` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
-				
 		$res_approve=mysqli_query($mysqli,$sql_approve);
 
-		if(($res_approve)&&($mode==3)) 
+		if($res_approve)
 		{
 			echo "</br><b>Approved</b></br>";
-			require("mail.php");
+			//send mail
 		}
 	}
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))

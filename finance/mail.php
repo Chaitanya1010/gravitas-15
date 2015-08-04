@@ -1,9 +1,9 @@
 <?php
 
-$to="shambhavi110@gmail.com";
-$subject= "hf";
-$message="gf";
-$loc="excel.xls"; 
+	$to="shambhavi110@gmail.com";
+	$subject= "hf";
+	$message="gf";
+	$loc="excel.xls"; 
 
 	$data = "name\tchaitanya\tis\ta\tnut";
 	file_put_contents("excel.xls",$data);

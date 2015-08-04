@@ -13,6 +13,11 @@
 		{
 			header('Location:approve_home_1.php');
 		}
+
+		else if($mode==55)
+		{
+			header('Location:approve_expenses.php');
+		}
 	}
 	else if(isset($_POST['admin_login']))
 	{
@@ -33,6 +38,11 @@
 				if($mode==0)
 				{
 					header('Location:index.php');
+				}
+
+				else if($mode==55)
+				{
+					header('Location:approve_expenses.php');
 				}
 
 				else

@@ -16,7 +16,8 @@
   			"<h5 class='header light'>Approval of Sponsor</h5>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button>
     			<button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd(".$id.")'>Approve DD</button>
-    			<button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>";
+    			<button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking/button>";
 
     	echo "<div id='select_approve_option'></div>";
     }
@@ -33,7 +34,9 @@
         "<h5 class='header light'>Approval of Stall Rents</h5>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd(".$id.")'>Approve DD</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>";
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>;
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking</button>";
+          
       echo "<div id='select_approve_option'></div>";
     }
     if($id==3)  //T-shirt sales
@@ -56,10 +59,12 @@
         "<h5 class='header light'>Approval of Others</h5>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash(".$id.")'>Approve Cash</button>
           <button onclick='approve_dd(".$id.")' class='btn waves-effect waves white indigo-text darken-4' >Approve DD</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>";
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque(".$id.")'>Approve Cheques</button>          
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net(".$id.")'>Approve NET Banking</button>";
+
       echo "<div id='select_approve_option'></div>";
     }
-    if($id==100)  //External
+    /*if($id==100)  //External
     {
       echo
         "<h5 class='header light'>Approval of Externals</h5>
@@ -69,7 +74,7 @@
     if($id==101)  //Internal
     {
 
-    }
+    }*/
 ?>
 </div>
 </div>

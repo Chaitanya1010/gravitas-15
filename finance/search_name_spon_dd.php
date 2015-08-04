@@ -5,11 +5,11 @@
 		require('sql_con.php');
 		$dd_number=$_REQUEST['name'];
 		$category=$_REQUEST['cat'];
-		$id=$_REQUEST['id'];
+		//$category=$_REQUEST['id'];
 
 		$mode=$_SESSION['mode'];
 
-		if($id==0)//sponsors
+		if($category==0)//sponsors
 		{
 			$first_data="Company Name";
 			$second_data="Person Name";
@@ -19,7 +19,7 @@
 			$sixth_data="Remarks";
 		}
 
-		if($id==1)	//Accomodation
+		if($category==1)	//Accomodation
 		{
 			$first_data="Event Name";
 			$second_data="Institute Name and Place";
@@ -29,7 +29,7 @@
 			$sixth_data="Remarks";
 		}
 		
-		if($id==2)	//Stall - Rent
+		if($category==2)	//Stall - Rent
 		{
 			$first_data="Purpose of Stall";
 			$second_data="Person Name";
@@ -39,7 +39,7 @@
 			$sixth_data="Remarks";
 		}
 		
-		if($id==3)	//Stall - Rent
+		if($category==3)	//Stall - Rent
 		{
 			$first_data="Person Name";
 			$second_data="Date";
@@ -49,7 +49,7 @@
 			$sixth_data="Remarks";
 		}
 
-		if($id==4)	//Workshops
+		if($category==4)	//Workshops
 		{
 			$first_data="Name of Workshop";
 			$second_data="Workshop Conducting Company Name";
@@ -59,7 +59,7 @@
 			$sixth_data="Remarks";
 		}
 
-		if($id==5)	//Others
+		if($category==5)	//Others
 		{
 			$first_data="Name/Event name";
 			$second_data="Sponsor Company/Person name";

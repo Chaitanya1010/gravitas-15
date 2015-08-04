@@ -70,7 +70,7 @@
 		echo "
 		<h5>Cheque approval</h5>";
 		echo"<div class='row'><div class='input-field col s12 m6'>
-		<label for='search_chq_numb'>Search by Cheque number</label><input type='text' name='search_chq_numb' onkeyup='search_spon_chq(3,".$id.")' id='search_chq_numb' autocomplete='off'></div></div>
+		<label for='search_chq_numb'>Search by Cheque number</label><input type='text' name='search_chq_numb' onkeyup='search_spon_chq(".$id.")' id='search_chq_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_chq'>";
 
 			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>

@@ -70,7 +70,7 @@
 		echo "
 		<h5>DD approval</h5>";
 		echo"<div class='row'><div class='input-field col s12 m6'>
-		<label for='search_dd_numb'>Search by DD number</label><input type='text' name='search_dd_numb' onkeyup='search_spon_dd(3,".$id.")'  id='search_dd_numb' autocomplete='off'></div></div>
+		<label for='search_dd_numb'>Search by DD number</label><input type='text' name='search_dd_numb' onkeyup='search_spon_dd(".$id.")'  id='search_dd_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_dd'>";
 
 			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>

@@ -4,7 +4,7 @@
 	{
 		$mode=$_SESSION['mode'];
     	{
-          if(!$mode==0)
+          if($mode!=0)
           {
             session_unset();
             header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");

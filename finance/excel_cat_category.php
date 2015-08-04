@@ -41,8 +41,8 @@
 			header("Content-Type: application/vnd.ms-excel; charset=utf-8");
 			header("Content-disposition: attachment; filename=".$file_name."");
 			header('Cache-Control: max-age=0');
-			echo   ' Cash '. "\n\n";
-			echo   'Person Name ' . "\t". 'Purpose' . "\t". 'Amount' . "\t" . 'Phone number' . "\t". 'Remarks' ."\t". '1000X' . "\t" . '500X' . "\t". '100X' . "\t". '50X' . "\t". '20X' . "\t". '10X' . "\t". '5X' . "\t". '2X' . "\t". '1X' ."\n\n";			
+			echo ' Cash '. "\n\n";
+			echo 'Person Name ' . "\t". 'Purpose' . "\t". 'Amount' . "\t" . 'Phone number' . "\t". 'Remarks' ."\t". '1000X' . "\t" . '500X' . "\t". '100X' . "\t". '50X' . "\t". '20X' . "\t". '10X' . "\t". '5X' . "\t". '2X' . "\t". '1X' ."\n\n";			
 			while($arr_basic=mysqli_fetch_array($result_sql))
 			{
 				$unique_id=$arr_basic['unique_id'];
@@ -50,7 +50,7 @@
 
 				if($mode==0)
 				{
-					$details_sql="SELECT * FROM  `mode_cash_expenditure` WHERE `unique_id_basic`='$unique_id'";
+					$details_sql="SELECT * FROM  `mode_cash_expenditure` WHERE `unique_id_basic`='$unique_id' AND `approval_1`=1";
 					$details_res=mysqli_query($mysqli,$details_sql);
 					if(mysqli_num_rows($details_res)>0)
 					{
@@ -74,8 +74,8 @@
 			$category_sql = "SELECT * FROM  `basic_expenditure_info` WHERE category='$id'";
 			$result_sql=mysqli_query($mysqli,$category_sql);
 		
-			echo 	"\n\n\n\n". ' DD '. "\n\n";
-			echo   'Person Name' . "\t". 'Purpose' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Remarks '."\t". 'DD number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
+			echo "\n\n\n\n". ' DD '. "\n\n";
+			echo 'Person Name' . "\t". 'Purpose' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Remarks '."\t". 'DD number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
 			while($arr_basic_dd=mysqli_fetch_array($result_sql))
 			{
 				$unique_id=$arr_basic_dd['unique_id'];
@@ -83,7 +83,7 @@
 
 				if($mode==1)
 				{
-					$details_sql="SELECT * FROM  `mode_dd_expenditure` WHERE `unique_id_basic`='$unique_id'";
+					$details_sql="SELECT * FROM  `mode_dd_expenditure` WHERE `unique_id_basic`='$unique_id' AND `approval_1`=1";
 					$details_res=mysqli_query($mysqli,$details_sql);
 					if(mysqli_num_rows($details_res)>0)
 					{
@@ -107,11 +107,11 @@
 			$category_sql = "SELECT * FROM  `basic_expenditure_info` WHERE category='$id'";
 			$result_sql=mysqli_query($mysqli,$category_sql);
 		
-			echo 	"\n\n\n\n". ' Cheque '. "\n\n";
+			echo "\n\n\n\n". ' Cheque '. "\n\n";
 			echo 'Event Name' . "\t". 'Company Name' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Email-Id' . "\t".'Remarks '."\t". 'Cheque number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
 			while($arr_basic=mysqli_fetch_array($result_sql))
 			{
-				$details_sql="SELECT * FROM  `mode_cheque_expenditure` WHERE `unique_id_basic`='$unique_id'";
+				$details_sql="SELECT * FROM  `mode_cheque_expenditure` WHERE `unique_id_basic`='$unique_id' AND `approval_1`=1";
 				$details_res=mysqli_query($mysqli,$details_sql);
 				if(mysqli_num_rows($details_res)>0)
 					{
@@ -135,7 +135,7 @@
 			$category_sql = "SELECT * FROM  `basic_expenditure_info` WHERE category='$id'";
 			$result_sql=mysqli_query($mysqli,$category_sql);
 		
-			echo 	"\n\n\n\n". ' Net Banking '. "\n\n";
+			echo "\n\n\n\n". ' Net Banking '. "\n\n";
 			echo 'Event Name' . "\t". 'Company Name' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Email-Id' . "\t".'Remarks '."\t". ' Transaction ID ' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
 			while($arr_basic=mysqli_fetch_array($result_sql))
 			{

@@ -5,7 +5,7 @@
 		  $mode=$_SESSION['mode'];
     	{
 				$head = '';
-          if($mode==0)
+          if(($mode==0)||($mode==55))
           {
             session_unset();
             header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -338,7 +338,7 @@ function approve_dd(id) //approve_1.php -> approve_dd.php
   xmlhttp.send();
 }
 
-function search_spon_dd(id,cat)//approve_dd -> search_name_spon_dd.php
+function search_spon_dd(cat)//approve_dd -> search_name_spon_dd.php
 {
    var s = document.getElementById("search_dd_numb").value
     if(s!='')
@@ -357,7 +357,7 @@ function search_spon_dd(id,cat)//approve_dd -> search_name_spon_dd.php
         }
       }
 
-      xmlhttp.open("GET","search_name_spon_dd.php?name="+s+"&cat="+cat+"&id="+id,true);
+      xmlhttp.open("GET","search_name_spon_dd.php?name="+s+"&cat="+cat,true);
       xmlhttp.send();
     }
     else
@@ -396,7 +396,7 @@ function approve_spon_dd(id_but) //search_name_spon_dd.php/  approve_dd.php -> a
 /*Approve Cheque starts*/
 function approve_cheque(id) //approve_1.php -> approve_cheque.php
 {
-	var xmlhttp=new XMLHttpRequest();
+	  var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -409,13 +409,13 @@ function approve_cheque(id) //approve_1.php -> approve_cheque.php
           }
 		  }
   	}
-  xmlhttp.open("GET","approve_cheque.php?id="+id,true);
-  xmlhttp.send();
+    xmlhttp.open("GET","approve_cheque.php?id="+id,true);
+    xmlhttp.send();
 }
 
 
 
-function search_spon_chq(id,cat)// approve_cheque.php , search_name_spon_chq.php
+function search_spon_chq(cat)// approve_cheque.php , search_name_spon_chq.php
 {
     var s = document.getElementById("search_chq_numb").value
     if(s!='')
@@ -434,7 +434,7 @@ function search_spon_chq(id,cat)// approve_cheque.php , search_name_spon_chq.php
         }
       }
 
-      xmlhttp.open("GET","search_name_spon_chq.php?name="+s+"&cat="+cat+"&id="+id,true);
+      xmlhttp.open("GET","search_name_spon_chq.php?name="+s+"&cat="+cat,true);
       xmlhttp.send();
     }
     else
@@ -470,6 +470,28 @@ function approve_spon_chq(id_but) //approve_cheque -> approve_spon_chq_payement.
 
 /*Approve cheque Ends*/
 
+//NET banking starts
+function approve_net(id)
+{
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          document.getElementById("select_approve_option").innerHTML=xmlhttp.responseText;
+          var res=document.getElementById("select_approve_option").innerHTML;
+          if(res.indexOf("dhS8!")>0)
+          {
+            window.location = 'login_approve.php';
+          }
+      }
+    }
+    xmlhttp.open("GET","approve_net_banking.php?id="+id,true);
+    xmlhttp.send();
+}
+
+//NET banking ends
+
 
 /*EXCEL downloads*/
 function download_cash_excel(id,cat)	//Make it as event-wise //approve_cash.php -> excel_cash_dwn.php
@@ -491,6 +513,8 @@ function download_cash_excel(id,cat)	//Make it as event-wise //approve_cash.php 
 function notify_me_exel_dwnd(id)  //approve_1.php -> excel_cat_category.php
 {
 	Materialize.toast('Starting Download', 4000, 'rounded');
+  if(id==0)
+    return false;
   var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
@@ -520,8 +544,8 @@ function download_chq_excel(id,cat) //approve_cheque -> excel_cqh_dwn.php
 
 function download_dd_excel(id,cat)  //approve_dd.php -> excel_dd_dwn.php
 {
-	Materialize.toast('Starting Download', 4000, 'rounded');
-	var xmlhttp=new XMLHttpRequest();
+	  Materialize.toast('Starting Download', 4000, 'rounded');
+	  var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
   	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -530,6 +554,21 @@ function download_dd_excel(id,cat)  //approve_dd.php -> excel_dd_dwn.php
     	}
   	}
   	xmlhttp.open("GET","excel_dd_dwn.php?id="+id+"&cat="+cat,true);
+    xmlhttp.send();
+}
+
+function download_net_excel(id,cat) 
+{
+    Materialize.toast('Starting Download', 4000, 'rounded');
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            window.location = 'excel_net_dwn.php?id='+id+'&cat='+cat;
+        }
+    }
+    xmlhttp.open("GET","excel_net_dwn.php?id="+id+"&cat="+cat,true);
     xmlhttp.send();
 }
 

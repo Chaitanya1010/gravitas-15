@@ -4,26 +4,27 @@
 	{
 		require('sql_con.php');
 		$id=$_REQUEST['id'];
-		
+
 		$mode=$_SESSION['mode'];
 
-		if($mode==1)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_1` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
+		?>
+		<script>
+		$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15
+		});
+		</script>
+		<?php
+		echo "
+			<h5>NET Banking approval</h5>";
 		
-		else if($mode==2)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_2` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
-		
-		else if($mode==3)
-			$sql_approve="UPDATE  `finance`.`mode_cash` SET  `approval_3` =  '1' WHERE  `mode_cash`.`unique_id_note` =$id;";
-				
-		$res_approve=mysqli_query($mysqli,$sql_approve);
+		echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_net_excel_exp(this.id,".$id.")' id='1'>Excel Download for All</button><br/>";
 
-		if(($res_approve)&&($mode==3)) 
-		{
-			echo "</br><b>Approved</b></br>";
-			require("mail.php");
-		}
+		echo "<div id='search_results_spon_net_exp'>";
+
+		echo "</div>";
 	}
+		
 	else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
 	{
 		session_unset();
