@@ -261,10 +261,25 @@ function approve_spon_cash_exp(id_but)  //search_name_spon/approve_cash -> appro
     }
     return false;
 }
+
+function download_cash_exp_excel(id,cat)
+{
+  var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          window.location = 'excel_cash_dwn_exp.php?id='+id+'&cat='+cat;
+      }
+    }
+    xmlhttp.open("GET","excel_cash_dwn_exp.php?id="+id+"&cat="+cat,true);
+    xmlhttp.send();
+}
 //Cash approval ends
 
 
 //DD approval starts
+
 function approve_dd_exp(id)
 {
 	var xmlhttp=new XMLHttpRequest();
@@ -337,6 +352,21 @@ function approve_spon_dd_exp(id_but)
     }
     return false;
 }
+
+function download_dd_excel_exp(id,cat)
+{
+  var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          window.location = 'excel_dd_dwn_exp.php?id='+id+'&cat='+cat;
+      }
+    }
+    xmlhttp.open("GET","excel_dd_dwn_exp.php?id="+id+"&cat="+cat,true);
+    xmlhttp.send();
+}
+
 //DD approval ends
 
 
@@ -411,6 +441,20 @@ function approve_spon_chq_exp(id_but) //approve_cheque -> approve_spon_chq_payem
         return true;
     }
     return false;
+}
+
+function download_chq_excel_exp(id,cat)
+{
+  var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          window.location = 'excel_chq_dwn_exp.php?id='+id+'&cat='+cat;
+      }
+    }
+    xmlhttp.open("GET","excel_chq_dwn_exp.php?id="+id+"&cat="+cat,true);
+    xmlhttp.send();
 }
 //Cheque ends here
 

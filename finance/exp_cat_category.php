@@ -71,10 +71,10 @@
     {
       echo
         "<h5 class='header light'>Approval of Prize Money</h5>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash_exp(".$id.")'>Approve Cash</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd_exp(".$id.")'>Approve DD</button>
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cash_exp(".$id.")'>Approve Cash</button>";
+         /* <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_dd_exp(".$id.")'>Approve DD</button>
           <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_cheque_exp(".$id.")'>Approve Cheques</button>
-          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net_exp(".$id.")'>Approve NET Banking</button>";
+          <button class='btn waves-effect waves white indigo-text darken-4' onclick='approve_net_exp(".$id.")'>Approve NET Banking</button>";*/
 
       echo "<div id='select_approve_option_exp'></div>";
     }
@@ -156,7 +156,7 @@
 </div>
 <?php
   }
-  else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id_verify']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id_verify']))))
+  else if((isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['name_fin']))&&(!isset($_REQUEST['id']))))
   {
     session_unset();
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");

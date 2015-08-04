@@ -10,10 +10,11 @@
 		$amount=$_REQUEST['amount'];
 		$phno=$_REQUEST['phno'];
 		$remarks=$_REQUEST['remarks'];
+		$numb_days=$_REQUEST['numb_days'];
 
 		$counter_flag=0;
 		
-			$sql_basic_add="INSERT INTO `finance`.`basic_info` (`category`,`event_name`, `company_name`, `amount`, `phno`, `email_id`, `mode`, `remarks`) VALUES ('2', '$event_name', '$company_name', '$amount', '$phno', '', '$selected', '$remarks');";
+			$sql_basic_add="INSERT INTO `finance`.`basic_info` (`category`,`event_name`, `company_name`, `amount`, `phno`, `email_id`, `mode`, `remarks`) VALUES ('2', '$event_name', '$company_name', '$amount', '$phno', '$numb_days', '$selected', '$remarks');";
 
 			$res_basic_add=mysqli_query($mysqli,$sql_basic_add);
 			
@@ -133,7 +134,7 @@
 				$issue_date_net=$_REQUEST['issue_date_net'];
 
 
-				$sql_add_net= "INSERT INTO `finance`.`mode_net` (`trans_id`, `bank_name_net`, `issue_date_net`, `category`, `unique_id_basic`, `approval_1`, `approval_2`, `approval_3`) VALUES ('$trans_id', '$bank_name_net', '$issue_date_net', '2', '$id', '0', '0', '0');";
+				$sql_add_net= "INSERT INTO `finance`.`mode_net` (`trans_id`, `bank_name_net`, `issue_date_net`, `category`, `unique_id_basic`) VALUES ('$trans_id', '$bank_name_net', '$issue_date_net', '2', '$id');";
 						$res_add_net=mysqli_query($mysqli,$sql_add_net);
 						
 						if($res_add_net)
@@ -150,7 +151,7 @@
 
 			else if($counter_flag!=0)//delete the records from basic table
 			{
-				$sql_del_basic="DELETE * FROM `basic_info` WHERE unique_id='$i' and category='0';";
+				$sql_del_basic="DELETE * FROM `basic_info` WHERE unique_id='$i' and category='2';";
 				$res_del_basic=mysqli_query($mysqli,$sql_del_basic);
 				if($res_del_basic)
 				{

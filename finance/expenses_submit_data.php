@@ -160,7 +160,7 @@
 
 			else if($counter_flag!=0)//delete the records from basic table
 			{
-				$sql_del_basic="DELETE * FROM `basic_info` WHERE unique_id='$i' and category='0';";
+				$sql_del_basic="DELETE * FROM `basic_info` WHERE unique_id='$i' and category='$branch';";
 				$res_del_basic=mysqli_query($mysqli,$sql_del_basic);
 				if($res_del_basic)
 				{

@@ -6,7 +6,7 @@
 		echo"
 			Purpose: <input type='text' name='purpose_stall_add' id='purpose_stall_add'  placeholder='Purpose of Stall' autocomplete='off'><br><br>
 			Person name: <input type='text' name='stall_person_name_add' id='stall_person_name_add'  placeholder='Stall Person Name' autocomplete='off'><br><br>
-			Phone number:<input type='text' name='phno_stall_add'  placeholder='9092******' id='phno_stall_add' autocomplete='off' onkeypress='return isNumber(event)'></br><br>
+			Phone number:<input type='text' maxlength='10' name='phno_stall_add'  placeholder='9092******' id='phno_stall_add' autocomplete='off' onkeypress='return isNumber(event)'></br><br>
 			Number of Days:<input type='text' name='numb_days_stall_add'  placeholder='5/6/7.,etc' id='numb_days_stall_add' autocomplete='off' onkeypress='return isNumber(event)'></br><br>
 			Amount:<input type='text' name='amount_stall_add'  placeholder='Amount Credited' id='amount_stall_add' autocomplete='off' onkeypress='return isNumber(event)'></br><br>
 			Modes:</br>

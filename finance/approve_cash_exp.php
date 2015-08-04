@@ -85,7 +85,27 @@
 						echo "<br/>No selected DATA<br/>";
 					}
 
+					if($id==16)
+					{
+						$sql_events_name="SELECT * FROM `event_prizes_money` WHERE `unique_id_event`='$unique_id_basic';";
+						$res_events_name=mysqli_query($mysqli,$sql_events_name);
+						if(mysqli_num_rows($res_events_name)>0)
+						{
+							while($arr_events=mysqli_fetch_array($res_events_name))
+							{
+								$event_name=$arr_events['event_name_prize'];
+								$first_prize=$arr_events['prize_1'];
+								$second_prize=$arr_events['prize_2'];
+								$third_prize=$arr_events['prize_3'];
+							}
+						}
+					}
+
 			echo "<h5 class='header light'>".$event_name."</h5>".$second_data."=".$company_name."<span class='right'>".$third_data."=".$amount."</span><br />".$fourth_data."=".$phno."<span class='right'>".$fifth_data."=".$remarks."</span></br>";
+			if($id==16)
+			{
+				echo "</br>First Prize=".$first_prize."<br/><span>Second Prize =".$second_prize."</span><br />Third Prize=".$third_prize."<br/><br/>";
+			}		
 					echo "Denomination:<br/>";
 					if($note_1!=0)
 						echo"1 X".$note_1."</br>";

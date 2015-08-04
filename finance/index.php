@@ -321,7 +321,9 @@ function sponsorship()	//revenue_select.php -> sponsor_add.php
 
 function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 {
-	var event_name= document.getElementById('event_name').value;
+	var e_1 = document.getElementById('event_prize_names_spon');
+	var event_name = e_1.options[e_1.selectedIndex].value;
+
 	var company_name= document.getElementById('company_name').value;
 	var amount= document.getElementById('amount').value;
 	var phno= document.getElementById('phno').value;
@@ -330,6 +332,13 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 	var mode= document.getElementsByName('mode');
 	var selected=99;
 
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if((email_id=="")||(!email_id.match(mailformat))||(phno.length!=10)||(remarks=='')||(event_name=='')||(company_name=='')||(amount==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
+	
 	for(var i=0;i<=3;i++)
 	{
 		if(mode[i].checked)
@@ -392,6 +401,12 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 		var branch_name_dd = document.getElementById('branch_name_dd').value;
 		var issue_date_dd = document.getElementById('issue_date_dd').value;
 
+		if((dd_numb=='')||(bank_name_dd=='')||(branch_name_dd=='')||(issue_date_dd==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","sponsor_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
 		xmlhttp.send();
   		return;
@@ -404,6 +419,12 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 		var branch_name_chq = document.getElementById('branch_name_chq').value;
 		var issue_date_chq = document.getElementById('issue_date_chq').value;
 
+		if((cheque_numb=='')||(bank_name_chq=='')||(branch_name_chq=='')||(issue_date_chq==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","sponsor_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
 		xmlhttp.send();
   		return;
@@ -415,12 +436,20 @@ function submit_sponsor()//  sponsor_add.php -> sponsor_submit_data
 		var bank_name_net = document.getElementById('bank_name_net').value;
 		var issue_date_net = document.getElementById('issue_date_net').value;
 
+		if((trans_id=='')||(bank_name_net=='')||(issue_date_net==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","sponsor_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
 		xmlhttp.send();
   		return;
 	}
 }
 /*Sponsorship calls ends*/
+
+
 
 /*accomodation starts*/
 function accomodation_revenue() //revenue_select.php -> accomodation_add.php
@@ -443,6 +472,7 @@ function accomodation_revenue() //revenue_select.php -> accomodation_add.php
 	xmlhttp.send();
 }
 
+
 function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_submit_data.php
 {
 	var purpose_stall_add= document.getElementById('event_acco_add').value;
@@ -453,6 +483,12 @@ function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_s
 	var remarks= document.getElementById('remarks_acco_add').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	if((purpose_stall_add=="")||(stall_person_name_add=='')||(phno_stall_add.length!=10)||(remarks=='')||(amount_stall_add=='')||(numb_days=='')||(amount==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	for(var i=0;i<1;i++)
 	{
@@ -511,9 +547,13 @@ function submit_add_accomodation()  //accomodation_add.php -> add_accomodation_s
 	}
 
 }
+
 /*Accomodation ends*/
 
+
+
 ///Stall starts
+
 function stall_rent_revenue()	//revenue_select.php -> stall_rent_add.php
 {
 	var id_numb=100;
@@ -542,8 +582,15 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 	var amount_stall_add= document.getElementById('amount_stall_add').value;
 	var phno_stall_add= document.getElementById('phno_stall_add').value;
 	var remarks= document.getElementById('remarks_add_stall').value;
+	var numb_days=document.getElementById('numb_days_stall_add').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	if((purpose_stall_add=="")||(stall_person_name_add=='')||(phno_stall_add.length!=10)||(remarks=='')||(amount_stall_add=='')||(numb_days=='')||(amount_stall_add==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}	
 
 	for(var i=0;i<=3;i++)
 	{
@@ -596,7 +643,7 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 		var note_2 = document.getElementById('note_2').value;
 		var note_1 = document.getElementById('note_1').value;
 
-		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&note_1000="+note_1000+"&note_500="+note_500+"&note_100="+note_100+"&note_50="+note_50+"&note_20="+note_20+"&note_10="+note_10+"&note_5="+note_5+"&note_2="+note_2+"&note_1="+note_1,true);
+		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&numb_days="+numb_days+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&note_1000="+note_1000+"&note_500="+note_500+"&note_100="+note_100+"&note_50="+note_50+"&note_20="+note_20+"&note_10="+note_10+"&note_5="+note_5+"&note_2="+note_2+"&note_1="+note_1,true);
   		xmlhttp.send();
   		return;
 	}
@@ -608,7 +655,13 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 		var branch_name_dd = document.getElementById('branch_name_dd').value;
 		var issue_date_dd = document.getElementById('issue_date_dd').value;
 
-		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
+		if((dd_numb=='')||(bank_name_dd=='')||(branch_name_dd=='')||(issue_date_dd==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
+		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&numb_days="+numb_days+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
 		xmlhttp.send();
   		return;
 	}
@@ -620,7 +673,13 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 		var branch_name_chq = document.getElementById('branch_name_chq').value;
 		var issue_date_chq = document.getElementById('issue_date_chq').value;
 
-		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
+		if((cheque_numb=='')||(bank_name_chq=='')||(branch_name_chq=='')||(issue_date_chq==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
+		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&numb_days="+numb_days+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
 		xmlhttp.send();
   		return;
 	}
@@ -631,7 +690,13 @@ function submit_add_stall() //stall_rent_add.php->add_stall_submit_data.php
 		var bank_name_net = document.getElementById('bank_name_net').value;
 		var issue_date_net = document.getElementById('issue_date_net').value;
 
-		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
+		if((trans_id=='')||(bank_name_net=='')||(issue_date_net==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
+		xmlhttp.open("GET","add_stall_submit_data.php?e_name="+purpose_stall_add+"&numb_days="+numb_days+"&c_name="+stall_person_name_add+"&amount="+amount_stall_add+"&phno="+phno_stall_add+"&remarks="+remarks+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
 		xmlhttp.send();
   		return;
 	}
@@ -663,6 +728,7 @@ function t_shirts_revenue() //revenue_select.php -> t_shirts_sales_add.php
 	xmlhttp.send();
 }
 
+
 function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.php
 {
 	var shirts_person_name_add= document.getElementById('shirts_person_name_add').value;
@@ -673,6 +739,12 @@ function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.
 	var remarks= document.getElementById('remarks_add_shirts').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	if((shirts_person_name_add=='')||(phno_shirts_add.length!=10)||(remarks=='')||(date_shirts_add=='')||(amount_shirts_add=='')||(numb_shirts_add==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	for(var i=0;i<=1;i++)
 	{
@@ -734,6 +806,8 @@ function submit_add_shirts() //t_shirts_sales_add.php -> add_shirts_submit_data.
 
 ///T-shirt's call ends here
 
+
+
 ///	Workshop call start's from here
 
 function workshops_revenue()	//revenue_select.php -> workshop_add.php
@@ -756,6 +830,7 @@ function workshops_revenue()	//revenue_select.php -> workshop_add.php
 	xmlhttp.send();
 }
 
+
 function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.php
 {
 	var person_name_workshop= document.getElementById('person_name_workshop').value;
@@ -766,6 +841,13 @@ function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.ph
 	var remarks= document.getElementById('remarks_workshop').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if((email_id_workshop=="")||(!email_id_workshop.match(mailformat))||(phno_workshop.length!=10)||(remarks=='')||(person_name_workshop=='')||(company_name_workshop=='')||(amount_workshop==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	for(var i=0;i<=1;i++)
 	{
@@ -826,7 +908,9 @@ function submit_add_workshop()	//workshop_add.php -> add_workshop_submit_data.ph
 }
 // workshop ends here
 
+
 //****************************************************************************
+
 
 //Renvenue starts here
 function others_revenue()	// revenue_select.php -> others_revenue_add.php
@@ -849,6 +933,7 @@ function others_revenue()	// revenue_select.php -> others_revenue_add.php
 	xmlhttp.send();
 }
 
+
 function submit_others_revenue() //others_revenue_add.php -> others_revenue_submit_data.php
 {
 	var event_name= document.getElementById('event_name').value;
@@ -859,6 +944,13 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 	var remarks= document.getElementById('remarks_sponsor').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if((email_id=="")||(!email_id.match(mailformat))||(phno.length!=10)||(remarks=='')||(event_name=='')||(company_name=='')||(amount==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	for(var i=0;i<=3;i++)
 	{
@@ -922,6 +1014,12 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 		var branch_name_dd = document.getElementById('branch_name_dd').value;
 		var issue_date_dd = document.getElementById('issue_date_dd').value;
 
+		if((dd_numb=='')||(bank_name_dd=='')||(branch_name_dd=='')||(issue_date_dd==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","others_revenue_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
 		xmlhttp.send();
   		return;
@@ -934,6 +1032,12 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 		var branch_name_chq = document.getElementById('branch_name_chq').value;
 		var issue_date_chq = document.getElementById('issue_date_chq').value;
 
+		if((cheque_numb=='')||(bank_name_chq=='')||(branch_name_chq=='')||(issue_date_chq==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","others_revenue_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
 		xmlhttp.send();
   		return;
@@ -945,6 +1049,12 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 		var bank_name_net = document.getElementById('bank_name_net').value;
 		var issue_date_net = document.getElementById('issue_date_net').value;
 
+		if((trans_id=='')||(bank_name_net=='')||(issue_date_net==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		xmlhttp.open("GET","others_revenue_submit_data.php?e_name="+event_name+"&c_name="+company_name+"&amount="+amount+"&phno="+phno+"&email_id="+email_id+"&remarks="+remarks+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
 		xmlhttp.send();
   		return;
@@ -952,6 +1062,7 @@ function submit_others_revenue() //others_revenue_add.php -> others_revenue_subm
 }
 
 //Others revenue ends here
+
 
 
 /******************************************************************************************/
@@ -979,6 +1090,8 @@ function ext_registrations()//index.php -> ext_registrations.php
   xmlhttp.send();
 }
 
+
+
 //check if all the inputs are given and redirect
 
 function submit_external() //ext_registrations.php->external_submit_data.php
@@ -988,6 +1101,12 @@ function submit_external() //ext_registrations.php->external_submit_data.php
 	var update_ext_date=document.getElementById('update_ext_date').value;
 	var remarks_external=document.getElementById('remarks_external').value;
 	var update_ext_id=document.getElementById('update_ext_id').value;
+
+	if((update_ext_id=='')||(remarks_external=='')||(update_ext_date=='')||(number_external=='')||(amount_external==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -1008,7 +1127,11 @@ function submit_external() //ext_registrations.php->external_submit_data.php
 
 /* External calls ends */
 
+
+
 /*********************************************************************************************/
+
+
 
 /* Internal call starts*/
 
@@ -1032,6 +1155,7 @@ function int_registrations() //index.php -> int_registrations.php
   	xmlhttp.send();
 }
 
+
 //check if all the inputs are given and redirect
 function submit_internal()	//int_registrations.php -> internal_submit_data.php
 {
@@ -1040,6 +1164,12 @@ function submit_internal()	//int_registrations.php -> internal_submit_data.php
 	var update_ext_date=document.getElementById('update_int_date').value;
 	var remarks_external=document.getElementById('remarks_internal').value;
 	var update_ext_id=document.getElementById('update_int_id').value;
+
+	if((update_ext_id=='')||(remarks_external=='')||(update_ext_date=='')||(number_external=='')||(amount_external==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	var xmlhttp=new XMLHttpRequest();
   	xmlhttp.onreadystatechange=function()
@@ -1060,9 +1190,26 @@ function submit_internal()	//int_registrations.php -> internal_submit_data.php
 
 /* Internal call Ends*/
 
+
+
 /*********************************************************************************************/
 
+
+
 /*Expenses calls starts*/
+
+function event_names_prizes()
+{
+		var e_1 = document.getElementById('event_prize_names');
+		var branch_1 = e_1.options[e_1.selectedIndex].value;
+		if(branch_1==0)
+		{
+			alert('Please select a valid Event');
+			return false;
+		}
+}
+
+
 
 function expenses()	//index.php -> expenses_add.php
 {
@@ -1085,6 +1232,7 @@ function expenses()	//index.php -> expenses_add.php
   xmlhttp.send();
 }
 
+
 function add_prizes()	//general call for CSS
 {
 	var e = document.getElementById('branch_expenses');
@@ -1099,6 +1247,7 @@ function add_prizes()	//general call for CSS
 	}
 }
 
+
 function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 {
 	var e = document.getElementById('branch_expenses');
@@ -1110,6 +1259,12 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 	var phno=document.getElementById('phno_expenses').value;
 	var mode= document.getElementsByName('mode');
 	var selected=99;
+
+	if((phno.length!=10)||(remarks_expenses=='')||(branch=='')||(amount=='')||(name_p=='')||(purpose==''))
+	{
+		alert("Please enter all valid details");
+		return false;
+	}
 
 	for(var i=0;i<=3;i++)
 	{
@@ -1148,6 +1303,23 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var s_p=document.getElementById('second_prize_cash').value;
 		var t_p=document.getElementById('third_prize_cash').value;
 
+		var total_prize=(f_p*1)+(s_p*1)+(t_p*1);
+		
+		var total_1=document.getElementById('amount_expenses').value;
+		total_1=parseInt(total_1);
+		total_prize=parseInt(total_prize);
+
+		if(total_1!=total_prize)
+		{
+			alert("Wrong credentials in Prize Money");
+			return false;
+		}
+
+		if((f_p=='')||(s_p=='')||(t_p==''))
+		{
+			alert("Wrong credentials in Prize Money");
+			return false;
+		}
 	}
 	if(selected==0)
 	{
@@ -1193,6 +1365,12 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var branch_name_dd = document.getElementById('branch_name_dd').value;
 		var issue_date_dd = document.getElementById('issue_date_dd').value;
 
+		if((dd_numb=='')||(bank_name_dd=='')||(branch_name_dd=='')||(issue_date_dd==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		if(branch==16)
 		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&dd_numb="+dd_numb+"&branch_name_dd="+branch_name_dd+"&bank_name_dd="+bank_name_dd+"&issue_date_dd="+issue_date_dd,true);
@@ -1215,6 +1393,12 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var branch_name_chq = document.getElementById('branch_name_chq').value;
 		var issue_date_chq = document.getElementById('issue_date_chq').value;
 
+		if((cheque_numb=='')||(bank_name_chq=='')||(branch_name_chq=='')||(issue_date_chq==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		if(branch==16)
 		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&cheque_numb="+cheque_numb+"&branch_name_chq="+branch_name_chq+"&bank_name_chq="+bank_name_chq+"&issue_date_chq="+issue_date_chq,true);
@@ -1235,6 +1419,12 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 		var bank_name_net = document.getElementById('bank_name_net').value;
 		var issue_date_net = document.getElementById('issue_date_net').value;
 
+		if((trans_id=='')||(bank_name_net=='')||(issue_date_net==''))
+		{
+			alert("Please Enter all details");
+			return false;
+		}
+
 		if(branch==16)
 		{
 			xmlhttp.open("GET","expenses_submit_data.php?phno="+phno+"&name="+name_p+"&purpose="+purpose+"&branch_1="+branch_1+"&f_p="+f_p+"&s_p="+s_p+"&t_p="+t_p+"&branch="+branch+"&amount="+amount+"&remarks_expenses="+remarks_expenses+"&mode="+selected+"&trans_id="+trans_id+"&bank_name_net="+bank_name_net+"&issue_date_net="+issue_date_net,true);
@@ -1250,9 +1440,13 @@ function submit_expenses() // expenses_add.php -> expenses_submit_data.php
 	}
 }
 
+
 /*Expenses calls ends*/
 
+
 /*********************************************************************************************/
+
+//GENERAL CALL STARTS
 
 //Reg-Ex calls
 function isNumber(evt)
@@ -1263,9 +1457,13 @@ function isNumber(evt)
         return true;
 }
 
+//GENERAL CALL ENDS
+
 
 //EXCEL downloads
+
 //downloading excel for adding the data
+
 function ext_registrations_excel()	//int_registrations.php -> excel_intreg.php
 {
 	Materialize.toast('Starting Download', 4000,'rounded');

@@ -12,23 +12,71 @@
 		$j=0;
 		$t_price=0;
 
-		if($cat==0)
-			$cat="Sponsor's Cash";
+		if($cat==0)//sponsors
+		{
+			$cat="Sponsors";
+			$first_data="Company Name";
+			$second_data="Person Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
 
-		else if($cat==1)
+		else if($cat==1)	//Accomodation
+		{
 			$cat="Accomodation";
+			$first_data="Event Name";
+			$second_data="Institute Name and Place";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of days";
+			$sixth_data="Remarks";
+		}
 
-		else if($cat==2)
-			$cat="Stall Rents";
+		else if($cat==2)	//Stall - Rent
+		{
+			$cat="Stall_Rent";
+			$first_data="Purpose of Stall";
+			$second_data="Person Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of days";
+			$sixth_data="Remarks";
+		}
 
-		else if($cat==3)
-			$cat="T Shirt Sales";
+		else if($cat==3)	//T-shirts
+		{
+			$cat="T_Shirts";
+			$first_data="Person Name";
+			$second_data="Date";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="No.of T-shirts ordered";
+			$sixth_data="Remarks";
+		}
 
-		else if($cat==4)
+		else if($cat==4)	//Workshops
+		{
 			$cat="Workshops";
+			$first_data="Name of Workshop";
+			$second_data="Workshop Conducting Company Name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
 
-		else if($cat==5)
+		else if($cat==5)	//Others
+		{
 			$cat="Others";
+			$first_data="Name/Event name";
+			$second_data="Sponsor Company/Person name";
+			$third_data="Amount";
+			$fourth_data="Phone Number";
+			$fifth_data="Email-ID";
+			$sixth_data="Remarks";
+		}
 
 		$query_basic = "SELECT * FROM `basic_info` where category = $cat_1 AND mode ='2'";
 		$result_basic = mysqli_query($mysqli,$query_basic);
@@ -39,7 +87,7 @@
 			$file_name = "Approved_Cheque_".$cat."_".$d.".xls";
 			header( "Content-Type: application/vnd.ms-excel" );
 			header( "Content-disposition: attachment; filename=$file_name" );
-			echo   'Event Name' . "\t". 'Company Name' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Email-Id' . "\t".'Remarks '."\t". 'Cheque number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
+			echo   $first_data . "\t". $second_data . "\t". $third_data . "\t" . $fourth_data ."\t" . $fifth_data . "\t". $sixth_data."\t". 'Cheque number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
 			
 			while($arr_basic=mysqli_fetch_array($result_basic))
 			{
@@ -77,7 +125,7 @@
 			$file_name = "All_Cheque_".$cat."_".$d.".xls";
 			header( "Content-Type: application/vnd.ms-excel" );
 			header( "Content-disposition: attachment; filename=$file_name" );
-			echo   'Event Name' . "\t". 'Company Name' . "\t". 'Amount' . "\t" . 'Phone number' ."\t" . 'Email-Id' . "\t".'Remarks '."\t". 'Cheque number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
+			echo   $first_data . "\t". $second_data . "\t". $third_data . "\t" . $fourth_data . "\t" . $fifth_data . "\t" . $sixth_data . "\t" . 'Cheque number' . "\t" . 'Branch Name' . "\t". 'Bank Name' . "\t". 'Issue Date' . "\n\n";
 			
 			while($arr_basic=mysqli_fetch_array($result_basic))
 			{

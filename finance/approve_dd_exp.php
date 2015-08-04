@@ -19,8 +19,8 @@
 		<label for='search_dd_numb'>Search by DD number</label><input type='text' name='search_dd_numb' onkeyup='search_spon_dd_exp(".$id.")'  id='search_dd_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_dd_exp'>";
 
-			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>
-			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
+			echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel_exp(this.id,".$id.")' id='0'>Excel Download for Approved</button>
+			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_dd_excel_exp(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
 
 
 			if($mode==55)

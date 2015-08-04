@@ -2,16 +2,35 @@
 	session_start();
 	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
+		require('sql_con.php');
+		echo"
+		<div class='row'>
+			<div class='input-field col s12 m6'>";
+				
+			 	//<input type='text' name='event_name' id='event_name' autocomplete='off'>
+				echo "<select id='event_prize_names_spon' class='browser-default' class='col s12 m6' name='event_prize_names'>";
+			
+				//select events from database
+				$event_list="SELECT * FROM  `events`;";
+				$res_events=mysqli_query($mysqli, $event_list);
+				
+				if(mysqli_num_rows($res_events)>0)
+				{
+					while($arr_events=mysqli_fetch_array($res_events))
+					{
+						echo "<option value=".$arr_events['name'].">".$arr_events['name']."</option>";
+					}
+				}
+
+			echo"</select></div></div>";
 		echo"
 		<div class='row'>
 			<div class='input-field col s12 m6'>
-				<label for='event_name'>Event Name</label>
-			 	<input type='text' name='event_name' id='event_name' autocomplete='off'>
-			</div>
-			<div class='input-field col s12 m6'>
+				<br/>
 				<label for='company_name'>Sponsor Name</label>
 				<input type='text' name='company_name' id='company_name' autocomplete='off'>
 			</div>
+			
 		</div>
 		<div class='row'>
 			<div class='input-field col s12'>
@@ -28,7 +47,7 @@
 				<br/><div id='more_credit_options'></div><br>
 			<div class='row'>
 			<div class='input-field col s12 m6'>
-			<label for='phno'>Phone Number</label><input type='text' name='phno' id='phno' autocomplete='off' onkeypress='return isNumber(event)'>
+			<label for='phno'>Phone Number</label><input type='text' maxlength='10' name='phno' id='phno' autocomplete='off' onkeypress='return isNumber(event)'>
 			</div>
 			<div class='input-field col s12 m6'>
 			<label fpr='email_id'>Email-ID</label><input type='email' name='email_id' id='email_id' autocomplete='off'>

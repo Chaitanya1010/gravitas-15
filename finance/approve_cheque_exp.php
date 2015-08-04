@@ -20,8 +20,8 @@
 		<label for='search_chq_numb'>Search by Cheque number</label><input type='text' name='search_chq_numb' onkeyup='search_spon_chq_exp(".$id.")' id='search_chq_numb' autocomplete='off'></div></div>
 		<div id='search_results_spon_chq_exp'>";
 
-		echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel(this.id,".$id.")' id='0'>Excel Download for Approved</button>
-			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
+		echo"<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel_exp(this.id,".$id.")' id='0'>Excel Download for Approved</button>
+			<button class='btn waves-effect waves white indigo-text darken-4' onclick='download_chq_excel_exp(this.id,".$id.")' id='1'>Excel Download for All</button><br />";
 
 
 			if($mode==55)

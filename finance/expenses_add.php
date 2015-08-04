@@ -2,6 +2,7 @@
 	session_start();
 	if((isset($_SESSION['name_fin']))&&(isset($_REQUEST['id'])))//session_variable verification
 	{
+		require('sql_con.php');
 		echo "
 		<div class='container'>
 		<div class='card'>
@@ -32,10 +33,21 @@
 			</div>
 			</div>
 		<div id='extra_prizes_info' style='display:none' class='col s12 m6'>
-			<select id='event_prize_names' onchange='event_names_prizes()' class='browser-default' class='col s12 m6' name='event_prize_names'>
-				<option value='0'>Event Names</option>
-				<option value='1'>Event 1</option>
-				<option value='2'>Event 2</option>
+			<select id='event_prize_names' onchange='event_names_prizes()' class='browser-default' class='col s12 m6' name='event_prize_names'>";
+			//select events from database
+			$event_list="SELECT * FROM  `events`;";
+			$res_events=mysqli_query($mysqli, $event_list);
+
+			echo "<option value='0'>Event Names</option>";
+			
+			if(mysqli_num_rows($res_events)>0)
+			{
+				while($arr_events=mysqli_fetch_array($res_events))
+				{
+					echo "<option value=".$arr_events['name'].">".$arr_events['name']."</option>";
+				}
+			}
+			echo"
 			</select></br></br>
 
 			First Prize: <input type='text' id='first_prize_cash' autocomplete='off' onkeypress='return isNumber(event)' placeholder='Ex:50000'/></br></br>
@@ -49,7 +61,7 @@
 		<div class='input-field col s12 m6'>
 		<label for='amount_expenses'>Amount</label><input type='text' name='amount_expenses'  id='amount_expenses' autocomplete='off' onkeypress='return isNumber(event)'></div>
 		<div class='input-field col s12 m6'>
-		<label for='phno_expenses'>Phone Number</label><input type='text' name='phno_expenses' id='phno_expenses' autocomplete='off' onkeypress='return isNumber(event)'>
+		<label for='phno_expenses'>Phone Number</label><input type='text' name='phno_expenses' maxlength='10' id='phno_expenses' autocomplete='off' onkeypress='return isNumber(event)'>
 		</div>
 		</div>
 		Modes:</br>

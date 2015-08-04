@@ -142,7 +142,7 @@
 			$issue_date_net=$_REQUEST['issue_date_net'];
 
 
-			$sql_add_net= "INSERT INTO `finance`.`mode_net` (`trans_id`, `bank_name_net`, `issue_date_net`, `category`, `unique_id_basic`, `approval_1`, `approval_2`, `approval_3`) VALUES ('$trans_id', '$bank_name_net', '$issue_date_net', '0', '$id', '0', '0', '0');";
+			$sql_add_net= "INSERT INTO `finance`.`mode_net` (`trans_id`, `bank_name_net`, `issue_date_net`, `category`, `unique_id_basic`) VALUES ('$trans_id', '$bank_name_net', '$issue_date_net', '0', '$id');";
 					$res_add_net=mysqli_query($mysqli,$sql_add_net);
 					
 					if($res_add_net)
