@@ -63,23 +63,20 @@ if(isset($_SESSION["regno"]))
 	}
 	function registration()
 	{	
-		document.getElementById('body').innerHTML="<div class ='container'><div class='card hoverable'><form class='card-content' id='form' action='event_list.php' method='post'><div class='input-field'><label for='name'>Name</label><br/><input type='text' name='name' id='name' onkeypress='return isAlpha(event)' autocomplete='off'></div><div class='input-field'><label for='regno'>Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off'></div><div class='input-field'><label for='email'>Email</label><br/><input type='text' name='email' id='email' autocomplete='off'></div><div class='input-field'><label for='phno'>Phone Number</label><br/><input type='text' name='phno' id='phno' onkeypress='return isNumber(event)' autocomplete='off'></div><div class ='input-field'><button onclick='reg_go()' class='waves-effect waves-light indigo darken-2 btn z-depth-1'>Submit</button></div></form>";
+		document.getElementById('body').innerHTML="<div class ='container'><div class='card hoverable'><form class='card-content' id='form' onsubmit='return reg_go()' action='event_list.php' method='post'><div class='input-field'><label for='regno'>Registration Number</label><br/><input type='text' name='regno' id='regno' maxlength='9' autocomplete='off'></div><div class='input-field'><label for='phno'>Phone Number</label><br/><input type='text' name='phno' id='phno' maxlength='10' autocomplete='off' onkeypress='return isNumber(event)'></div><div class ='input-field'><button class='waves-effect waves-light indigo darken-2 btn z-depth-1'>Submit <i class='material-icons right'>send</i> </button></div></form>";
 	}
 	function reg_go()
 	{
-		var name = document.getElementById("name").value;
 		var regno = document.getElementById("regno").value;
-		var email = document.getElementById("email").value;
 		var phno = document.getElementById("phno").value;
 		var pattern = /^[0-1]{1}[0-9]{1}[a-zA-Z]{3}[0-9]{4}$/;
-		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		if(regno.match(pattern)&&email.match(mailformat)&&name!=""&& phno.length==10)
+		if(regno.match(pattern)&& phno.length==10)
 		{
 			document.getElementById("form").submit();
 		}
 		else
 		{
-			Materialize.toast("Enter all details",3000,"rounded");
+			Materialize.toast("Enter all details!!",3000,"rounded");
 			return false;
 		}	
 	}
@@ -164,18 +161,12 @@ if(isset($_SESSION["regno"]))
 <div id="body"><div class ="container"><div class="card hoverable">
 <form class="card-content" id="form" onsubmit="return reg_go()" action="event_list.php" method="post">
 <div class="input-field">
-<label for="name">Name</label><br/><input type='text' name='name' id='name' autocomplete='off' onkeypress="return isAlpha(event)">
+<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 </div>
 <div class="input-field">
-<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off'>
+<label for="phno">Phone Number</label><br/><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
 </div>
-<div class="input-field">
-<label for="email">Email</label><br/><input type='text' name='email' id='email' autocomplete='off'>
-</div>
-<div class="input-field">
-<label for="phno">Phone Number</label><br/><input type='text' name='phno' id='phno' autocomplete='off' onkeypress="return isNumber(event)">
-</div>
-<div class ="input-field"><button class="waves-effect waves-light indigo darken-2 btn z-depth-1">Submit</button>
+<div class ="input-field"><button class="waves-effect waves-light indigo darken-2 btn z-depth-1">Submit <i class="material-icons right">send</i> </button>
 </div>
 </form>
 </div>
@@ -193,7 +184,6 @@ if(isset($_SESSION["regno"]))
 			<a class="red btn waves-effect z-depth-3"  title="Logout" href="home.php">
 			<i class="material-icons">home</i>
 		</a>
-
     </div>
   </div>
 </footer>
@@ -244,5 +234,13 @@ $('.modal-trigger').leanModal();
 <?php
 }
 else
-	require("logout.php");
+{
+	session_start();
+	session_unset();
+	session_destroy();
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+	header("Location:index.php");
+	exit();
+}
 ?>

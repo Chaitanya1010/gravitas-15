@@ -9,6 +9,7 @@ if(isset($_POST["login"]))
 	require("sql_con.php");
 	$uname=$_POST["regno"];
 	$pword=$_POST["pword"];
+
 	$stmt = "SELECT * FROM `login_internals` WHERE `regno`='$uname'  AND `password`='$pword'";
 	$uname_db="";
 	$pword_db="";
@@ -34,6 +35,7 @@ if(isset($_POST["login"]))
 	}
 	else
 		echo "Query not executed mysqli_error()";
+
 mysqli_close($mysqli);
 }
 ?>
@@ -43,16 +45,20 @@ mysqli_close($mysqli);
   <title>GraVITas'15</title>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> 
   <style>
-  .msg
+     .msg
      {
       background: #e53935;
       color: #ffffff;
       position: absolute;
-      left: 200px;
-      bottom: 110px;
-      padding: 4px 9px;
-      border-radius: 25px;
+        left: 400px;
+        bottom: 110px;
+        padding: 2px 7px;
+        border-radius: 25px;
      }
      body
      {
@@ -63,7 +69,7 @@ mysqli_close($mysqli);
       main 
       {
         flex: 1 0 auto;
-      }
+    }
     /* label color */
       .input-field label 
       {
@@ -104,11 +110,6 @@ mysqli_close($mysqli);
         box-shadow: 0 1px 0 0 #1a237e;
      }
   </style>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-
   </head>
 <body>
   <main>
@@ -122,7 +123,7 @@ mysqli_close($mysqli);
       <div class='card-content'>
     <form action='<?php echo $_SERVER["PHP_SELF"];?>'  method="POST">
   <div class='input-field'><label for="regno">Registration Number</label>
-<input type="text" id="regno" name="regno" autocomplete="off">
+<input type="text" id="regno" name="regno" autocomplete="off" maxlength="9">
 </div>
 <div class='input-field'>
       <label for="pword">Password</label>

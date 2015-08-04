@@ -1,11 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION["regno"])&&isset($_POST["regno"])&&isset($_POST["name"])&&isset($_POST["phno"])&&isset($_POST["email"]))
+if(isset($_SESSION["regno"])&&isset($_POST["regno"])&&isset($_POST["phno"]))
 {
 	$regno = $_POST["regno"];
-	$name = $_POST["name"];
 	$ph = $_POST["phno"];
-	$email = $_POST["email"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,13 +58,13 @@ if(isset($_SESSION["regno"])&&isset($_POST["regno"])&&isset($_POST["name"])&&iss
 </head>
 <script>
 var cart = new Array();
-var team = new Array();
 var combo = new Array();
+var team = new Array();
 var lastType = 0;
+
 var regno = "<?php echo $regno ?>";
-var name = "<?php echo $name ?>";
-var ph = "<?php echo $ph ?>";
-var email = "<?php echo $email ?>";
+var phno = "<?php echo $ph ?>";
+
 //To display the events in each type
 //val - value typed in search box or "body" while refreshing the events list
 function search_events(val,stype)
@@ -168,28 +166,129 @@ function del_cart(id)
 	add_to_cart("refresh");
 }
 //To proceed to intermediate page
-function proceed_1()
+function proceed_1(status)
 {
-	var numb=100;
 	$('#cart').closeModal();
-	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
+	var numb = 100;
+	var flag = 0;
+	for(var i=0; i<cart.length;i++)
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		//event ids of combo 1 and combo 5
+		if(cart[i]==2165||cart[i]==2169) 
+			flag=1;
+	}
+	if(flag==0)
+	{	
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
 		{
-			document.getElementById("all").innerHTML=xmlhttp.responseText;
-			var res=document.getElementById("all").innerHTML;
-			if(res.indexOf("dhS8!")>0)
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				window.location = 'index.php';
+				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("all").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
+		xmlhttp.open("POST","proceed_1.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno+"&phno="+phno+"&combo="+combo);
 	}
-	xmlhttp.open("POST","proceed_1.php",true);
-	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
+	else if(status=="combo")
+	{
+		var c1 = 0;
+		var c2 = 0;
+		var co = document.getElementsByName("combo_cato");
+		var ct = document.getElementsByName("combo_catt");
+		var k = 0;
+		for(var n=0;n<co.length;n++)
+		{
+			if(co[n].checked)
+			{
+				c1++;
+				combo[k] = co[n].value;
+				k++;
+			}
+		}
+		for(var m=0;m<ct.length;m++)
+		{
+			if(ct[m].checked)
+			{
+				c2++;
+				combo[k] = ct[m].value;
+				k++;
+			}
+		}
+		if(c1!=3||c2!=7)
+		{
+			Materialize.toast("Select 10 Workshops!","3000","rounded");
+			return false;
+		}
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("all").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
+			}
+		}
+		xmlhttp.open("POST","proceed_1.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno+"&phno="+phno+"&combo="+combo);
+	}
+	else
+	{
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("all").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("all").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
+			}
+		}
+		xmlhttp.open("POST","combo.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("combo="+combo+"&numb="+numb);
+	}
 }
-
+var i = 0;
+var j = 0;
+function checkbox_3(id)
+{
+	if(document.getElementById(id).checked)
+		i++;
+	else
+		i--;
+	if(i>3)
+	{
+		document.getElementById(id).checked = false;
+		i--;
+	}
+}
+function checkbox_7(id)
+{
+	if(document.getElementById(id).checked)
+		j++;
+	else
+		j--;
+	if(j>7)
+	{
+		document.getElementById(id).checked = false;
+		j--;
+	}
+}
 function payment(val)
 {
 	if(val==0)
@@ -230,7 +329,7 @@ function checkout()
 		}
 		xmlhttp.open("POST","card_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&rr="+rrno+"&regno="+regno);
+		xmlhttp.send("cart="+cart+"&team="+team+"&rr="+rrno+"&regno="+regno+"&phno="+phno+"&combo="+combo);
 	}
 	else if(pay=="1") // For cash Payment
 	{
@@ -252,7 +351,7 @@ function checkout()
 		}
 		xmlhttp.open("POST","cash_pay.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno);
+		xmlhttp.send("cart="+cart+"&team="+team+"&numb="+numb+"&regno="+regno+"&phno="+phno+"&combo="+combo);
 	}
 }
 </script>
@@ -331,8 +430,13 @@ $('.modal-trigger').leanModal();
 	<footer class="page-footer indigo darken-4">
   <div class="footer-copyright">
     <div class="container">
-      © COPYRIGHT GRAVITAS 2015
-      <a class='modal-trigger right white-text' href='#credits'>Developers</a>
+       <a class='modal-trigger white-text right' href='#credits'>Meet the developers</a>
+      		<a class="red btn waves-effect z-depth-3 "  title="Logout" href="logout.php">
+			<i class="material-icons">power_settings_new</i>
+		</a>
+			<a class="red btn waves-effect z-depth-3"  title="Logout" href="home.php">
+			<i class="material-icons">home</i>
+		</a>
       </div>
   </div>
 </footer>
@@ -371,12 +475,18 @@ $('.modal-trigger').leanModal();
 </html>
 <?php
 }
+else if(isset($_SESSION["regno"])&&!isset($_POST["regno"])&&!isset($_POST["phno"]))
+{
+	header("Location:home.php");
+}
 else
 {
-		session_unset();
-		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-		session_destroy();
-		header("Location:index.php");
+	session_start();
+	session_unset();
+	session_destroy();
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+	header("Location:index.php");
+	exit();
 }
 ?>

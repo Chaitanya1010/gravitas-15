@@ -26,7 +26,7 @@ if(isset($_SESSION["regno"]))
 	$r1 = mysqli_query($mysqli,$q1);
 	while($t1=mysqli_fetch_array($r1))
 	{
-		$event_id[$i++] = $t1[2];
+		$event_id[$i++] = $t1["event_id"];
 	}
 	if($i!=0)
 	{
@@ -47,7 +47,7 @@ if(isset($_SESSION["regno"]))
 		$cart = implode(",",$cart_array);
 		$q.= " AND `id` NOT IN ($cart)";
 	}
-	echo "<TABLE class='hoverable bordered'><thead><TR><TH>NAME</TH><TH>PRICE (&#8377;) </TH><TH>TEAM SIZE</TH><TH>CART</TH></tr></thead>";
+	echo "<TABLE class='hoverable bordered'><thead><TR><TH>Name</TH><TH>Price/Participant (&#8377;) </TH><TH>Team Size</TH><TH>Cart</TH></tr></thead>";
 	$r = mysqli_query($mysqli,$q);
 	while($t=mysqli_fetch_array($r))
 	{
