@@ -347,8 +347,8 @@ function approve_payement(id)
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("button_payement_"+id.).innerHTML=xmlhttp.responseText;
-				var res=document.getElementById("button_payement_"+id.).innerHTML;
+				document.getElementById("button_payement_"+id).innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("button_payement_"+id).innerHTML;
 				if(res.indexOf("dhS8!")>0)
 				{
 					window.location = 'index.php';
@@ -387,9 +387,6 @@ function search_person_del()
 {
 	var numb=100;
 	var value = document.getElementById('id_search').value;
-	var s=confirm("Do you want to approve the transaction?");
-	if(s)
-	{
 		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
@@ -406,7 +403,6 @@ function search_person_del()
 		xmlhttp.open("POST","search_for_delivery.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("value="+value);
-	}
 }
 
 

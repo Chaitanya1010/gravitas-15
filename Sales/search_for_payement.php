@@ -5,12 +5,12 @@
 		require('sql_con.php');
 
 		$value=$_REQUEST['value'];
-		
+
 		$value=strtolower($value);
-	
+
 		//echo $value;
 
-		$sql_search="SELECT * FROM  `order_sales` WHERE LOWER(regno) LIKE '".$value."%' and paid_status='0'";	
+		$sql_search="SELECT * FROM  `order_sales` WHERE LOWER(regno) LIKE '".$value."%' and paid_status='0'";
 		$res_search=mysqli_query($mysqli,$sql_search);
 		if(mysqli_num_rows($res_search)>0)
 		{
@@ -18,6 +18,7 @@
 			echo "<TABLE class='striped'><TR><TH>Category</TH><TH>Quantity</TH><TH>Size</TH><TH>Cost</TH><TH>Approval</TH></TR>";
 			while($t1=mysqli_fetch_array($res_search))
 			{
+				$id=$t1['unique_id'];
 				$regno = $t1["regno"];
 				$phno=$t1['phno'];
 				$blck_name=$t1['blck_name'];
@@ -35,7 +36,7 @@
 
 				$size_c_1_t_1=$t1['size_c_1_t_1'];
 				$size_c_1_t_2=$t1['size_c_1_t_2'];
-				
+
 				$size_c_2_t_1=$t1['size_c_2_t_1'];
 
 				$size_c_3_t_1=$t1['size_c_3_t_1'];
@@ -60,15 +61,15 @@
 				if($c_2==0)
 				{
 					$size_c_2_t_1='';
-				}				
-				
+				}
+
 				if($c_3==0)
 				{
 					$size_c_3_t_1='';
 					$size_c_3_t_2='';
 				}
 
-			
+
 					echo "
 						<TR>
 							<TD>";
@@ -86,7 +87,7 @@
 								<h5>$amount INR</h5>
 								<div id='button_payement_".$id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_payement(".$id.")'>Approve the Transaction</button></div></br>
 							</TD>
-						</TR>";	
+						</TR>";
 
 
 			if($t_1+$c_1+$c_2+$c_3>0)
@@ -108,7 +109,7 @@
 			}
 
 			if($t_2+$c_1+$c_3>0)
-			{	
+			{
 				$sum=$t_2+$c_1+$c_3;
 				echo "<TR>
 						<TD>
@@ -118,11 +119,11 @@
 							$sum
 						</TD>
 						<TD>
-							$size_t_2,$size_c_1_t_2,$size_c_3_t_2	
+							$size_t_2,$size_c_1_t_2,$size_c_3_t_2
 						</TD>
 					</TR>";
 			}
-						
+
 			}
 			echo"</TABLE>";
 		}
