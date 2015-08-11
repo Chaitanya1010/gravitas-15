@@ -336,6 +336,32 @@ function search_person()
 	xmlhttp.send("value="+value);
 }
 
+function approve_payement(id)
+{
+	var numb=100;
+	var s=confirm("Do you want to approve the transaction?");
+	if(s)
+	{
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("button_payement_"+id.).innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("button_payement_"+id.).innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
+			}
+		}
+		xmlhttp.open("POST","approve_payement.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("id="+id);
+	}
+}
+//searching and approving is done
+
 function make_delivery()
 {
 	var numb=100;
@@ -361,23 +387,26 @@ function search_person_del()
 {
 	var numb=100;
 	var value = document.getElementById('id_search').value;
-	//var s=confirm("Do you want to approve the transaction?");
-	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
+	var s=confirm("Do you want to approve the transaction?");
+	if(s)
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
 		{
-			document.getElementById("search_results").innerHTML=xmlhttp.responseText;
-			var res=document.getElementById("search_results").innerHTML;
-			if(res.indexOf("dhS8!")>0)
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				window.location = 'index.php';
+				document.getElementById("search_results").innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("search_results").innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
 			}
 		}
+		xmlhttp.open("POST","search_for_delivery.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("value="+value);
 	}
-	xmlhttp.open("POST","search_for_delivery.php",true);
-	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("value="+value);
 }
 
 

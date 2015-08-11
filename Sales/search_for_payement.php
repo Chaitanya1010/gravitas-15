@@ -82,7 +82,10 @@
 							echo"</TD>
 							<TD></TD>
 							<TD></TD>
-							<TD><h5>$amount INR</h5></TD>
+							<TD>
+								<h5>$amount INR</h5>
+								<div id='button_payement_".$id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_payement(".$id.")'>Approve the Transaction</button></div></br>
+							</TD>
 						</TR>";	
 
 
