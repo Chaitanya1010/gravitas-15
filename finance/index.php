@@ -163,6 +163,45 @@ main {
 
 		</div>
 		</div>
+		
+			<footer class="page-footer indigo darken-4">
+  <div class="footer-copyright">
+    <div class="container">
+     © COPYRIGHT GRAVITAS 2015
+       <a class='modal-trigger white-text right' href='#credits'>Meet the developers</a>
+      </div>
+  </div>
+</footer>
+<div id="credits" class="modal">
+  <div class="modal-content" style='padding:0'>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-image">
+            <img src="credits.jpg">
+            <span class="card-title">Developers</span>
+          </div>
+          <div class="card-content" style='padding:0'>
+            <div class='row'>
+              <div class='col s6'>
+              <h5 class='header light'><a href="https://in.linkedin.com/pub/chaitanya-tetali/86/763/aa2" target='_blank'>Tetali Chaitanya</a></h5>
+                Back End
+              </div>
+              <div class='col s6'>
+                <h5 class='header light'><a href="https://www.linkedin.com/in/rajalakshmisenthil" target='_blank'>Rajalakshmi Senthil</a></h5>
+                Back End
+              </div>
+              <div class='col s6'>
+                <h5 class='header light'><a href="https://in.linkedin.com/in/shubhodeep9" target='_blank'>Shubhodeep Mukherjee</a></h5>
+                Front End
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 $(document).ready(function() {
 
@@ -1498,3 +1537,15 @@ function int_registrations_excel()	//int_registrations.php -> excel_intreg.php
 }
 
 </script>
+
+<style>
+
+.modal { max-height: 90%; max-width:90%; }
+</style>
+<script>
+$(document).ready(function(){
+// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+$('.modal-trigger').leanModal();
+});
+</script>
+

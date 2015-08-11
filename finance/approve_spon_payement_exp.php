@@ -11,6 +11,10 @@
 			$sql_approve="UPDATE  `finance`.`mode_cash_expenditure` SET  `approval_1` =  '1' WHERE  `mode_cash_expenditure`.`unique_id_note` =$id;";
 		
 		$res_approve=mysqli_query($mysqli,$sql_approve);
+		
+		
+		$mode_revenue=0;
+		$mode_payement=0;
 
 		if(($res_approve)&&($mode==55)) 
 		{

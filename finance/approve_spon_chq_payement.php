@@ -17,7 +17,10 @@
 			$sql_approve="UPDATE  `finance`.`mode_cheque` SET  `approval_3` =  '1' WHERE  `mode_cheque`.`unique_id_chq` =$id;";
 
 		$res_approve=mysqli_query($mysqli,$sql_approve);
-
+	
+		$mode_revenue=1;
+		$mode_payement=2;
+	
 		if($res_approve)
 		{
 			echo "</br><b>Approved</b></br>";

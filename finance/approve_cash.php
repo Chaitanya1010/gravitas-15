@@ -37,7 +37,7 @@
 			$sixth_data="Remarks";
 		}
 
-		if($id==3)	//Stall - Rent
+		if($id==3)	//T-Shirts
 		{
 			$first_data="Person Name";
 			$second_data="Date";
@@ -86,7 +86,7 @@
 		});
 		</script>
 		<?php
-}
+		}
 		else
 			echo "
 			<h5>Cash approval</h5>

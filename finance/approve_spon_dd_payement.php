@@ -18,13 +18,16 @@
 
 		
 		$res_approve=mysqli_query($mysqli,$sql_approve);
+		
+		$mode_revenue=1;
+		$mode_payement=1;
 
 		if($res_approve)
 		{
 			echo "</br><b>Approved</b></br>";
 			if($mode==3)
 			{
-				require 'mail_approval.php';
+				//require 'mail_approval.php';
 			}
 		}
 	}

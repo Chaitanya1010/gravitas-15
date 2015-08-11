@@ -11,6 +11,10 @@
 			$sql_approve="UPDATE  `finance`.`mode_dd_expenditure` SET  `approval_1` =  '1' WHERE  `mode_dd_expenditure`.`unique_id_dd`=$id;";
 
 		$res_approve=mysqli_query($mysqli,$sql_approve);
+		
+		
+		$mode_revenue=0;
+		$mode_payement=1;
 
 		if($res_approve)
 		{

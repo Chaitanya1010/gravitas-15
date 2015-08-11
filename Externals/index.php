@@ -99,7 +99,6 @@ else if(isset($_POST["forget_password"]))
 				$rs = mysqli_query($mysqli,$stmt1);
 				if($rs)
 				{
-				
 						date_default_timezone_set('Asia/Calcutta');
 						require 'mail/PHPMailerAutoload.php';
 						
