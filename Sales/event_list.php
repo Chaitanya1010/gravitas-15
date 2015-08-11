@@ -177,7 +177,7 @@ function reg_go(paid_status_1)
 		Materialize.toast("Enter all details!!",3000,"rounded");
 		return false;
 	}
-} 
+}
 
 function isNumber(evt)
 {
@@ -190,7 +190,7 @@ function isNumber(evt)
 
 
 function select_combo()
-{		
+{
 	var c1=0;
 	var c2=0;
 	var co = document.getElementsByName("combo_cato");
@@ -436,8 +436,8 @@ function approve_delivery(id)
 <body>
   <main>
 	  <div id="register_events">
-	   
-	
+
+
 		  <header class="header indigo darken-4 z-depth-1" style="text-align:center;padding-top:0.3em;padding-bottom:0.02em">
 				<img src="../gravitaslogo.png" alt class="responsive-img" style="margin-left:6.5em" width="350px">
 				<h4 class="header light white-text">Sales Registration</h4>
@@ -454,23 +454,28 @@ function approve_delivery(id)
 		  <div id="body">
 	  		<div class ="container">
 	  			<div class="card hoverable">
-					<div class="input-field">
-						<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
+            <div class='container'>
+              <div class='row'>
+					<div class="input-field col s12 m6">
+						<label for="regno">Registration Number</label><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 					</div>
-					<div class="input-field">
-						<label for="phno">Phone Number</label><br/><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
+					<div class="input-field col s12 m6">
+						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
-					<div class="input-field">
-						<label for="blck_name">Block Name</label><br/><input type='text' name='blck_name' id='blck_name' maxlength="10" autocomplete='off' onkeypress="return isAlpha(event)">
+					<div class="input-field col s12 m6">
+						<label for="blck_name">Block Name</label><input type='text' name='blck_name' id='blck_name' maxlength="10" autocomplete='off' onkeypress="return isAlpha(event)">
 					</div>
-					<div class="input-field">
-						<label for="room_no">Room Number</label><br/><input type='text' name='room_no' id='room_no' maxlength="4" autocomplete='off' onkeypress="return isNumber(event)">
+					<div class="input-field col s12 m6">
+						<label for="room_no">Room Number</label><input type='text' name='room_no' id='room_no' maxlength="4" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
+        </div>
+        </div>
 				</div>
 			</div>
-		
+
 		 <div class="container row">
 			<div class="col s12">
+        <div class='container'>
 				<div class="input-field col s12">
 					<table class="striped hoverable black-text">
 						<tr>
@@ -486,7 +491,7 @@ function approve_delivery(id)
 									<option value='XXL'>Double Extra Large</option>
 								</select>
 							</td>
-							<td>	
+							<td>
 								<p class="heavy black-text">249 INR</p>
 							</td>
 						</tr>
@@ -503,7 +508,7 @@ function approve_delivery(id)
 									<option value='XXL'>Double Extra Large</option>
 								</select>
 							</td>
-							<td>	
+							<td>
 								<p class="heavy black-text">499 INR</p>
 							</td>
 						</tr>
@@ -582,7 +587,7 @@ function approve_delivery(id)
 							</td>
 					</table>
 				</div>&nbsp;
-				
+</div>
 			</div>
 		</div>
 				<div class ="input-field">
