@@ -83,6 +83,11 @@ function reg_go(paid_status_1)
 					t_1=1;
 					var e_1 = document.getElementById('size_1');
 					size_t_1 = e_1.options[e_1.selectedIndex].value;
+					if(size_t_1==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
 				}
 			}
 			if(i==2)
@@ -92,6 +97,11 @@ function reg_go(paid_status_1)
 					t_2=1;
 					var e_1 = document.getElementById('size_2');
 					size_t_2 = e_1.options[e_1.selectedIndex].value;
+					if(size_t_2==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
 				}
 			}
 			if(i==3)
@@ -101,10 +111,20 @@ function reg_go(paid_status_1)
 					c_1_t_1=1;
 					var e_1 = document.getElementById('size_3');
 					size_c_1_t_1 = e_1.options[e_1.selectedIndex].value;
+					if(size_c_1_t_1==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
 
 					c_1_t_2=1;
 					var e_1 = document.getElementById('size_4');
 					size_c_1_t_2 = e_1.options[e_1.selectedIndex].value;
+					if(size_c_1_t_2==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
 				}
 			}
 			if(i==4)
@@ -114,6 +134,11 @@ function reg_go(paid_status_1)
 					c_2_t_1=1;
 					var e_1 = document.getElementById('size_5');
 					size_c_2_t_1 = e_1.options[e_1.selectedIndex].value;
+					if(size_c_2_t_1==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
 				}
 			}
 			if(i==5)
@@ -124,9 +149,22 @@ function reg_go(paid_status_1)
 					var e_1 = document.getElementById('size_6');
 					size_c_3_t_1 = e_1.options[e_1.selectedIndex].value;
 
+					if(size_c_3_t_1==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
+
 					c_3_t_2=1;
 					var e_1 = document.getElementById('size_7');
 					size_c_3_t_2 = e_1.options[e_1.selectedIndex].value;
+
+					if(size_c_3_t_2==99)
+					{
+						alert("Please Select all the sizes");
+						return false;
+					}
+
 				}
 			}
 		}//end of for XML call from here
@@ -466,6 +504,13 @@ function exel_dwnld()
     xmlhttp.send();
 }
 
+function isAlpha(evt)
+{
+       	var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 32 && charCode != 46 && charCode > 31 && (charCode < 97 || charCode > 122)&& (charCode < 65 || charCode > 90))
+             return false;
+        return true;
+}
 </script>
 <body>
   <main>
@@ -498,6 +543,9 @@ function exel_dwnld()
 						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
 					<div class="input-field col s12 m6">
+						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
+					</div>
+					<div class="input-field col s12 m6">
 						<label for="blck_name">Block Name</label><input type='text' name='blck_name' id='blck_name' maxlength="10" autocomplete='off' onkeypress="return isAlpha(event)">
 					</div>
 					<div class="input-field col s12 m6">
@@ -519,6 +567,7 @@ function exel_dwnld()
 							</td>
 							<td>
 								<select id='size_1' class='browser-default' class='col s12 m6' name='size_1'>
+									<option value='99'>Select Size for Round Neck</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
@@ -536,6 +585,7 @@ function exel_dwnld()
 							</td>
 							<td>
 								<select id='size_2' class='browser-default' class='col s12 m6' name='size_2'>
+									<option value='99'>Select Size for Polo T-shirt</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
@@ -553,6 +603,7 @@ function exel_dwnld()
 							</td>
 							<td>
 								<select id='size_3' class='browser-default' class='col s12 m6' name='size_3'>
+									<option value='99'>Select Size for Round Neck</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
@@ -560,7 +611,7 @@ function exel_dwnld()
 									<option value='XXL'>Double Extra Large</option>
 								</select></br>
 								<select id='size_4' class='browser-default' class='col s12 m6' name='size_4'>
-									<option value='S'>Small</option>
+									<option value='99'>Select Size for Polo T-shirt</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
 									<option value='XL'>Extra Large</option>
@@ -578,6 +629,7 @@ function exel_dwnld()
 							<td>
 								<p class="light black-text">10 Workshops + Round Neck</p></br>
 								<select id='size_5' class='browser-default' class='col s12 m6' name='size_5'>
+									<option value='99'>Select Size for Round Neck</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
@@ -596,6 +648,7 @@ function exel_dwnld()
 							</td>
 							<td>
 								<select id='size_6' class='browser-default' class='col s12 m6' name='size_6'>
+									<option value='99'>Select Size for Round Neck</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
@@ -603,6 +656,7 @@ function exel_dwnld()
 									<option value='XXL'>Double Extra Large</option>
 								</select></br>
 								<select id='size_7' class='browser-default' class='col s12 m6' name='size_7'>
+									<option value='99'>Select Size for Polo T-shirt</option>
 									<option value='S'>Small</option>
 									<option value='M'>Medium</option>
 									<option value='L'>Large</option>
