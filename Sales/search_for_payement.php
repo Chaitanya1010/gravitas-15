@@ -18,6 +18,7 @@
 			echo "<TABLE class='striped'><TR><TH>Category</TH><TH>Quantity</TH><TH>Size</TH><TH>Cost</TH><TH>Approval</TH></TR>";
 			while($t1=mysqli_fetch_array($res_search))
 			{
+				$id=$t1['unique_id'];
 				$regno = $t1["regno"];
 				$phno=$t1['phno'];
 				$blck_name=$t1['blck_name'];

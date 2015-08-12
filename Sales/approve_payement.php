@@ -13,6 +13,10 @@
 		{
 			echo "<br/><b>Approved</b><br/>";
 		}
+		else
+		{
+			echo "<b>Please try later</b>";
+		}
 	}
 	else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['id']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['id']))))
 	{

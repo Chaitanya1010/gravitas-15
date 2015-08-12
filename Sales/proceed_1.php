@@ -46,11 +46,16 @@ if((isset($_SESSION["regno"]))&&(isset($_REQUEST['numb'])))
 	
 	if($res_sales)//added into order_sales now add combos in combo table
 	{
-		echo "Added into sales";
+		//echo "Added into sales";
 		$q4 = "INSERT INTO `combos`(`reg_id`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`) VALUES ('$regno','$combo_array[0]','$combo_array[1]','$combo_array[2]','$combo_array[3]','$combo_array[4]','$combo_array[5]','$combo_array[6]','$combo_array[7]','$combo_array[8]','$combo_array[9]')";
 		$res=mysqli_query($mysqli,$q4);
 		if($res)
-			echo "<h5>Added!!</h5>";
+		{
+			if($paid_status)
+				echo "<h5>Added and money paid!!</h5>";
+			else
+				echo "<h5>Added and money not paid!!</h5>";
+		}
 
 	}
 	else

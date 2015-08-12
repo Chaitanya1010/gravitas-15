@@ -42,9 +42,6 @@ if(isset($_SESSION["regno"])&&isset($_POST["numb"]))
 <tr><td><input type='checkbox' id='combo_catt26' name='combo_catt' value='1054' onchange='checkbox_7(this.id)'><label for='combo_catt26'>Introduction to Web Development</label></td></tr>
 <tr><td><input type='checkbox' id='combo_catt27' name='combo_catt' value='1057' onchange='checkbox_7(this.id)'><label for='combo_catt27'>SAP 2000</label></td></tr>
 <tr><td><input type='checkbox' id='combo_catt28' name='combo_catt' value='1058' onchange='checkbox_7(this.id)'><label for='combo_catt28'>CellTech (Do it yourself)</label></td></tr>
-<tr><td><input type='checkbox' id='combo_catt29' name='combo_catt' value='2154' onchange='checkbox_7(this.id)'><label for='combo_catt29'>Design Engineering workshop</label></td></tr>
-<tr><td><input type='checkbox' id='combo_catt30' name='combo_catt' value='2155' onchange='checkbox_7(this.id)'><label for='combo_catt30'>How to claim your IP</label></td></tr>
-<tr><td><input type='checkbox' id='combo_catt31' name='combo_catt' value='2156' onchange='checkbox_7(this.id)'><label for='combo_catt31'>Unravel your creativity</label></td></tr>
 <tr><td>
 <button id="proceed_combo" name="proceed_combo" class="btn waves-effect waves-light indigo darken-4 left" onClick="select_combo()">
   <i class="material-icons right">send</i>  Proceed

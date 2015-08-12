@@ -29,7 +29,10 @@
 		$res_sales=mysqli_query($mysqli,$sql_sales);
 		if($res_sales)
 		{
-			echo "<h5>Added !!</h5>";
+			if($paid_status)
+				echo "<h5>Added and money paid!!</h5>";
+			else
+				echo "<h5>Added and money not paid!!</h5>";
 		}
 		else
 		{

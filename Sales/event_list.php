@@ -59,7 +59,7 @@ if(isset($_SESSION["regno"]))
 <script>
 
 var t_1=0,t_2=0,c_1_t_1=0,c_1_t_2=0,c_2_t_1=0,c_3_t_1=0,c_3_t_2=0;
-var size_t_1=0,size_t_2=0,size_c_1_t_1=0,size_c_1_t_2=0,size_c_2_t_1=0,size_c_3_t_1=0,size_c_3_t_2=0;
+var size_t_1='',size_t_2='',size_c_1_t_1='',size_c_1_t_2='',size_c_2_t_1='',size_c_3_t_1='',size_c_3_t_2='';
 var count_3 = 0;
 var count_7 = 0;
 var regno='',numb='',blck_name='',room_no='',paid_status=0,sum_total=0;
@@ -186,8 +186,6 @@ function isNumber(evt)
              return false;
         return true;
 }
-
-
 
 function select_combo()
 {		
@@ -347,8 +345,8 @@ function approve_payement(id)
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("button_payement_"+id.).innerHTML=xmlhttp.responseText;
-				var res=document.getElementById("button_payement_"+id.).innerHTML;
+				document.getElementById("button_payement_"+id).innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("button_payement_"+id).innerHTML;
 				if(res.indexOf("dhS8!")>0)
 				{
 					window.location = 'index.php';
@@ -387,10 +385,7 @@ function search_person_del()
 {
 	var numb=100;
 	var value = document.getElementById('id_search').value;
-	var s=confirm("Do you want to approve the transaction?");
-	if(s)
-	{
-		var xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function()
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -406,30 +401,71 @@ function search_person_del()
 		xmlhttp.open("POST","search_for_delivery.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("value="+value);
-	}
 }
+
 
 
 function approve_delivery(id)
 {
 	var numb=100;
-	//var s=confirm("Do you want to approve the transaction?");
+	var s=confirm("Do you want to approve the transaction?");
+	if(s)
+	{
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("button_delivery_"+id).innerHTML=xmlhttp.responseText;
+				var res=document.getElementById("button_delivery_"+id).innerHTML;
+				if(res.indexOf("dhS8!")>0)
+				{
+					window.location = 'index.php';
+				}
+			}
+		}
+		xmlhttp.open("POST","approve_delivery.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("id="+id);
+	}
+}
+
+//home page
+function make_order()
+{
+	var numb=100;
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("button_delivery_"+id).innerHTML=xmlhttp.responseText;
-			var res=document.getElementById("button_delivery_"+id).innerHTML;
+			document.getElementById("body").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("body").innerHTML;
 			if(res.indexOf("dhS8!")>0)
 			{
 				window.location = 'index.php';
 			}
 		}
 	}
-	xmlhttp.open("POST","approve_delivery.php",true);
+	xmlhttp.open("POST","order_home.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("id="+id);
+	xmlhttp.send("numb="+numb);
+}
+
+//excel download
+function exel_dwnld()
+{
+	var numb=100;
+	var xmlhttp=new XMLHttpRequest();
+  	xmlhttp.onreadystatechange=function()
+  	{
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    	{
+      		window.location = 'excel_dwn.php?numb='+numb;
+    	}
+  	}
+  	xmlhttp.open("GET","excel_dwn.php?numb="+numb,true);
+    xmlhttp.send();
 }
 
 </script>
@@ -445,7 +481,7 @@ function approve_delivery(id)
 		  	<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
 				<div class="col s12">
 				  <ul class="tabs indigo darken-2">
-						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="0">Place Order</a></li>
+						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" onclick="make_order()" name="type" value="0">Place Order</a></li>
 						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="1" onclick="make_payement()">Make payement</a></li>
 						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="2" onclick="make_delivery()">Make delivery</a></li>
 				  </ul>
@@ -454,6 +490,7 @@ function approve_delivery(id)
 		  <div id="body">
 	  		<div class ="container">
 	  			<div class="card hoverable">
+	  				<button id='excel_dwnld' onclick='exel_dwnld()'>EXCEL DOWNLOAD</button></br>
 					<div class="input-field">
 						<label for="regno">Registration Number</label><br/><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 					</div>
