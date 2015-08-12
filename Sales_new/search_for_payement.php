@@ -134,7 +134,7 @@
 			echo"</TABLE>";
 		}
 		else
-		echo "No results to Display!";
+		echo "<div class='container'><p class='flow-text'>No results to Display!</p></div>";
 	}
 	else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['value']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['value']))))
 	{

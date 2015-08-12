@@ -80,8 +80,8 @@ function reg_go(paid_status_1)
 	}
 	paid_status=paid_status_1;
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if((email_id=="")||(!email_id.match(mailformat))
-	{	
+	if((email_id=="")||(!email_id.match(mailformat)))
+	{
 		Materialize.toast("Please Select all the sizes",3000,'rounded');
 		return false;
 	}
