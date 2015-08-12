@@ -540,8 +540,13 @@ function isAlpha(evt)
 						<label for="regno">Registration Number</label><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 					</div>
 					<div class="input-field col s12 m6">
-						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
+						<label for="regno">Email ID</label><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 					</div>
+					<select id='hostel_type' class='browser-default' class='col s12 m6' name='hostel_type'>
+						<option value='99'>Select Hostel</option>
+						<option value='bh'>Boys Hostel</option>
+						<option value='gh'>Girls Hostel</option>
+					</select>
 					<div class="input-field col s12 m6">
 						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
