@@ -428,6 +428,44 @@ function approve_delivery(id)
 	xmlhttp.send("id="+id);
 }
 
+//home page
+function make_order()
+{
+	var numb=100;
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("body").innerHTML=xmlhttp.responseText;
+			var res=document.getElementById("body").innerHTML;
+			if(res.indexOf("dhS8!")>0)
+			{
+				window.location = 'index.php';
+			}
+		}
+	}
+	xmlhttp.open("POST","order_home.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("numb="+numb);
+}
+
+//excel download
+function exel_dwnld()
+{
+	var numb=100;
+	var xmlhttp=new XMLHttpRequest();
+  	xmlhttp.onreadystatechange=function()
+  	{
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    	{
+      		window.location = 'excel_dwn.php?numb='+numb;
+    	}
+  	}
+  	xmlhttp.open("GET","excel_dwn.php?numb="+numb,true);
+    xmlhttp.send();
+}
+
 </script>
 <body>
   <main>
@@ -441,7 +479,7 @@ function approve_delivery(id)
 		  	<div class="row indigo darken-2" style="width:100%;padding-bottom:0.2em">
 				<div class="col s12">
 				  <ul class="tabs indigo darken-2">
-						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="0">Place Order</a></li>
+						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="0" onclick="make_order()">Place Order</a></li>
 						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="1" onclick="make_payement()">Make payement</a></li>
 						<li class="tab col s2"><a href="#" class="white-text waves-effect" id="type" name="type" value="2" onclick="make_delivery()">Make delivery</a></li>
 				  </ul>
@@ -450,6 +488,7 @@ function approve_delivery(id)
 		  <div id="body">
 	  		<div class ="container">
 	  			<div class="card hoverable">
+	  				<button id='excel_dwnld' onclick='exel_dwnld()'>EXCEL DOWNLOAD</button></br>
             <div class='container'>
               <div class='row'>
 					<div class="input-field col s12 m6">
@@ -464,8 +503,8 @@ function approve_delivery(id)
 					<div class="input-field col s12 m6">
 						<label for="room_no">Room Number</label><input type='text' name='room_no' id='room_no' maxlength="4" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
-        </div>
-        </div>
+        	  </div>
+        	</div>
 				</div>
 			</div>
 
