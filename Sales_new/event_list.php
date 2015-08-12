@@ -540,8 +540,9 @@ function isAlpha(evt)
 						<label for="regno">Registration Number</label><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
 					</div>
 					<div class="input-field col s12 m6">
-						<label for="regno">Email ID</label><input type='text' name='regno' id='regno' autocomplete='off' maxlength='9'>
+						<label for="email_id">Email ID</label><input type='text' name='email_id' id='email_id' autocomplete='off' maxlength='30'>
 					</div>
+					<label for="email_id">Hostel Name</label>
 					<select id='hostel_type' class='browser-default' class='col s12 m6' name='hostel_type'>
 						<option value='99'>Select Hostel</option>
 						<option value='bh'>Boys Hostel</option>
