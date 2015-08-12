@@ -15,7 +15,7 @@
 		if(mysqli_num_rows($res_search)>0)
 		{
 			//	echo "Im inside while";
-			echo "<TABLE class='striped container centered'><thead><TR><TH>Category</TH><TH>Quantity</TH><TH>Size</TH><TH>Cost</TH><TH>Approval</TH></TR></thead>";
+			echo "<TABLE class='striped container'><TR><TH>Category</TH><TH>Quantity</TH><TH>Size</TH><TH>Cost</TH><TH>Approval</TH></TR>";
 			while($t1=mysqli_fetch_array($res_search))
 			{
 				$id=$t1['unique_id'];
@@ -71,28 +71,22 @@
 
 
 					echo "
-					<tr><td></td><td></td><td></td>
-				<td><h6><b>".strtoupper($regno)."</b></h6></td><td></td>
-					</tr>
 						<TR>
 							<TD>";
-							// echo "<h4 class='header light'>$regno</h4>";
+							echo "</br></br><h4>$regno</h4>";
 						if($c_1!=0)
 							echo "Combo-1</br>";
 						if($c_2!=0)
-							echo "Combo-2";
+							echo "Combo-2</br>";
 						if($c_3!=0)
 							echo "Combo-3</br>";
 							echo"</TD>
 							<TD></TD>
 							<TD></TD>
 							<TD>
-								<h5 class='header light'>&#8377;$amount</h5>
-
+								<h5>$amount INR</h5>
+								<div id='button_payement_".$id."'></br><button class='btn waves-effect waves white indigo-text darken-4' onclick='return approve_payement(".$id.")'>Approve the Transaction</button></div></br>
 							</TD>
-							<td>
-							<div id='button_payement_".$id."'><button class='btn btn-flat waves-effect waves white indigo-text darken-4' onclick='return approve_payement(".$id.")'>Approve the Transaction</button></div>
-							</td>
 						</TR>";
 
 
