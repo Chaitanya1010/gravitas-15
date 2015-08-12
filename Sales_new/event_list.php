@@ -531,9 +531,9 @@ function isAlpha(evt)
 				</div>
 		  </div>
 		  <div id="body">
+        <button class='btn-floating btn-medium waves-effect waves-light indigo darken-4 right' id='excel_dwnld' onclick='exel_dwnld();' style='margin-right:2em'><i class='material-icons'>play_for_work</i></button>
 	  		<div class ="container">
 	  			<div class="card hoverable">
-	  				<button id='excel_dwnld' onclick='exel_dwnld()'>EXCEL DOWNLOAD</button></br>
             <div class='container'>
               <div class='row'>
 					<div class="input-field col s12 m6">
@@ -542,12 +542,13 @@ function isAlpha(evt)
 					<div class="input-field col s12 m6">
 						<label for="email_id">Email ID</label><input type='text' name='email_id' id='email_id' autocomplete='off' maxlength='30'>
 					</div>
-					<label for="email_id">Hostel Name</label>
+					<div class='input-field col s12 m6'>
 					<select id='hostel_type' class='browser-default' class='col s12 m6' name='hostel_type'>
 						<option value='99'>Select Hostel</option>
 						<option value='bh'>Boys Hostel</option>
 						<option value='gh'>Girls Hostel</option>
 					</select>
+        </div>
 					<div class="input-field col s12 m6">
 						<label for="phno">Phone Number</label><input type='text' name='phno' id='phno' maxlength="10" autocomplete='off' onkeypress="return isNumber(event)">
 					</div>
