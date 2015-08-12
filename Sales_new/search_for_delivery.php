@@ -132,6 +132,8 @@
 			}
 			echo"</TABLE>";
 		}
+		else
+		echo "No results to Display!";
 	}
 	else if((isset($_SESSION['regno']))&&(!isset($_REQUEST['value']))||((!isset($_SESSION['regno']))&&(!isset($_REQUEST['value']))))
 	{
